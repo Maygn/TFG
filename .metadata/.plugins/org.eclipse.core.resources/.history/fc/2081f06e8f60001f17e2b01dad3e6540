@@ -1,0 +1,9 @@
+package trabajo.tfg;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
+  
+	//el método lo autogenera el jpa
+    Usuario findByUsuario(String usuario);
+}

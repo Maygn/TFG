@@ -1,0 +1,20 @@
+package app2;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
+
+
+@RestController
+public class Controller {
+
+
+String cogerUsuario="http://localhost:8080/darUsuario";
+@GetMapping(value="/pedir")
+public String pedirUsuario() {
+	RestTemplate restTemplate = new RestTemplate();
+	Usuario u1= restTemplate.getForObject(cogerUsuario, Usuario.class);
+	return u1.toString();
+}
+
+
+}

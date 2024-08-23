@@ -1,0 +1,30 @@
+package trabajo.tfg;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+@Service
+public class UsuarioService {
+	   @Autowired
+	    private UsuarioRepository usuarioRepository;
+
+	    // Guardar un nuevo usuario //el codigo uuid se genera automaticamente
+	    public Usuario guardarUsuario(String usuario, String contrasena) {
+	        Usuario nuevoUsuario = new Usuario();
+	        nuevoUsuario.setUsuario(usuario);
+	        nuevoUsuario.setContrasena(contrasena);
+
+	        try {
+	        return usuarioRepository.save(nuevoUsuario);  // Guarda el nuevo usuario en la base de datos
+	        }
+	        catch(Exception e) {
+	        	e.printStackTrace();
+	        	return null;
+	        }
+	    }
+
+	    // Obtener un usuario por su nombre
+	    public Usuario obtenerUsuarioPorNombre(String usuario) {
+	        return usuarioRepository.findByUsuario(usuario);
+	    }
+	}

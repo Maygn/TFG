@@ -1,0 +1,15 @@
+package trabajo.tfg;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class TfgApplication {
+
+	public static void main(String[] args) {
+		String palabra="miMamaMeMima";
+		System.out.println(palabra.hashCode());
+		//SpringApplication.run(TfgApplication.class, args);
+	}
+
+}//pero lo habia intentado previamente

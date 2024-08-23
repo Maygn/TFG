@@ -1,0 +1,40 @@
+package Prac;
+
+public class Vehiculo {
+	
+	String propietario;
+	
+	String matricula;
+
+	public Vehiculo(String propietario, String matricula) {
+		super();
+		this.propietario = propietario;
+		this.matricula = matricula;
+	}
+
+	public String getPropietario() {
+		return propietario;
+	}
+
+	public void setPropietario(String propietario) {
+		this.propietario = propietario;
+	}
+
+	public String getMatricula() {
+		return matricula;
+	}
+
+	public void setMatricula(String matricula) {
+		this.matricula = matricula;
+	}
+
+	@Override
+	public String toString() {
+		return propietario + " " + matricula;
+	}
+	
+	
+	
+	
+
+}

@@ -1,0 +1,5 @@
+package trabajo.tfg.config;
+
+public class SecurityConfig {
+
+}

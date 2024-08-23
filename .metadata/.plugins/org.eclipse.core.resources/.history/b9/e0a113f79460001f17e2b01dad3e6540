@@ -1,0 +1,40 @@
+package trabajo.tfg;
+
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+@RestController
+@RequestMapping("/usuarios")
+public class UsuarioController { //Funcionapero sigo sin pillar el postman
+	
+	 @Autowired
+	    private UsuarioService usuarioService;
+
+	    // Endpoint para guardar un nuevo usuario
+	    @PostMapping("/guardar") //Veamos ahora
+	    
+	    public ResponseEntity<?> guardarUsuario(@RequestParam String usuario, @RequestParam String contrasena) {
+	    	
+	    	Usuario respuesta=null;
+	    	
+	    	try {//aqui returna usuario bien
+		        return new ResponseEntity<Usuario>(usuarioService.guardarUsuario(usuario, contrasena),HttpStatus.OK);
+	    	}
+	    	catch(DataIntegrityViolationException e) {//y aqui returna la pifia no? Casi. Arriba "define". Puedes simplificarlo.
+	    		return new ResponseEntity<String>("Ya tenemos usuario",HttpStatus.BAD_REQUEST);
+	    	}
+	    	
+	    	
+	    }
+
+	    // Endpoint para obtener usuario por nombre //genera el url añadiendo el contenido del pathvariable en lugar del {usuario}
+	    @GetMapping("/obtener/{usuario}")
+	    public Usuario obtenerUsuario(@PathVariable String usuario) {
+	        return usuarioService.obtenerUsuarioPorNombre(usuario);
+	    }
+}

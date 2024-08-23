@@ -1,0 +1,10 @@
+package Prac;
+
+public class Vehiculo {
+	
+	String propietario;
+	String matricula;
+	
+	
+
+}

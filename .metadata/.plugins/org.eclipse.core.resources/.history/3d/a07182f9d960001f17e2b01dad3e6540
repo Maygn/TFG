@@ -1,0 +1,45 @@
+package trabajo.tfg;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
+
+@Service
+public class UsuarioService {
+	   @Autowired
+	    private UsuarioRepository usuarioRepository;
+	   
+	  
+
+	    // Guardar un nuevo usuario //el codigo uuid se genera automaticamente
+	    public Usuario guardarUsuario(String usuario, String contrasena) throws DataIntegrityViolationException {
+	        Usuario nuevoUsuario = new Usuario();
+	        nuevoUsuario.setUsuario(usuario);
+
+
+	        // Hashear la contraseña antes de guardarla
+	        String hashedPassword = passwordEncoder.encode(contrasena);
+	        nuevoUsuario.setContrasena(hashedPassword);
+
+
+	        return usuarioRepository.save(nuevoUsuario);  // Guarda el nuevo usuario en la base de datos
+
+	    }
+
+	    // Obtener un usuario por su nombre
+	    public Usuario obtenerUsuarioPorNombre(String usuario) {
+	        return usuarioRepository.findByUsuario(usuario);
+	    }
+	    
+	    
+	    // comprobar clave correcta
+	    public boolean contrasenaCorrecta(String nombreUsuario, String contrasena) {
+	        Usuario usuario = usuarioRepository.findByUsuario(nombreUsuario);
+	        if (usuario != null) {
+	            // compara la contraseña (no hash) con la guardada (hash)
+	            return passwordEncoder.matches(contrasena, usuario.getContrasena());
+	        }
+	        return false;
+	    }
+	}

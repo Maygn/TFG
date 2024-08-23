@@ -1,0 +1,40 @@
+package trabajo.tfg;
+
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+@RestController
+@RequestMapping("/usuarios")
+public class UsuarioController { //Funcionapero sigo sin pillar el postman
+	
+	 @Autowired
+	    private UsuarioService usuarioService;
+
+	    // Endpoint para guardar un nuevo usuario
+	    @PostMapping("/guardar") //Atenta?sisi
+	    
+	    public ResponseEntity<?> guardarUsuario(@RequestParam String usuario, @RequestParam String contrasena) {
+	    	
+	    	Usuario respuesta=null;
+	    	
+	    	try {
+	    		Usuario respuesta=usuarioService.guardarUsuario(usuario, contrasena);
+	    	}
+	    	catch(Exception e) {
+	    		
+	    	}
+	    	
+	    	
+	        return new ResponseEntity<Usuario>(respuesta,HttpStatus.OK);
+	    }
+
+	    // Endpoint para obtener usuario por nombre //genera el url añadiendo el contenido del pathvariable en lugar del {usuario}
+	    @GetMapping("/obtener/{usuario}")
+	    public Usuario obtenerUsuario(@PathVariable String usuario) {
+	        return usuarioService.obtenerUsuarioPorNombre(usuario);
+	    }
+}

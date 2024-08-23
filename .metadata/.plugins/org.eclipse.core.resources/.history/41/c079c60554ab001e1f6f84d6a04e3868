@@ -1,0 +1,18 @@
+package app1;
+import java.util.ArrayList;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+@RestController
+public class Controller {
+	
+	@Autowired
+	DataService baseFalsa;
+	
+	@GetMapping(value="/darUsuario")
+		public Usuario hacerUsuario(@RequestParam (name="codigo") int codigo) {
+			return baseFalsa.getListaUsu().get(codigo);
+		}
+}

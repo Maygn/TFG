@@ -1,0 +1,12 @@
+package app1;
+
+import java.util.ArrayList;
+
+public class DataService {
+	ArrayList<Usuario> listaUsu = new ArrayList<>();
+	public DataService() {		
+		for(int i=0; i<5; i++) {
+			listaUsu.add(new Usuario("Usuario con codigo "+i, "correo", i));
+		}
+	}
+}

@@ -1,0 +1,27 @@
+package trabajo.tfg;
+
+import org.apache.commons.codec.digest.DigestUtils;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class TfgApplication {
+
+	public static void main(String[] args) {
+		String palabra="miMamaMdeMima";
+		String hasheado=DigestUtils.sha256Hex(palabra);
+		
+		
+		if(DigestUtils.sha256Hex("miMamaMdeMima").equals(hasheado)) {
+			System.out.println("Pass bien.");
+		}
+		else {
+			System.out.println("Fallo");
+		}
+		//Lo ves ya?
+		//
+		
+		SpringApplication.run(TfgApplication.class, args);
+	}
+
+}//pero lo habia intentado previamente

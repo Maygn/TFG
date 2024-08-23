@@ -1,0 +1,39 @@
+package Prac;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class GestionarVehiculos {
+
+	public static void pedirCoches() {
+		Scanner sc = new Scanner(System.in);
+		ArrayList<Vehiculo> coches = new ArrayList<>();
+		boolean fuera = false;
+
+		while (!fuera) {
+			// Primero, se lee los propietarios y matriculas que se van introduciendo
+			System.out.println("Introduzca el nombre de propietario;");
+			String propietario = sc.nextLine();
+			
+
+			
+
+			if (propietario.equals("")) {
+				fuera = true;
+			}
+			else {
+				System.out.println("Ahora introduzca las matrículas de su vehículo");
+				String matricula = sc.nextLine();
+				Vehiculo v1 = new Vehiculo(propietario, matricula);
+				coches.add(v1);
+			}
+		}
+		
+		for(int i = 0; i < coches.size(); i++) {
+			System.out.println(coches.get(i).toString());
+		}
+			
+
+	}
+
+}
