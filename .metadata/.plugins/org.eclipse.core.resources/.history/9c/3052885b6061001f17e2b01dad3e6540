@@ -1,10 +1,6 @@
 package trabajo.tfg;
 
 
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-
-import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
@@ -36,21 +32,8 @@ public class UsuarioController {
 
 	    // Endpoint para obtener usuario por nombre //genera el url añadiendo el contenido del pathvariable en lugar del {usuario}
 	    @GetMapping("/obtener/{usuario}")
-	    public String obtenerUsuario(@PathVariable String usuario) {
-	    	ArrayList<Object> returnar = new ArrayList<>();
-	    	
-	    	Usuario user=usuarioService.obtenerUsuarioPorNombre(usuario);
-	    	
-	    	LocalDateTime fechaHora= LocalDateTime.now();
-	    	
-	    	String secret="BoqueronesConVinagre";
-	    	
-	    	String hashear=user.getUsuario()+fechaHora.toString()+secret;
-	    	String hashed=DigestUtils.sha256Hex(hashear);
-	    	
-	    	
-	    	
-	        return hashed;
+	    public Usuario obtenerUsuario(@PathVariable String usuario) {
+	        return usuarioService.obtenerUsuarioPorNombre(usuario);
 	    }
 	    
 	    @GetMapping("/verificar")

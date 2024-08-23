@@ -1,9 +1,0 @@
-/**
- * 
- */
-/**
- * 
- */
-module CalculadoraEj {
-	requires junit;
-}

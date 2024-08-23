@@ -43,14 +43,14 @@ public class UsuarioController {
 	    	
 	    	LocalDateTime fechaHora= LocalDateTime.now();
 	    	
-	    	String secret="BoqueronesConVinagre";
 	    	
-	    	String hashear=user.getUsuario()+fechaHora.toString()+secret;
+	    	
+	    	String hashear=user.getUsuario()+fechaHora.toString();
 	    	String hashed=DigestUtils.sha256Hex(hashear);
+	    	String secret="BoqueronesConVinagre";
+	    	String todo=hashed+secret;
 	    	
-	    	
-	    	
-	        return hashed;
+	        return todo;
 	    }
 	    
 	    @GetMapping("/verificar")

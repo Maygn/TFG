@@ -4361,3 +4361,15 @@ java.util.concurrent.TimeoutException
 
 !ENTRY org.springframework.tooling.boot.ls 1 0 2024-08-23 00:58:17.286
 !MESSAGE Classpath changed for project: tfg
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-08-23 03:10:25.047
+!MESSAGE Classpath changed for project: tfgGIT
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-08-23 03:10:25.269
+!MESSAGE Classpath changed for project: tfgGIT
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-08-23 03:10:25.593
+!MESSAGE Classpath changed for project: tfgGIT
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-08-23 15:28:51.581
+!MESSAGE Classpath changed for project: tfgGIT
