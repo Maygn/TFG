@@ -6,8 +6,10 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value="&lt;build&gt;"/>
+		<item key="selection" value=""/>
 		<list key="findhistory">
+			<item value="hash"/>
+			<item value="security"/>
 			<item value="&lt;build&gt;"/>
 			<item value="&lt;build&gt;&#x0A;    &lt;plugins&gt;"/>
 			<item value="&lt;build&gt;&#x0A;    &lt;plugins&gt;&#x0A;        &lt;plugin&gt;&#x0A;            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;&#x0A;            &lt;artifactId&gt;spring-boot-maven-plugin&lt;/artifactId&gt;&#x0A;        &lt;/plugin&gt;&#x0A;    &lt;/plugins&gt;&#x0A;&lt;/build&gt;"/>
@@ -22,8 +24,8 @@
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
-		<item key="DIALOG_X_ORIGIN" value="807"/>
-		<item key="DIALOG_Y_ORIGIN" value="268"/>
+		<item key="DIALOG_X_ORIGIN" value="1250"/>
+		<item key="DIALOG_Y_ORIGIN" value="295"/>
 		<item key="DIALOG_WIDTH" value="322"/>
 		<item key="DIALOG_HEIGHT" value="391"/>
 		<item key="DIALOG_FONT_NAME" value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI"/>

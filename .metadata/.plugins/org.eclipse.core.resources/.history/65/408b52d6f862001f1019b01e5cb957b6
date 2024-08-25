@@ -1,0 +1,66 @@
+package trabajo.tfg;
+
+import java.util.Base64;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+
+import org.apache.commons.codec.digest.DigestUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+@RestController
+@RequestMapping("/usuarios")
+
+public class UsuarioController { 
+	
+	 @Autowired
+	    private UsuarioService usuarioService;
+
+	    // Endpoint para guardar un nuevo usuario
+	    @PostMapping("/guardar") 
+	    
+	    public ResponseEntity<String> guardarUsuario(@RequestParam String usuario, @RequestParam String contrasena) {
+	    		    	//usa el wrapper para poder mandar las dos cosas, el usuario si todo va bien y el error si no
+	    	try { //se usa responseentity porque deja manipular el tipo de error.
+		        return new ResponseEntity<String>(usuarioService.guardarUsuario(usuario, contrasena).getUsuario()+" guardado en BDD",HttpStatus.OK); 
+	    	}
+	    	catch(DataIntegrityViolationException e) {
+	    		return new ResponseEntity<String>("Ya tenemos ese usuario",HttpStatus.BAD_REQUEST);
+	    	}
+	    	
+	    	
+	    }
+
+	    // Endpoint para obtener usuario por nombre //genera el url añadiendo el contenido del pathvariable en lugar del {usuario}
+	    @GetMapping("/obtener/{usuario}")
+	    public String obtenerUsuario(@PathVariable String usuario) {
+	    	ArrayList<Object> returnar = new ArrayList<>();
+	    	
+	    	Usuario user=usuarioService.obtenerUsuarioPorNombre(usuario);
+	    	
+	    	LocalDateTime fechaHora= LocalDateTime.now();
+	    
+	    	
+	    	String jwtHeader = "{\"alg\": \"HS256\", \"typ\": \"JWT\"}";   	
+	    	String jwtPayload="{ \"Usuario\": \"" + user.getUsuario() + "\", \"Fecha:\": \"" + fechaHora.toString() + "\" }";
+	    	String secret="BoqueronesConVinagre";
+	    	
+	    		    	
+	    	String jwtSignature=DigestUtils.sha256Hex(jwtHeader+jwtPayload+secret);
+	    	
+	        return jwtSignature;
+	    }
+	    
+	    @GetMapping("/verificar")
+	    public ResponseEntity<String> verificarUsuario(@RequestParam String usuario, @RequestParam String contrasena) {
+	        boolean credencialesValidas = usuarioService.contrasenaCorrecta(usuario, contrasena);
+	        if (credencialesValidas) {
+	            return new ResponseEntity<String>("OK", HttpStatus.OK);
+	        } else {
+	            return new ResponseEntity<String>("Clave incorrecta", HttpStatus.UNAUTHORIZED);
+	        }
+	    }
+}

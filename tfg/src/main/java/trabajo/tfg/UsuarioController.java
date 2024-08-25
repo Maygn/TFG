@@ -1,10 +1,12 @@
 package trabajo.tfg;
 
-
+import java.util.Base64;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 import org.apache.commons.codec.digest.DigestUtils;
+import org.apache.commons.codec.digest.HmacAlgorithms;
+import org.apache.commons.codec.digest.HmacUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
@@ -37,20 +39,25 @@ public class UsuarioController {
 	    // Endpoint para obtener usuario por nombre //genera el url añadiendo el contenido del pathvariable en lugar del {usuario}
 	    @GetMapping("/obtener/{usuario}")
 	    public String obtenerUsuario(@PathVariable String usuario) {
-	    	ArrayList<Object> returnar = new ArrayList<>();
+
 	    	
 	    	Usuario user=usuarioService.obtenerUsuarioPorNombre(usuario);
 	    	
 	    	LocalDateTime fechaHora= LocalDateTime.now();
+	    //esto es para comprobar los credenciales, primero hago las tres piezas del jwt
 	    	
+	    	String jwtHeader = "{\"alg\": \"HS256\", \"typ\": \"JWT\"}";   	
+	    	String jwtPayload="{ \"Usuario\": \"" + user.getUsuario() + "\", \"Fecha:\": \"" + fechaHora.toString() + "\" }";
 	    	String secret="BoqueronesConVinagre";
+	    //las pongo en base64 para que no de guerra en otros sistemas
+	    	String jwtHeader64=Base64.getUrlEncoder().withoutPadding().encodeToString(jwtHeader.getBytes());
+	    	String jwtPayload64=Base64.getUrlEncoder().withoutPadding().encodeToString(jwtPayload.getBytes());
+	    //concateno las piezas y las vuelvo a traducir.
+	    	String jwtHmac=new HmacUtils(HmacAlgorithms.HMAC_SHA_256,secret).hmacHex(jwtHeader+jwtPayload);
+	    	String jwtHmac64=Base64.getUrlEncoder().withoutPadding().encodeToString(jwtHmac.getBytes());
+	    	System.out.println(jwtHeader64+"."+jwtPayload64+"."+jwtHmac64);
 	    	
-	    	String hashear=user.getUsuario()+fechaHora.toString()+secret;
-	    	String hashed=DigestUtils.sha256Hex(hashear);
-	    	
-	    	
-	    	
-	        return hashed;
+	        return jwtHmac;
 	    }
 	    
 	    @GetMapping("/verificar")
