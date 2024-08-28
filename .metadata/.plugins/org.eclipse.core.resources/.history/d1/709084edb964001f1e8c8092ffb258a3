@@ -55,35 +55,10 @@ public class UsuarioController {
 	    //concateno las piezas y las vuelvo a traducir.
 	    	String jwtHmac=new HmacUtils(HmacAlgorithms.HMAC_SHA_256,secret).hmacHex(jwtHeader+jwtPayload);
 	    	String jwtHmac64=Base64.getUrlEncoder().withoutPadding().encodeToString(jwtHmac.getBytes());
-	    //y las concateno una vez traducidas, y luego las envio	
-	    	String enviar=jwtHeader64+"."+jwtPayload64+"."+jwtHmac64;
+	    	System.out.println(jwtHeader64+"."+jwtPayload64+"."+jwtHmac64);
 	    	
-	        return enviar;
+	        return jwtHmac;
 	    }
-	    
-	    public boolean decoder(String recibido, String secret) {
-	    	
-	        //separo en cada punto 
-	    	String[] partes = recibido.split("\\.");
-	    	//pongo cada cacho en un string distinto
-	    	String header = new String(Base64.getUrlDecoder().decode(partes[0]));
-	    	String payload = new String(Base64.getUrlDecoder().decode(partes[1]));
-	    	
-	    	//rehago la firma con los datos que he sacado y enviando el secret directamente
-	    	String firmaRehecha=new HmacUtils(HmacAlgorithms.HMAC_SHA_256,secret).hmacHex(partes[0]+"."+partes[1]);
-	    	
-	    	//la firma no se decodea.
-	    	String firmaOriginal= partes[2];
-	    	//comparo ambas
-	    	boolean correcto=false;
-	    	if(firmaOriginal.equals(firmaRehecha)) {
-	    		 correcto=true;
-	    	}
-	    	 		    
-	   	    	
-	    	return correcto;
-	    }
-	    
 	    
 	    @GetMapping("/verificar")
 	    public ResponseEntity<String> verificarUsuario(@RequestParam String usuario, @RequestParam String contrasena) {

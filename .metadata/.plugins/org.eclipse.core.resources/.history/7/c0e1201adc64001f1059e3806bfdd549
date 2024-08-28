@@ -70,7 +70,7 @@ public class UsuarioController {
 	    	String payload = new String(Base64.getUrlDecoder().decode(partes[1]));
 	    	
 	    	//rehago la firma con los datos que he sacado y enviando el secret directamente
-	    	String firmaRehecha=new HmacUtils(HmacAlgorithms.HMAC_SHA_256,secret).hmacHex(partes[0]+"."+partes[1]);
+	    	String firmaRehecha=new HmacUtils(HmacAlgorithms.HMAC_SHA_256,secret).hmacHex(partes[0]+partes[1]);
 	    	
 	    	//la firma no se decodea.
 	    	String firmaOriginal= partes[2];
