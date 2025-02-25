@@ -6,15 +6,16 @@
 		<item key="SmartImportRootWizardPage.STORE_NESTED_PROJECTS" value="true"/>
 		<item key="SmartImportRootWizardPage.STORE_CONFIGURE_NATURES" value="true"/>
 		<list key="org.eclipse.ui.internal.wizards.datatransfer.SmartImportRootWizardPage.knownSources">
-			<item value="C:\dev\Workspace\Backend\tfgGIT"/>
-			<item value="F:\INSTI\DAM\1º DAM\prog\2trimestre\Bateria2"/>
-			<item value="C:\Users\May\Downloads\Pedir"/>
-			<item value="C:\Users\May\Downloads\Enviar"/>
-			<item value="C:\dev\Workspace\Backend\EnviarUsuario"/>
-			<item value="C:\dev\Workspace\Backend\PedirUsuario"/>
-			<item value="C:\dev\Workspace\Backend\ProyectoFinal"/>
-			<item value="C:\Users\May\Downloads\ProyectoFinal"/>
-			<item value="C:\dev\Workspace\Backend\usuario"/>
+			<item value="C:\dev\Workspace\Backend\sonidos"/>
+			<item value="C:\Users\May\OneDrive\Escritorio\alejandroProyect"/>
+			<item value="C:\Users\May\OneDrive\Escritorio\demo"/>
+			<item value="C:\Users\May\OneDrive\Escritorio\demo\src"/>
 		</list>
+	</section>
+	<section name="CleanDialogSettings">
+		<item key="TOGGLE_SELECTED" value="true"/>
+		<item key="DIALOG_WIDTH" value="500"/>
+		<item key="DIALOG_HEIGHT" value="389"/>
+		<item key="DIALOG_FONT_NAME" value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI"/>
 	</section>
 </section>
