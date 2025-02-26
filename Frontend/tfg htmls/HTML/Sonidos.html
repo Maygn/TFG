@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Música</title>
+  <link rel="stylesheet" href="../CSS/sonidos.css">
+  <link rel="icon" href="../Imagenes/favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+  <div class="container">
+    <p id="userInfo"></p>
+    <h1 class="mystic-title">Gestión de Sonidos</h1>
+
+    <div class="button-container">
+      <button id="addMusicBtn" class="styled-button">Añadir sonidos</button>
+      <input type="file" id="fileInput" style="display: none;" />
+      <button id="deleteAllBtn" class="styled-button delete">Borrar Todos los Sonidos</button>
+    </div>
+    <div id="mensaje"></div>
+  </div>
+  <h2>Mis Sonidos</h2>
+  <p id="mensaje"></p>
+  <table id="tablaSonidos">
+      <tr>
+          <th>Nombre</th>
+          <th>Reproducir</th>
+      </tr>
+  </table>  
+  <script src="../JS/sonidos.js"></script>
+</body>
+
+
+</html>
+
+

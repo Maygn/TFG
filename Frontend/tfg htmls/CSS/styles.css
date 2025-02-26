@@ -1,0 +1,96 @@
+#mainContainer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("../Imagenes/Bard-wallpaper.webp");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.5; /* Ajusta el nivel de transparencia */
+  z-index: -1; /* Envía el fondo detrás de los demás elementos */
+}
+
+body {
+  margin: 0;
+  display: flex; /* Usamos flexbox para centrar el contenido */
+  justify-content: center; /* Centrado horizontal */
+  align-items: center;     /* Centrado vertical */
+  height: 100vh;           /* Asegura que el body ocupe toda la altura de la pantalla */
+}
+
+.listContainer, .finalContainer {
+  background-color: rgba(255, 255, 255, 0.3); /* Fondo semi-transparente blanco */
+  width: 90%;
+  display: flex;
+  flex-wrap: nowrap;  /* Evita el ajuste a una nueva línea */
+  justify-content: start;  /* Alinea los elementos al principio */
+  gap: 15px;
+  padding: 10px;
+  border-radius: 10px; /* Bordes redondeados */
+}
+
+.contContainer, .stringContainer {
+  background-color: rgba(52, 152, 219, 0.3); /* Fondo azul semi-transparente */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bolder;
+  font-size: 3vh;
+  padding: 0.5rem 1rem;
+  min-width: 100px;
+  white-space: nowrap;
+  border-radius: 50%; /* Forma circular */
+  color: rgb(0, 0, 0);
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out, background-color 0.3s ease;
+  border: 2px solid #3498db; /* Bordes azules */
+}
+
+.contContainer:hover, .stringContainer:hover {
+  transform: scale(1.1);
+  background-color: rgba(52, 152, 219, 0.6); /* Efecto de fondo más fuerte al pasar el mouse */
+}
+
+a {
+  text-decoration: none;
+  color: black; /* Enlaces en color negro */
+}
+
+a:hover {
+  text-decoration: underline; /* Subrayado cuando se pasa el mouse */
+}
+
+.navbar {
+  background-color: rgba(0, 0, 0, 0.8); /* Fondo oscuro */
+  padding: 15px 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 100; /* Asegura que el menú esté encima de otros elementos */
+}
+
+.navbar-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+.navbar-list li {
+  display: inline;
+  margin: 0 20px;
+}
+
+.navbar-list a {
+  text-decoration: none;
+  color: white; /* Enlaces blancos */
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.navbar-list a:hover {
+  color: #3498db; /* Color de los enlaces al pasar el ratón */
+}

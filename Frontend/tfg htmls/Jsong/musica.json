@@ -1,0 +1,117 @@
+{
+    "Rock": {
+      "Clásico": {
+        "Bohemian Rhapsody": "https://www.youtube.com/watch?v=fJ9rUzIMcZQ",
+        "Hotel California": "https://www.youtube.com/watch?v=EqPtz5qN7HM",
+        "Stairway to Heaven": "https://www.youtube.com/watch?v=xbhCPt6PZIU"
+      },
+      "Alternativo": {
+        "Smells Like Teen Spirit": "https://www.youtube.com/watch?v=hTWKtbzF8qg",
+        "Everlong": "https://www.youtube.com/watch?v=eBG7P-K-r1Y",
+        "Creep": "https://www.youtube.com/watch?v=XFkzRNyygfk"
+      },
+      "Progresivo": {
+        "Comfortably Numb": "https://www.youtube.com/watch?v=AePbbCjVe7c",
+        "Roundabout": "https://www.youtube.com/watch?v=HQmmMgIpn-o",
+        "2112": "https://www.youtube.com/watch?v=5nr0z1pQX4M"
+      },
+      "Punk": {
+        "Blitzkrieg Bop": "https://www.youtube.com/watch?v=pgP1mDlFFhA",
+        "London Calling": "https://www.youtube.com/watch?v=EfK-WX8tY8I",
+        "Anarchy in the U.K.": "https://www.youtube.com/watch?v=aN0nThI6sHo"
+      },
+      "Metal": {
+        "Master of Puppets": "https://www.youtube.com/watch?v=xnKhsTXoKCI",
+        "Paranoid": "https://www.youtube.com/watch?v=wwJkzpc1CDs",
+        "The Trooper": "https://www.youtube.com/watch?v=2J4p0p4eUVQ"
+      }
+    },
+    "Electrónica": {
+      "House": {
+        "Red Lights": "https://www.youtube.com/watch?v=7_K7nrxqck8",
+        "Strobe": "https://www.youtube.com/watch?v=t0tPbAeU3Q0",
+        "Losing It": "https://www.youtube.com/watch?v=2v5AWgGLlBo",
+        "Move Your Body": "https://www.youtube.com/watch?v=4erH47F6VMI"
+      },
+      "Trance": {
+        "Adagio for Strings": "https://www.youtube.com/watch?v=Z2p5mllpkXI",
+        "Children": "https://www.youtube.com/watch?v=r6kH5l9hsos",
+        "Sandstorm": "https://www.youtube.com/watch?v=y6ZkzD0mQzc"
+      },
+      "Dubstep": {
+        "Bangarang": "https://www.youtube.com/watch?v=YpxRS3d4b0Q",
+        "Scary Monsters and Nice Sprites": "https://www.youtube.com/watch?v=WSeNSzJ2-Jw",
+        "First of the Year": "https://www.youtube.com/watch?v=k3Qn6AbduDQ"
+      },
+      "Techno": {
+        "The Bells": "https://www.youtube.com/watch?v=dr2mOkTeXaA",
+        "Spastik": "https://www.youtube.com/watch?v=GgfA69dPzzA",
+        "Acid Tracks": "https://www.youtube.com/watch?v=gmffzsqLo0w"
+      },
+      "Synthwave": {
+        "Nightcall": "https://www.youtube.com/watch?v=MV_3Dpw-BRY",
+        "Turbo Killer": "https://www.youtube.com/watch?v=ryrhlnrZnsY",
+        "A Real Hero": "https://www.youtube.com/watch?v=0htbOeZy2Ks"
+      }
+    },
+    "HipHop": {
+      "OldSchool": {
+        "Juicy": "https://www.youtube.com/watch?v=wrZzkEXj-QM",
+        "Nuthin' but a G Thang": "https://www.youtube.com/watch?v=QxFxmrGF7W4",
+        "Fight the Power": "https://www.youtube.com/watch?v=6dP-XzJSx8I"
+      },
+      "Trap": {
+        "Sicko Mode": "https://www.youtube.com/watch?v=6onUyP7f2p4",
+        "God's Plan": "https://www.youtube.com/watch?v=Px2yqZy5xM4",
+        "Bad and Boujee": "https://www.youtube.com/watch?v=mvgKkGhdFus"
+      },
+      "RapConsciente": {
+        "Changes": "https://www.youtube.com/watch?v=qUU7OXJwF-U",
+        "The Message": "https://www.youtube.com/watch?v=O4o8wF-6z_U",
+        "Alright": "https://www.youtube.com/watch?v=7na5jzxXtHU"
+      },
+      "GangstaRap": {
+        "Still D.R.E.": "https://www.youtube.com/watch?v=LRzG8XPSx8M",
+        "C.R.E.A.M.": "https://www.youtube.com/watch?v=PBKjMNzATXI",
+        "California Love": "https://www.youtube.com/watch?v=5fDba9jHRJo"
+      },
+      "BoomBap": {
+        "Shook Ones Pt. II": "https://www.youtube.com/watch?v=KhGVyYoH7QQ",
+        "Scenario": "https://www.youtube.com/watch?v=Yq5oQmKqpK0",
+        "Protect Ya Neck": "https://www.youtube.com/watch?v=Ym9jiP7cZjs"
+      }
+    },
+    "Jazz": {
+      "Swing": {
+        "Sing, Sing, Sing": "https://www.youtube.com/watch?v=IkNfEftP5KQ",
+        "Take the 'A' Train": "https://www.youtube.com/watch?v=RAE5D8Jbf-k",
+        "In the Mood": "https://www.youtube.com/watch?v=Hbq01bMyVik"
+      },
+      "Bebop": {
+        "Ornithology": "https://www.youtube.com/watch?v=HnBso44pC0A",
+        "Donna Lee": "https://www.youtube.com/watch?v=VX26vVf_v9w",
+        "Confirmation": "https://www.youtube.com/watch?v=8DlnXZ6T77g"
+      },
+      "Fusion": {
+        "Birdland": "https://www.youtube.com/watch?v=yt4LnKMb94M",
+        "Spain": "https://www.youtube.com/watch?v=kHovhRLe3yw",
+        "The Chicken": "https://www.youtube.com/watch?v=GkFqzPbAoA8"
+      },
+      "SmoothJazz": {
+        "Songbird": "https://www.youtube.com/watch?v=kxgxxFu1p0k",
+        "Breezin'": "https://www.youtube.com/watch?v=mcHpALm9S6E",
+        "Maputo": "https://www.youtube.com/watch?v=4BsW2-u7R80"
+      },
+      "FreeJazz": {
+        "Ghosts": "https://www.youtube.com/watch?v=uy0d0bpd5E4",
+        "Unit Structure": "https://www.youtube.com/watch?v=RZmdzy1EmJY",
+        "The Creator Has a Master Plan": "https://www.youtube.com/watch?v=1Ti3f_nX3Rk"
+      }
+    },
+    "Pop": {
+      "Billie Jean": "https://www.youtube.com/watch?v=Zi_XLOBDo_Y",
+      "Shape of You": "https://www.youtube.com/watch?v=JGwWNGJdvx8",
+      "Rolling in the Deep": "https://www.youtube.com/watch?v=rYEDA3JcQqw"
+    }
+  }
+  

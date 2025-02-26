@@ -1,0 +1,82 @@
+body {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-image: url("../Imagenes/musicafondo.png");
+    font-family: 'Poppins', sans-serif;
+    color: #ffffff;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+  }
+  
+  /* Contenedor principal */
+  .container {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+  }
+  
+  /* Título con estilo místico */
+  .mystic-title {
+    font-size: 2.5em;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+    background: linear-gradient(90deg, #ffcc00, #ff66ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: glow 1.5s infinite alternate;
+  }
+  
+  /* Animación de brillo */
+  @keyframes glow {
+    from {
+      text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+    }
+    to {
+      text-shadow: 0 0 20px rgba(255, 255, 255, 1);
+    }
+  }
+  
+  /* Contenedor de los botones */
+  .button-container {
+    margin-top: 20px;
+  }
+  
+  /* Estilos generales para los botones */
+  .styled-button {
+    font-size: 1.2em;
+    font-weight: bold;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  
+  /* Estilo para el botón de añadir música */
+  .styled-button {
+    background: linear-gradient(135deg, #00ff99, #0066ff);
+    color: white;
+    box-shadow: 0 4px 10px rgba(0, 255, 153, 0.5);
+  }
+  
+  /* Estilo para el botón de borrar música */
+  .styled-button.delete {
+    background: linear-gradient(135deg, #ff4444, #cc0000);
+    color: white;
+    box-shadow: 0 4px 10px rgba(255, 68, 68, 0.5);
+  }
+  
+  /* Efecto de hover en los botones */
+  .styled-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 15px rgba(255, 255, 255, 0.4);
+  }
+  

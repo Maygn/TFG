@@ -1,0 +1,58 @@
+body {
+    background-image: url("../Imagenes/background.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.logo {
+    max-width: 50%;
+    display: block;
+    margin: 0 auto;
+}
+
+.inicioSesion {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centra horizontalmente los elementos */
+    text-align: center; /* Alinea el texto al centro */
+}
+
+.inicioSesion h1 {
+    color: burlywood;
+}
+
+.inicioSesion label, .inicioSesion p {
+    color: burlywood;
+    font-size: larger;
+}
+
+.inicioSesion input {
+    background-color: burlywood;
+    border: 2px solid rgb(76, 46, 6);
+    width: 100%; /* Haz que ocupen todo el ancho disponible */
+    max-width: 300px; /* Limita el ancho máximo */
+    margin-bottom: 15px; /* Espaciado entre los inputs */
+}
+
+.inicioSesion button {
+    background-color: rgb(76, 46, 6); /* Marrón oscuro */
+    color: beige;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    transition: all 0.3s ease; /* Transición suave para hover */
+}
+
+.inicioSesion button:hover {
+    background-color: rgb(96, 56, 16); /* Marrón más claro */
+    transform: scale(1.05); /* Aumenta ligeramente el tamaño */
+    color: beige;
+}
+
+.inicioSesion input:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgb(76, 46, 6);
+}
