@@ -39,6 +39,19 @@ public class CuentaService {
 
     }
     
+
+    // Método para verificar si un usuario existe en la base de datos
+    public boolean existeUsuario(String usuario) {
+        return cuentaRepository.findByNombre(usuario) != null;
+    }
+
+    // Método para borrar un usuario de la base de datos
+    public void borrarUsuario(String usuario) {
+        Cuenta cuenta = cuentaRepository.findByNombre(usuario);
+        if (cuenta != null) {
+            cuentaRepository.delete(cuenta);
+        }
+    }
     
     
 }

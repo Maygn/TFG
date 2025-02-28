@@ -62,9 +62,6 @@ public class SonidoController {
 	 */
 	private String extraerUsuarioDesdeJWT(String token) {
 		try {
-			// Eliminar "Bearer " si está presente
-			token = token.replace("Bearer ", "");
-
 			// Separar el JWT en sus partes
 			String[] partes = token.split("\\.");
 			if (partes.length != 3) {

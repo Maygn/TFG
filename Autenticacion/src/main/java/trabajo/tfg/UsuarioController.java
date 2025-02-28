@@ -28,7 +28,7 @@ public class UsuarioController {
 	    @PostMapping(value = "/guardar", consumes = "application/x-www-form-urlencoded")
 	    
 	    public ResponseEntity<String> guardarUsuario(@RequestParam String usuario, @RequestParam String contrasena) {
-	    	System.out.println("usando metodo guardar!");
+	   
 	    		    	//usa el wrapper para poder mandar las dos cosas, el usuario si todo va bien y el error si no
 	    	try { //se usa responseentity porque deja manipular el tipo de error.
 		        return new ResponseEntity<String>(usuarioService.guardarUsuario(usuario, contrasena).getUsuario()+" guardado en BDD",HttpStatus.OK); 
@@ -91,7 +91,7 @@ public class UsuarioController {
 	   
 	    @GetMapping(value = "/verificar", consumes = "application/x-www-form-urlencoded")
 	    public ResponseEntity<String> verificarUsuario(@RequestParam String usuario, @RequestParam String contrasena) {
-	    	System.out.println("usando metodo verificar");
+	    
 	    	Usuario u = usuarioRepository.findByUsuario(usuario);
 	    	
 	    	
