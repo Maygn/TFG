@@ -15,11 +15,13 @@ public interface SonidoRepository extends JpaRepository<Sonido, Long>{
 
 	
 
-	 List<Sonido> findByUsuario(String usuario);
 	 
 	 @Transactional  //o se borran todos o se cancela todo, pero no se borran la mitad si peta parte del proceso
 	    void deleteByUsuario(String usuario);
-
+	 
+	 	List<Sonido> findByUsuario(String usuario);
+	 	
+	    boolean existsByUsuario(String usuario);
 	}
 
 
