@@ -6,6 +6,7 @@
 		<item key="SmartImportRootWizardPage.STORE_NESTED_PROJECTS" value="true"/>
 		<item key="SmartImportRootWizardPage.STORE_CONFIGURE_NATURES" value="true"/>
 		<list key="org.eclipse.ui.internal.wizards.datatransfer.SmartImportRootWizardPage.knownSources">
+			<item value="C:\dev\Workspace\Backend\Discord"/>
 			<item value="C:\dev\Workspace\Backend\sonidos"/>
 			<item value="C:\Users\May\OneDrive\Escritorio\alejandroProyect"/>
 			<item value="C:\Users\May\OneDrive\Escritorio\demo"/>

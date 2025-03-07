@@ -28,4 +28,7 @@
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.CrossOrigin"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.DeleteMapping"/>
     <fullyQualifiedTypeName name="java.util.Optional"/>
+    <fullyQualifiedTypeName name="jakarta.annotation.PostConstruct"/>
+    <fullyQualifiedTypeName name="discord4j.common.util.Snowflake"/>
+    <fullyQualifiedTypeName name="discord4j.core.object.entity.channel.TextChannel"/>
 </qualifiedTypeNameHistroy>
