@@ -4,7 +4,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 
 @Entity
-public class Cuenta {
+public class Musica {
 
     @Id
     String usuario;

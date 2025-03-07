@@ -33,88 +33,99 @@ public class SonidoController {
 	private SonidoRepository sonidoRepository; 
 	@Autowired
 	private SonidoService SonidoService;
-
+	
+	
+//subir archivos de sonido
 	@PostMapping("/subir")
-	public ResponseEntity<String> uploadFile(@RequestParam("file") MultipartFile file,
-	        @RequestParam("nombre") String nombre, @RequestHeader("Authorization") String token) {
+	public ResponseEntity<String> uploadFile(@RequestParam MultipartFile file,
+	        @RequestParam String nombre, @RequestParam String token) {
 
 	    try {
-	        // Extraer usuario desde el token
+	        // sacar usuario
 	        String usuario = extraerUsuarioDesdeJWT(token);
 	        //ver si existe, sino manda unauthorized
 	        if (usuario == null) {
 	            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Token inválido");
 	        }
 
-	        // Convertir el archivo a un array de bytes
+	        // convertir el archivo a un array de bytes
 	        byte[] archivoBytes = file.getBytes();
 
-	        // Guardar el sonido con el archivo en la base de datos
+	        // guarda archivo con nombre y usuario asociado
 	        SonidoService.saveSonido(nombre, archivoBytes, usuario);
 
-	        return ResponseEntity.ok("Archivo subido correctamente con el nombre: " + nombre);
-	    } catch (IOException e) {
+	        return ResponseEntity.ok("Archivo subido correctamente");
+	    } catch (IOException e) {//cualquier fallo imprevisto 
 	        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error al subir el archivo");
 	    }
 	}
 
 
-	
-	@GetMapping("/buscarLista/{token}")
-	public ResponseEntity<List<Sonido>> getSonidosPorUsuario(@PathVariable String token) {
+	//recuperar una lista con todos los sonidos del usuario.
+	@GetMapping("/buscarLista")
+	public ResponseEntity<List<Sonido>> getSonidosPorUsuario(@RequestParam String token) {
+		//si no hay usuario en el token o no hay token, manda error
 	    try {
 	        String usuario = extraerUsuarioDesdeJWT(token);
 	        if (usuario == null || usuario.isEmpty()) {
 	            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
 	        }
+	        //si lo hay, genera una lista con los sonidos del usuario
 	        List<Sonido> sonidos = sonidoRepository.findByUsuario(usuario);
-	        if (sonidos.isEmpty()) {
+	        if (sonidos.isEmpty()) {//si la lista esta vacia, manda error
 	            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
 	        }
+	        //si no esta vacia, enviarla
 	        return ResponseEntity.ok(sonidos);
-	    } catch (Exception e) {
+	    } catch (Exception e) {//cualquier fallo imprevisto
 	        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
 	    }
 	}
 
 	
 	
-	 
+	 //Borrar todos los sonidos del usuario
 	 @DeleteMapping("/borrarTodo/{token}")
 	 public ResponseEntity<Void> borrarSonidosPorUsuario(@PathVariable String token) {
-	     try {
+	     try {//si no hay usuario en el token o no hay token, manda error
 	         String usuario = extraerUsuarioDesdeJWT(token);
 	         if (usuario == null || usuario.isEmpty()) {
 	             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
 	         }
+	         //si el usuario no tiene sonidos manda error
 	         if (!sonidoRepository.existsByUsuario(usuario)) {
 	             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
 	         }
+	         //borra todos los sonidos
 	         sonidoRepository.deleteByUsuario(usuario);
+	         //si todo bien, devuelve respuesta sin error
 	         return ResponseEntity.noContent().build();
-	     } catch (Exception e) {
+	     } catch (Exception e) { //cualquier fallo imprevisto
 	         return ResponseEntity.status(HttpStatus.OK).build();
 	     }
 	 }
-
-	 @DeleteMapping("/borrar/{token}/{id}")
+//borrar un solo sonido por su id
+	 @DeleteMapping("/borrar/{id}")
 	 public ResponseEntity<Void> borrarSonido(@PathVariable String token, @PathVariable Long id) {
-	     try {
+	     try {//si no hay usuario en el token o no hay token, manda error
 	         String usuario = extraerUsuarioDesdeJWT(token);
 	         if (usuario == null || usuario.isEmpty()) {
 	             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
-	         }
+	         }//se usa optional para poder controlar nulls mejor
+	         //busco el sonido con la id que se le ha dado
 	         Optional<Sonido> sonidoOpt = sonidoRepository.findById(id);
-	         if (sonidoOpt.isEmpty()) {
+	         if (sonidoOpt.isEmpty()) {// si no hay, mando error
 	             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
 	         }
+	         //recupero el objeto sonido y compruebo que el usuario sea el mismo que el del token
 	         Sonido sonido = sonidoOpt.get();
-	         if (!sonido.getUsuario().equals(usuario)) {
+	         if (!sonido.getUsuario().equals(usuario)) {//si no es el mismo, mando error
 	             return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
 	         }
+	         //si es el mismo, borro el usuario y mando un ok
 	         sonidoRepository.deleteById(id);
 	         return ResponseEntity.status(HttpStatus.OK).build();
-	     } catch (Exception e) {
+	     } catch (Exception e) { //resto de errores inesperados
 	         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
 	     }
 	 }
@@ -123,13 +134,13 @@ public class SonidoController {
 	 public ResponseEntity<Resource> descargarSonido(@PathVariable Long id, @RequestHeader("Authorization") String token) {
 	     String usuario = extraerUsuarioDesdeJWT(token);
 
-	     // Verificar si el usuario es válido
+	     // //si no hay usuario en el token o no hay token, manda error
 	     if (usuario == null || !esUsuarioAutorizado(id, usuario)) {
 	         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
 	     }
 
 	     try {
-	         // Obtener el archivo como recurso
+	         // sacar el archivo como recurso
 	         Resource resource = SonidoService.getFileAsResource(id);
 
 	         // Configurar las cabeceras para la descarga del archivo
@@ -145,9 +156,7 @@ public class SonidoController {
 	     }
 	 }
 
-	 /**
-	  * Verifica si el usuario está autorizado para descargar el sonido.
-	  */
+	 //comprueba que existe y que el usuario es igual al token
 	 private boolean esUsuarioAutorizado(Long id, String usuario) {
 		    Optional<Sonido> sonido = SonidoService.getSonido(id);
 		    return sonido.isPresent() && sonido.get().getUsuario().equals(usuario);
@@ -164,21 +173,19 @@ public class SonidoController {
 	 }
 
 	 
-	 /**
-		 * Método para extraer el usuario desde el token JWT.
-		 */
+	 //sacar usuario del token
 		private String extraerUsuarioDesdeJWT(String token) {
 			try {
-				// Separar el JWT en sus partes
+				// separar en partes
 				String[] partes = token.split("\\.");
 				if (partes.length != 3) {
 					return null; // Token inválido
 				}
 
-				// Decodificar el payload
+				// decodificar payload
 				String payloadJson = new String(Base64.getUrlDecoder().decode(partes[1]));
 
-				// Extraer el campo "Usuario"
+				// sacar usuario
 				Pattern pattern = Pattern.compile("\"Usuario\":\\s*\"(.*?)\"");
 				Matcher matcher = pattern.matcher(payloadJson);
 

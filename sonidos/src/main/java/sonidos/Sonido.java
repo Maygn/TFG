@@ -1,6 +1,6 @@
 package sonidos;
 
-import java.util.Optional;
+
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -48,11 +48,7 @@ public class Sonido {
 	}
 	
 
-	public static Optional<Sonido> findByUsuario(String usuario) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       
 
 
 

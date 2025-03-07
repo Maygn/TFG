@@ -6,8 +6,8 @@ import org.springframework.stereotype.Repository;
 
 
 @Repository
-public interface CuentaRepository extends JpaRepository<Cuenta, String> {
+public interface MusicaRepository extends JpaRepository<Musica, String> {
 
     // Spring Data JPA will generate the method automatically based on the method signature
-    Cuenta findByNombre(String nombre);
+    Musica findByNombre(String nombre);
 }

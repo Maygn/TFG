@@ -20,7 +20,6 @@ public interface SonidoRepository extends JpaRepository<Sonido, Long>{
 	    void deleteByUsuario(String usuario);
 	 
 	 	List<Sonido> findByUsuario(String usuario);
-	 	
 	    boolean existsByUsuario(String usuario);
 	}
 

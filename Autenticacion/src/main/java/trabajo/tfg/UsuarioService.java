@@ -16,8 +16,7 @@ public class UsuarioService {
 	    public Usuario guardarUsuario(String usuario, String contrasena) throws DataIntegrityViolationException {
 	        Usuario nuevoUsuario = new Usuario();
 	        nuevoUsuario.setUsuario(usuario);
-
-
+	       
 	        // Hashear la contraseña antes de guardarla
 	        String hashedPassword = DigestUtils.sha256Hex(contrasena);
 	        nuevoUsuario.setContrasena(hashedPassword);
@@ -33,6 +32,13 @@ public class UsuarioService {
 	    }
 	    
 	    
+        //cambiar contraseña
+        public void cambiarContrasena(String contrasena, String nombreUsuario) {
+        	 Usuario usuario = usuarioRepository.findByUsuario(nombreUsuario);
+        	usuario.setContrasena(contrasena);
+        	  usuarioRepository.save(usuario);
+        }
+	    
 	    // comprobar si la clave es correcta
 	    public boolean contrasenaCorrecta(String nombreUsuario, String contrasena) {
 	        Usuario usuario = usuarioRepository.findByUsuario(nombreUsuario);
@@ -42,5 +48,10 @@ public class UsuarioService {
 	        else {
 	        	return false;
 	        }
+	    }
+	    //borrar usuario
+	    
+	    public void borrarUsuario(String usuario) {
+	        usuarioRepository.deleteByUsuario(usuario);
 	    }
 	}

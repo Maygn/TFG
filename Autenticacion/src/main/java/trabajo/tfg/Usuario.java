@@ -15,6 +15,7 @@ public class Usuario {
 	  @Id
 	  @GeneratedValue(strategy = GenerationType.UUID)
 	    private UUID codigo;
+		
 		@Column(unique = true)
 	    private String usuario;
 		
