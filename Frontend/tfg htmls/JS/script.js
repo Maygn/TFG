@@ -25,7 +25,7 @@ mainContainer.addEventListener("mouseover", function (event) {
       if (out) {
         removeAbove(document.querySelector(".listContainer"));
       }
-    }, 1000);
+    }, 1000); 
   }
 });
 

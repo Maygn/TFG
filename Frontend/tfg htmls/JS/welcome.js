@@ -85,8 +85,9 @@ document.addEventListener("DOMContentLoaded", function () {
         const mensaje = await response.text();
         
         console.log("Mensaje recibido del servidor:", mensaje);
-        
-        if (response.ok && mensaje === "OK") {
+        debugger
+        if (response.ok === true) {
+            debugger
             // Si la respuesta es 'OK', entonces obtener el token llamando a obtenerUsuario
             const tokenResponse = await fetch("http://localhost:8081/usuarios/obtener/" + encodeURIComponent(cuenta));
             const token = await tokenResponse.text();  // El token es devuelto aquí
@@ -100,7 +101,7 @@ document.addEventListener("DOMContentLoaded", function () {
             localStorage.setItem("jwtToken", token);
         
             // Redirigir a la página principal después de iniciar sesión
-            window.location.href = "http://127.0.0.1:5500/HTML/Pagina_principal.html#";
+            window.location.href = "http://127.0.0.1:5500/Frontend/tfg%20htmls/HTML/Pagina_principal.html";
         } else {
             document.getElementById("mensaje").innerText = mensaje;
             document.getElementById("mensaje").style.color = "red";

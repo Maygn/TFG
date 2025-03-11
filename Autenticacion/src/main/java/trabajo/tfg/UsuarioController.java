@@ -1,12 +1,11 @@
 package trabajo.tfg;
 
 import java.util.Base64;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-
-import org.apache.commons.codec.digest.DigestUtils;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.apache.commons.codec.digest.HmacAlgorithms;
 import org.apache.commons.codec.digest.HmacUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +14,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+
+@CrossOrigin(origins = "http://localhost:5500")
 @RestController
 @RequestMapping("/usuarios")
 
@@ -63,8 +64,8 @@ public class UsuarioController {
 		return jwtHeader64 + "." + jwtPayload64 + "." + jwtHmac64;
 	}
 	// Endpoint para obtener usuario por nombre //genera el url añadiendo el
-	// contenido del pathvariable en lugar del {usuario}
-	@GetMapping("/obtener/{usuario}")
+	// contenido del pathvariable en lugar del {usuario} Alex
+	@GetMapping("/obtener/{nombreUsuario}") 
 	public ResponseEntity<String> obtenerUsuario(@PathVariable String nombreUsuario) {
 	    try {
 	        Usuario usuario = usuarioService.obtenerUsuarioPorNombre(nombreUsuario);
@@ -122,7 +123,7 @@ public class UsuarioController {
 	}
 
 
-	@PostMapping("cambiarClave")
+	@PostMapping("/cambiarClave")
 	public ResponseEntity<String> cambiarClave(@RequestParam String token, @RequestParam String contrasenaAct,
 			@RequestParam String contrasenaNueva) {
 

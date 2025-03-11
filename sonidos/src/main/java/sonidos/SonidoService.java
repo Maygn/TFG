@@ -1,28 +1,16 @@
 package sonidos;
 
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.core.io.UrlResource;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.core.io.Resource;
 
-
-
-
-
-import java.net.MalformedURLException;
-
 @Service
 public class SonidoService {
-    private static final String UPLOAD_DIR = "C:/uploads/mp3/";
+  
 
 
 

@@ -1,0 +1,47 @@
+body {
+    background: url('../Imagenes/discord.avif') no-repeat center center fixed;
+    background-size: cover;
+    font-family: 'Uncial Antiqua', cursive;
+    color: #3e2723;
+}
+
+.container {
+    max-width: 600px;
+    margin-top: 30px;
+    background: rgba(255, 245, 230, 0.95);
+    padding: 20px;
+    border: 4px solid #6d4c41;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.5);
+    border-radius: 15px;
+    text-align: center;
+}
+
+.list-group-item {
+    cursor: pointer;
+    background: #f5ebe0;
+    border: 2px solid #6d4c41;
+}
+
+.list-group-item:hover {
+    background: #e5d4b7;
+}
+
+.selected {
+    background: #c49a6c !important;
+    font-weight: bold;
+}
+
+.form-control {
+    border: 2px solid #6d4c41;
+    background: #f5ebe0;
+}
+
+.btn-primary {
+    background-color: #8b5e3c;
+    border: none;
+    font-weight: bold;
+}
+
+.btn-primary:hover {
+    background-color: #a07550;
+}

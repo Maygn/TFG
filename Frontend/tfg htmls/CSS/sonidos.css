@@ -80,3 +80,34 @@ body {
     box-shadow: 0 6px 15px rgba(255, 255, 255, 0.4);
   }
   
+  .navbar {
+    background-color: rgba(0, 0, 0, 0.8); /* Fondo oscuro */
+    padding: 15px 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 100; /* Asegura que el menú esté encima de otros elementos */
+  }
+  
+  .navbar-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+  }
+  
+  .navbar-list li {
+    display: inline;
+    margin: 0 20px;
+  }
+  
+  .navbar-list a {
+    text-decoration: none;
+    color: white; /* Enlaces blancos */
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+  .navbar-list a:hover {
+    color: #3498db; /* Color de los enlaces al pasar el ratón */
+  }
