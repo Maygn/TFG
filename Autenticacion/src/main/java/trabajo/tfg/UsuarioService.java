@@ -32,12 +32,15 @@ public class UsuarioService {
 	    }
 	    
 	    
-        //cambiar contraseña
-        public void cambiarContrasena(String contrasena, String nombreUsuario) {
-        	 Usuario usuario = usuarioRepository.findByUsuario(nombreUsuario);
-        	usuario.setContrasena(contrasena);
-        	  usuarioRepository.save(usuario);
-        }
+	  //cambiar contraseña
+	    public void cambiarContrasena(String contrasena, String nombreUsuario) {
+	        Usuario usuario = usuarioRepository.findByUsuario(nombreUsuario);
+	        if (usuario != null) {
+	            // Hashear la nueva contraseña antes de guardarla
+	            usuario.setContrasena(DigestUtils.sha256Hex(contrasena));
+	            usuarioRepository.save(usuario);
+	        }
+	    }
 	    
 	    // comprobar si la clave es correcta
 	    public boolean contrasenaCorrecta(String nombreUsuario, String contrasena) {

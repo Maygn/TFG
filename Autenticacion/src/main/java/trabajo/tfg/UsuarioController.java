@@ -173,8 +173,8 @@ public class UsuarioController {
 					HttpStatus.NOT_FOUND);
 		}
 	}
-
-	private String extraerUsuarioDesdeJWT(String token) {
+//no private porque sino no lo puedo usar en testing
+	protected String extraerUsuarioDesdeJWT(String token) {
 		try {
 			// Separar el JWT en sus partes
 			String[] partes = token.split("\\.");

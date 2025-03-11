@@ -31,4 +31,14 @@
     <fullyQualifiedTypeName name="jakarta.annotation.PostConstruct"/>
     <fullyQualifiedTypeName name="discord4j.common.util.Snowflake"/>
     <fullyQualifiedTypeName name="discord4j.core.object.entity.channel.TextChannel"/>
+    <fullyQualifiedTypeName name="org.mockito.Mockito"/>
+    <fullyQualifiedTypeName name="org.springframework.http.ResponseEntity"/>
+    <fullyQualifiedTypeName name="junit.framework.Assert"/>
+    <fullyQualifiedTypeName name="org.springframework.http.HttpStatus"/>
+    <fullyQualifiedTypeName name="org.junit.jupiter.api.Assertions"/>
+    <fullyQualifiedTypeName name="org.springframework.dao.DataIntegrityViolationException"/>
+    <fullyQualifiedTypeName name="musica.Musica"/>
+    <fullyQualifiedTypeName name="musica.MusicaService"/>
+    <fullyQualifiedTypeName name="musica.MusicaRepository"/>
+    <fullyQualifiedTypeName name="musica.MusicaController"/>
 </qualifiedTypeNameHistroy>

@@ -3562,3 +3562,55 @@ org.eclipse.core.runtime.CoreException: Could not resolve artifact org.springfra
 2025-03-09 19:24:45,017 [Worker-67: Launching TFG - Main] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
 2025-03-09 19:24:45,033 [Worker-67: Launching TFG - Main] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
 2025-03-09 19:24:45,038 [Worker-67: Launching TFG - Main] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\May\OneDrive\Escritorio\TFG\src\test\resources
+2025-03-11 13:59:20,492 [Worker-2: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is out-of-date. Trying to update.
+2025-03-11 15:24:20,806 [Start Help Server] INFO  org.eclipse.jetty.server.Server - jetty-12.0.3; built: 2023-10-27T03:25:22.284Z; git: a873259fd5af141dedaa6c7fa8fe8fbdedce0d61; jvm 21.0.1+12-LTS-29
+2025-03-11 15:24:20,852 [Start Help Server] INFO  o.e.j.server.handler.ContextHandler - Started oeje8n.ContextHandler$CoreContextHandler@312dff4f{/help,/help,b=null,a=AVAILABLE,h=oeje8n.ContextHandler$CoreContextHandler$CoreToNestedHandler@1293f47b{STARTED}}
+2025-03-11 15:24:20,852 [Start Help Server] INFO  o.e.j.s.DefaultSessionIdManager - Session workerName=node0
+2025-03-11 15:24:20,873 [Start Help Server] INFO  o.e.jetty.server.AbstractConnector - Started ServerConnector@61c3bfcc{HTTP/1.1, (http/1.1)}{127.0.0.1:54349}
+2025-03-11 15:24:20,886 [Start Help Server] INFO  org.eclipse.jetty.server.Server - Started oejs.Server@3ff686da{STARTING}[12.0.3,sto=0] @5110299ms
+2025-03-11 15:28:19,625 [Worker-45: Launching UsuarioServiceTest] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2025-03-11 15:28:19,648 [Worker-45: Launching UsuarioServiceTest] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2025-03-11 15:28:19,653 [Worker-45: Launching UsuarioServiceTest] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\dev\Workspace\Backend\Autenticacion\src\test\resources
+2025-03-11 15:28:20,748 [Worker-45: Launching UsuarioServiceTest] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/junit/platform/junit-platform-launcher/1.10.3/junit-platform-launcher-1.10.3.jar
+2025-03-11 15:28:20,776 [Worker-45: Launching UsuarioServiceTest] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/junit/platform/junit-platform-launcher/1.10.3/junit-platform-launcher-1.10.3.jar
+2025-03-11 15:41:32,419 [Worker-53: Launching UsuarioControllerTest] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2025-03-11 15:41:32,423 [Worker-53: Launching UsuarioControllerTest] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2025-03-11 15:41:32,427 [Worker-53: Launching UsuarioControllerTest] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\dev\Workspace\Backend\Autenticacion\src\test\resources
+2025-03-11 15:46:46,104 [Worker-50: Launching UsuarioControllerTest] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2025-03-11 15:46:46,105 [Worker-50: Launching UsuarioControllerTest] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2025-03-11 15:46:46,109 [Worker-50: Launching UsuarioControllerTest] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\dev\Workspace\Backend\Autenticacion\src\test\resources
+2025-03-11 16:00:47,105 [Worker-62: Launching UsuarioControllerTest] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2025-03-11 16:00:47,105 [Worker-62: Launching UsuarioControllerTest] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2025-03-11 16:00:47,108 [Worker-62: Launching UsuarioControllerTest] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\dev\Workspace\Backend\Autenticacion\src\test\resources
+2025-03-11 16:03:47,693 [Worker-61: Launching UsuarioControllerTest] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2025-03-11 16:03:47,693 [Worker-61: Launching UsuarioControllerTest] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2025-03-11 16:03:47,696 [Worker-61: Launching UsuarioControllerTest] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\dev\Workspace\Backend\Autenticacion\src\test\resources
+2025-03-11 16:16:42,537 [Worker-68: Launching UsuarioControllerTest] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2025-03-11 16:16:42,538 [Worker-68: Launching UsuarioControllerTest] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2025-03-11 16:16:42,541 [Worker-68: Launching UsuarioControllerTest] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\dev\Workspace\Backend\Autenticacion\src\test\resources
+2025-03-11 16:17:31,427 [Worker-72: Launching UsuarioControllerTest] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2025-03-11 16:17:31,428 [Worker-72: Launching UsuarioControllerTest] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2025-03-11 16:17:31,430 [Worker-72: Launching UsuarioControllerTest] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\dev\Workspace\Backend\Autenticacion\src\test\resources
+2025-03-11 16:20:12,422 [Worker-70: Launching UsuarioControllerTest] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2025-03-11 16:20:12,422 [Worker-70: Launching UsuarioControllerTest] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2025-03-11 16:20:12,425 [Worker-70: Launching UsuarioControllerTest] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\dev\Workspace\Backend\Autenticacion\src\test\resources
+2025-03-11 16:20:37,325 [Worker-71: Launching UsuarioControllerTest] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2025-03-11 16:20:37,326 [Worker-71: Launching UsuarioControllerTest] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2025-03-11 16:20:37,328 [Worker-71: Launching UsuarioControllerTest] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\dev\Workspace\Backend\Autenticacion\src\test\resources
+2025-03-11 16:32:29,501 [Worker-77: Launching UsuarioControllerTest] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2025-03-11 16:32:29,501 [Worker-77: Launching UsuarioControllerTest] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2025-03-11 16:32:29,503 [Worker-77: Launching UsuarioControllerTest] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\dev\Workspace\Backend\Autenticacion\src\test\resources
+2025-03-11 16:34:12,427 [Worker-81: Launching UsuarioControllerTest] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2025-03-11 16:34:12,428 [Worker-81: Launching UsuarioControllerTest] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2025-03-11 16:34:12,430 [Worker-81: Launching UsuarioControllerTest] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\dev\Workspace\Backend\Autenticacion\src\test\resources
+2025-03-11 16:40:47,618 [Worker-80: Launching MusicaServiceTest] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2025-03-11 16:40:47,704 [Worker-80: Launching MusicaServiceTest] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2025-03-11 16:40:47,708 [Worker-80: Launching MusicaServiceTest] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\dev\Workspace\Backend\Musica\src\test\resources
+2025-03-11 16:48:52,535 [Worker-92: Launching MusicaControllerTest] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2025-03-11 16:48:52,539 [Worker-92: Launching MusicaControllerTest] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2025-03-11 16:48:52,541 [Worker-92: Launching MusicaControllerTest] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\dev\Workspace\Backend\Musica\src\test\resources
+2025-03-11 16:53:41,925 [Worker-92: Launching MusicaControllerTest] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2025-03-11 16:53:41,926 [Worker-92: Launching MusicaControllerTest] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2025-03-11 16:53:41,928 [Worker-92: Launching MusicaControllerTest] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\dev\Workspace\Backend\Musica\src\test\resources
+2025-03-11 17:00:05,551 [Stop Help Server] INFO  org.eclipse.jetty.server.Server - Stopped oejs.Server@3ff686da{STOPPING}[12.0.3,sto=0]
+2025-03-11 17:00:05,555 [Stop Help Server] INFO  o.e.jetty.server.AbstractConnector - Stopped ServerConnector@61c3bfcc{HTTP/1.1, (http/1.1)}{127.0.0.1:0}

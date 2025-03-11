@@ -1,12 +1,7 @@
 package musica;
-import java.io.File;
-import java.io.IOException;
-
-import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
 
 
@@ -15,11 +10,11 @@ public class MusicaService {
 	
 
 	@Autowired
-	private MusicaRepository cuentaRepository;
+	private MusicaRepository musicaRepository;
 	
 	// Encontrar una cuenta por su nombre
     public Musica buscarPorNombre(String nombre) {
-    	return cuentaRepository.findByNombre(nombre);
+    	return musicaRepository.findByNombre(nombre);
     }
 	
     public String defaultJson() { //si da tiempo creo un json con enlaces de verdad
@@ -35,21 +30,21 @@ public class MusicaService {
         nuevaCuenta.setMusica(defaultJson());
 
 
-        return cuentaRepository.save(nuevaCuenta);  
+        return musicaRepository.save(nuevaCuenta);  
 
     }
     
 
     // ver si usuario existe
     public boolean existeUsuario(String usuario) {
-        return cuentaRepository.findByNombre(usuario) != null;
+        return musicaRepository.findByNombre(usuario) != null;
     }
 
     // borrar usuario
     public void borrarUsuario(String usuario) {
-        Musica cuenta = cuentaRepository.findByNombre(usuario);
+        Musica cuenta = musicaRepository.findByNombre(usuario);
         if (cuenta != null) {
-            cuentaRepository.delete(cuenta);
+            musicaRepository.delete(cuenta);
         }
     }
     
