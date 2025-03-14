@@ -80,34 +80,73 @@ body {
     box-shadow: 0 6px 15px rgba(255, 255, 255, 0.4);
   }
   
-  .navbar {
-    background-color: rgba(0, 0, 0, 0.8); /* Fondo oscuro */
+/* Importar fuente medieval */
+@import url('https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap');
+
+.navbar {
+    background: url('../img/pergamino-textura.jpg') no-repeat center center / cover; /* Fondo de pergamino */
+    border-bottom: 4px solid #8B4513; /* Borde marrón oscuro */
     padding: 15px 0;
     position: fixed;
     top: 0;
     width: 100%;
-    z-index: 100; /* Asegura que el menú esté encima de otros elementos */
-  }
-  
-  .navbar-list {
+    z-index: 100;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5); /* Sombra para dar profundidad */
+}
+
+.navbar-list {
     list-style: none;
     margin: 0;
     padding: 0;
     text-align: center;
-  }
-  
-  .navbar-list li {
+    font-family: 'MedievalSharp', cursive; /* Fuente medieval */
+}
+
+.navbar-list li {
     display: inline;
     margin: 0 20px;
-  }
-  
-  .navbar-list a {
+}
+
+.navbar-list a {
     text-decoration: none;
-    color: white; /* Enlaces blancos */
-    font-size: 18px;
+    color: #d4af37; /* Dorado medieval */
+    font-size: 20px;
     font-weight: bold;
-  }
-  
-  .navbar-list a:hover {
-    color: #3498db; /* Color de los enlaces al pasar el ratón */
-  }
+    text-transform: uppercase; /* Letras mayúsculas */
+    padding: 10px 15px;
+    border: 2px solid transparent;
+    transition: all 0.3s ease-in-out;
+    position: relative;
+}
+
+/* Efecto de hover: cambia color y añade borde dorado */
+.navbar-list a:hover {
+    color: #fff7d6; /* Color pergamino claro */
+    border-bottom: 3px solid #d4af37;
+    text-shadow: 0px 0px 8px rgba(255, 215, 0, 0.7); /* Brillo dorado */
+}
+
+/* Efecto encantado: Resplandor dorado al pasar el mouse */
+.navbar-list a::before {
+    content: "";
+    position: absolute;
+    bottom: -3px;
+    left: 50%;
+    width: 0;
+    height: 3px;
+    background-color: #d4af37;
+    transition: all 0.4s ease-in-out;
+}
+
+.navbar-list a:hover::before {
+    width: 100%;
+    left: 0;
+}
+
+/* Estilo medieval para dispositivos móviles */
+@media (max-width: 768px) {
+    .navbar-list li {
+        display: block;
+        margin: 10px 0;
+    }
+}

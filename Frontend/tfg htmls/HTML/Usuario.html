@@ -13,19 +13,18 @@
         <ul class="navbar-list">
           <li><a href="../HTML/Pagina_principal.html">Inicio</a></li>
           <li><a href="../HTML/discord.html">Discord</a></li>
-          <li><a href="#">Subgéneros</a></li>
           <li><a href="../HTML/Usuario.html">Usuario</a></li>
-          <li><a href="../HTML/Sonidos.html">Música</a></li> <!-- Nuevo botón agregado -->
+          <li><a href="../HTML/Sonidos.html">Música</a></li>
         </ul>
       </nav>
-    <div class="container mt-5">
+      <div class="container mt-5">
         <div class="card mx-auto text-center p-4" style="max-width: 400px;">
             <div class="card-body">
                 <label for="uploadImg">
                     <img id="profilePic" src="https://via.placeholder.com/150" alt="Imagen de usuario" class="profile-img mb-3">
                 </label>
                 <input type="file" id="uploadImg" class="hidden" accept="image/*" onchange="cambiarImagen(event)">
-
+    
                 <h2 class="card-title">Sir Usuario</h2>
                 <p class="text-muted">@usuario123</p>
                 <hr>
@@ -41,10 +40,11 @@
                 </div>
                 <hr>
                 <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#cambiarClaveModal">Cambiar Contraseña</button>
+                <button class="btn btn-danger mt-2" data-bs-toggle="modal" data-bs-target="#borrarUsuarioModal">Eliminar Cuenta</button>
             </div>
         </div>
     </div>
-
+    
     <!-- Modal para cambiar contraseña -->
     <div class="modal fade" id="cambiarClaveModal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -56,7 +56,7 @@
                 <div class="modal-body">
                     <label for="contrasenaAct" class="form-label">Contraseña Actual:</label>
                     <input type="password" id="contrasenaAct" class="form-control"><br>
-
+    
                     <label for="contrasenaNueva" class="form-label">Nueva Contraseña:</label>
                     <input type="password" id="contrasenaNueva" class="form-control"><br>
                 </div>
@@ -67,10 +67,30 @@
             </div>
         </div>
     </div>
-
+    
+    <!-- Modal para borrar cuenta -->
+    <div class="modal fade" id="borrarUsuarioModal" tabindex="-1" aria-labelledby="borrarUsuarioLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="borrarUsuarioLabel">Eliminar Cuenta</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>⚠️ <strong>Esta acción es irreversible.</strong> Si eliminas tu cuenta, no podrás recuperarla.</p>
+                    <label for="contrasenaBorrar" class="form-label">Introduce tu contraseña para confirmar:</label>
+                    <input type="password" id="contrasenaBorrar" class="form-control">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-danger" onclick="borrarUsuario()">Eliminar Cuenta</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../JS/usuario.js"></script>
-</body>
-</html>
+    
 
 

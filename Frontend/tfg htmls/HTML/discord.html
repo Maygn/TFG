@@ -12,17 +12,28 @@
 </head>
 <body>
 
+
+    <nav class="navbar">
+        <ul class="navbar-list">
+          <li><a href="../HTML/Pagina_principal.html">Inicio</a></li>
+          <li><a href="../HTML/discord.html">Discord</a></li>
+          <li><a href="../HTML/Usuario.html">Usuario</a></li>
+          <li><a href="../HTML/Sonidos.html">Música</a></li>
+        </ul>
+      </nav>
+
+
     <div class="container">
         <h2>Selecciona una Canción</h2>
-        <ul id="songList" class="list-group mb-3">
+        <ul id="ListaCanciones" class="list-group mb-3">
             <!-- Canciones cargadas desde el JSON -->
         </ul>
 
         <h4>Canción seleccionada:</h4>
-        <p id="selectedSong" class="fw-bold">Ninguna</p>
+        <p id="cancionElegida" class="fw-bold">Ninguna</p>
 
-        <label for="channelId" class="form-label">Canal de Discord (ID):</label>
-        <input type="text" id="channelId" class="form-control mb-3">
+        <label for="idCanal" class="form-label">Canal de Discord (ID):</label>
+        <input type="text" id="idCanal" class="form-control mb-3">
         
 
         <button class="btn btn-primary w-100">Enviar Canción</button>

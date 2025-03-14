@@ -19,6 +19,11 @@ public class Usuario {
 		@Column(unique = true)
 	    private String usuario;
 		
+		@Column
+		private boolean admin;
+		
+		@Column
+		private static final String CLAVE_ADMIN="PatatasConAtun";
 		
 		@Column
 	    private String contrasena;
@@ -47,4 +52,17 @@ public class Usuario {
 	    public void setContrasena(String contrasena) {
 	        this.contrasena = contrasena;
 	    }
+
+		public boolean isAdmin() {
+			return admin;
+		}
+
+		public void setAdmin(boolean admin) {
+			this.admin = admin;
+		}
+
+		public static String getClaveAdmin() {
+			return CLAVE_ADMIN;
+		}
+	    
 	}

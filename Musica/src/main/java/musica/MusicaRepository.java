@@ -9,4 +9,6 @@ public interface MusicaRepository extends JpaRepository<Musica, String> {
 
     // Spring Data JPA will generate the method automatically based on the method signature
     Musica findByNombre(String nombre);
+
+	Musica findByUsuario(String usuario);
 }

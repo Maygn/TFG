@@ -63,35 +63,74 @@ a:hover {
   text-decoration: underline; /* Subrayado cuando se pasa el mouse */
 }
 
+/* Importar fuente medieval */
+@import url('https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap');
+
 .navbar {
-  background-color: rgba(0, 0, 0, 0.8); /* Fondo oscuro */
-  padding: 15px 0;
-  position: fixed;
-  top: 0;
-  width: 100%;
-  z-index: 100; /* Asegura que el menú esté encima de otros elementos */
+    border-bottom: 4px solid #8B4513; /* Borde marrón oscuro */
+    padding: 15px 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5); /* Sombra para dar profundidad */
 }
 
 .navbar-list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  text-align: center;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    font-family: 'MedievalSharp', cursive; /* Fuente medieval */
 }
 
 .navbar-list li {
-  display: inline;
-  margin: 0 20px;
+    display: inline;
+    margin: 0 20px;
 }
 
 .navbar-list a {
-  text-decoration: none;
-  color: white; /* Enlaces blancos */
-  font-size: 18px;
-  font-weight: bold;
+    text-decoration: none;
+    color: #d4af37; /* Dorado medieval */
+    font-size: 20px;
+    font-weight: bold;
+    text-transform: uppercase; /* Letras mayúsculas */
+    padding: 10px 15px;
+    border: 2px solid transparent;
+    transition: all 0.3s ease-in-out;
+    position: relative;
 }
 
+/* Efecto de hover: cambia color y añade borde dorado */
 .navbar-list a:hover {
-  color: #3498db; /* Color de los enlaces al pasar el ratón */
+    color: #f9f6e9; /* Color pergamino claro */
+    border-bottom: 3px solid #000000;
+    text-shadow: 0px 0px 8px rgba(0, 0, 0, 0.7); /* Brillo dorado */
 }
+
+/* Efecto encantado: Resplandor dorado al pasar el mouse */
+.navbar-list a::before {
+    content: "";
+    position: absolute;
+    bottom: -3px;
+    left: 50%;
+    width: 0;
+    height: 3px;
+    background-color: #d4af37;
+    transition: all 0.4s ease-in-out;
+}
+
+.navbar-list a:hover::before {
+    width: 100%;
+    left: 0;
+}
+
+/* Estilo medieval para dispositivos móviles */
+@media (max-width: 768px) {
+    .navbar-list li {
+        display: block;
+        margin: 10px 0;
+    }
+}
+
 

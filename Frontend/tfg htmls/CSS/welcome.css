@@ -56,3 +56,59 @@ body {
     outline: none;
     box-shadow: 0 0 5px rgb(76, 46, 6);
 }
+
+/* Estilos para el checkbox con estética medieval */
+.checkbox-medieval {
+    align-items: center;
+    cursor: pointer;
+    font-family: "MedievalSharp", cursive;
+    font-size: 18px;
+    color: #d4af37; /* Dorado medieval */
+    position: relative;
+    padding-left: 40px;
+}
+
+/* Ocultar checkbox predeterminado */
+.checkbox-medieval input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+/* Estilo del checkmark (caja) */
+.checkbox-medieval .checkmark {
+    position: absolute;
+    left: 0;
+    height: 20px;
+    width: 20px;
+    background-color: #4a2c2a; /* Marrón medieval */
+    border: 2px solid #d4af37; /* Borde dorado */
+    border-radius: 4px;
+    transition: 0.3s;
+}
+
+/* Efecto cuando el checkbox está marcado */
+.checkbox-medieval input:checked + .checkmark {
+    background-color: #d4af37; /* Color dorado */
+    border: 2px solid #fff; /* Borde blanco */
+}
+
+/* Agregar un símbolo dentro del checkmark */
+.checkbox-medieval .checkmark::after {
+    content: "✓";
+    position: absolute;
+    display: none;
+    color: #4a2c2a; /* Marrón oscuro */
+    font-weight: bold;
+    top: -6px;
+}
+
+/* Mostrar el símbolo cuando está marcado */
+.checkbox-medieval input:checked + .checkmark::after {
+    display: block;
+}
+
+/* Animación de brillo al marcar */
+.checkbox-medieval input:checked + .checkmark {
+    box-shadow: 0 0 10px rgba(212, 175, 55, 0.8);
+}

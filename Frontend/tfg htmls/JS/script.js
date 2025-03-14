@@ -136,27 +136,27 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (usuarioId) {
           // Construir la URL dinámicamente con el ID del usuario
-          const url = `http://localhost:8081/usuarios/obtener/${usuarioId}`;
+          const url = `http://localhost:8081/usuarios/obtener/usuario?nombreUsuario=${usuarioId}`;
 
           // Realizar la petición con la URL construida dinámicamente
           fetch(url)
-            .then(response => {
-              // Verifica si la respuesta no es JSON (en este caso es texto)
-              console.log("Tipo de contenido de la respuesta:", response.headers.get("Content-Type"));
-
-              if (response.ok && response.headers.get("Content-Type").includes("text/plain")) {
-                return response.text();  // Leer como texto si el tipo es 'text/plain'
-              } else {
-                throw new Error(`Respuesta no es texto o error en el servidor: ${response.statusText}`);
-              }
-            })
-            .then(data => {
-              console.log("Respuesta del servidor (como texto):", data);
-              // Aquí puedes seguir manejando la respuesta como texto
-            })
-            .catch(error => {
-              console.error("Error al obtener los datos del usuario:", error);
-            });
+          .then(response => {
+            console.log("Tipo de contenido de la respuesta:", response.headers.get("Content-Type"));
+        
+            if (response.ok && response.headers.get("Content-Type").includes("application/json")) {
+              return response.json();  // Leer como JSON
+            } else {
+              throw new Error(`Respuesta inesperada o error en el servidor: ${response.statusText}`);
+            }
+          })
+          .then(data => {
+            console.log("Datos del usuario:", data);
+            document.getElementById("userInfo").innerText = `Puedes subir música a la cuenta de: ${data.usuario}`;
+          })
+          .catch(error => {
+            console.error("Error al obtener los datos del usuario:", error);
+          });
+        
 
           document.getElementById("userInfo").innerText = `Puedes subir música a la cuenta de: ${usuarioId}`;
         } else {
