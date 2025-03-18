@@ -33,7 +33,6 @@
     <fullyQualifiedTypeName name="musica.MusicaService"/>
     <fullyQualifiedTypeName name="musica.MusicaRepository"/>
     <fullyQualifiedTypeName name="musica.MusicaController"/>
-    <fullyQualifiedTypeName name="jakarta.persistence.Column"/>
     <fullyQualifiedTypeName name="java.util.UUID"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.GetMapping"/>
     <fullyQualifiedTypeName name="org.springframework.http.ResponseEntity"/>
@@ -49,4 +48,7 @@
     <fullyQualifiedTypeName name="org.apache.commons.codec.digest.HmacAlgorithms"/>
     <fullyQualifiedTypeName name="com.fasterxml.jackson.databind.node.ObjectNode"/>
     <fullyQualifiedTypeName name="java.util.Map"/>
+    <fullyQualifiedTypeName name="jakarta.persistence.Column"/>
+    <fullyQualifiedTypeName name="jakarta.persistence.Table"/>
+    <fullyQualifiedTypeName name="java.io.Serializable"/>
 </qualifiedTypeNameHistroy>

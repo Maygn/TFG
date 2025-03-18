@@ -67,65 +67,7 @@ public class MusicaService {
             musicaRepository.delete(cuenta); // Eliminar del repositorio
         }
     }
-    
-    //METODOS PARA MUSICA PUBLICA
-    
-    public Musica borrarCancionPublica(String token, String ruta, String cancion) {
-        // Validar que el token es correcto y que el usuario es admin.
-        if (!esAdmin(token)) {
-            throw new IllegalArgumentException("No tienes permisos de admin para borrar canciones.");
-        }
-        
-        // Recuperar la instancia estática de música pública.
-        Musica musicaPublica = Musica.getMusicaPublica();
-        if (musicaPublica == null) {
-            throw new IllegalArgumentException("No existe música pública en el sistema.");
-        }
-        
-        String musicaJson = musicaPublica.getMusica();
-        ObjectMapper mapper = new ObjectMapper();
-        try {
-            // Convertir el String en un JsonNode para navegar y modificar el contenido.
-            JsonNode root = mapper.readTree(musicaJson);
-            
-            // Navegar por el JSON utilizando la ruta (por ejemplo: "a1,11" para acceder a root.get("a1").get("11")).
-            String[] keys = ruta.split(",");
-            JsonNode nodoActual = root;
-            for (String key : keys) {
-                if (nodoActual.has(key)) {
-                    nodoActual = nodoActual.get(key);
-                } else {
-                    throw new IllegalArgumentException("La ruta especificada no existe en el JSON.");
-                }
-            }
-            
-            // Verificar que el nodo obtenido es un array de canciones.
-            if (!nodoActual.isArray()) {
-                throw new IllegalArgumentException("La ruta indicada no corresponde a una lista de canciones.");
-            }
-            
-            // Convertir el nodo a ArrayNode para poder eliminar la canción.
-            ArrayNode cancionesArray = (ArrayNode) nodoActual;
-            boolean eliminado = false;
-            for (int i = 0; i < cancionesArray.size(); i++) {
-                if (cancionesArray.get(i).asText().equals(cancion)) {
-                    cancionesArray.remove(i);
-                    eliminado = true;
-                    break;
-                }
-            }
-            if (!eliminado) {
-                throw new IllegalArgumentException("La canción especificada no se encontró en la ruta indicada.");
-            }
-            
-            // Volver a convertir el árbol JSON a String y actualizar la entidad.
-            String nuevoJson = mapper.writeValueAsString(root);
-            musicaPublica.setMusica(nuevoJson);
-            return musicaPublica;
-        } catch (IOException e) {
-            throw new RuntimeException("Error al procesar el JSON de música.", e);
-        }
-    }
+   
     
     
    // Método para extraer el usuario desde el token JWT.
@@ -144,89 +86,10 @@ public class MusicaService {
             return null;
         }
     }
-    public Musica agregarCancion(String token, String categoriaPublica, String categoriaPrivada, String cancion) {
-        // Extraer el usuario a partir del token (se utiliza el método copiado)
-        String usuario = extraerUsuarioDesdeJWT(token);
-        if (usuario == null) {
-            throw new IllegalArgumentException("Token inválido, no se pudo extraer el usuario.");
-        }
+  
+    
 
-        // Recuperar la música privada del usuario
-        Musica musicaPrivada = musicaRepository.findByUsuario(usuario);
-        if (musicaPrivada == null) {
-            throw new IllegalArgumentException("No se encontró música privada para el usuario " + usuario);
-        }
-
-        ObjectMapper mapper = new ObjectMapper();
-        JsonNode privateRoot;
-        try {
-            privateRoot = mapper.readTree(musicaPrivada.getMusica());
-        } catch (IOException e) {
-            throw new RuntimeException("Error al procesar el JSON de música privada.", e);
-        }
-
-        // Navegar en el JSON de música privada usando la categoría privada
-        JsonNode nodoPrivado = privateRoot.get(categoriaPrivada);
-        if (nodoPrivado == null || !nodoPrivado.isArray()) {
-            throw new IllegalArgumentException("La categoría privada especificada no existe o no contiene canciones.");
-        }
-
-        // Verificar que la canción existe en la categoría privada
-        boolean encontrada = false;
-        for (JsonNode n : nodoPrivado) {
-            if (n.asText().equals(cancion)) {
-                encontrada = true;
-                break;
-            }
-        }
-        if (!encontrada) {
-            throw new IllegalArgumentException("La canción especificada no se encuentra en tu música privada.");
-        }
-
-        // Obtener la música pública (entidad estática)
-        Musica musicaPublica = Musica.getMusicaPublica();
-        if (musicaPublica == null) {
-            throw new IllegalArgumentException("No existe música pública en el sistema.");
-        }
-
-        JsonNode publicRoot;
-        try {
-            publicRoot = mapper.readTree(musicaPublica.getMusica());
-        } catch (IOException e) {
-            throw new RuntimeException("Error al procesar el JSON de música pública.", e);
-        }
-
-        // Se asume que el JSON público es un objeto; se convierte a ObjectNode para poder modificarlo.
-        if (!(publicRoot instanceof ObjectNode)) {
-            throw new RuntimeException("La estructura de la música pública no es la esperada.");
-        }
-        ObjectNode publicRootObject = (ObjectNode) publicRoot;
-        ArrayNode publicCategory;
-        // Verificar si la categoría pública ya existe
-        if (publicRootObject.has(categoriaPublica)) {
-            JsonNode node = publicRootObject.get(categoriaPublica);
-            if (node.isArray()) {
-                publicCategory = (ArrayNode) node;
-            } else {
-                throw new IllegalArgumentException("La categoría pública especificada no es un array.");
-            }
-        } else {
-            // Si no existe, se crea una nueva categoría (array)
-            publicCategory = mapper.createArrayNode();
-            publicRootObject.set(categoriaPublica, publicCategory);
-        }
-
-        // Añadir la canción al array de la categoría pública
-        publicCategory.add(cancion);
-
-        try {
-            String nuevoJsonPublico = mapper.writeValueAsString(publicRootObject);
-            musicaPublica.setMusica(nuevoJsonPublico);
-            return musicaPublica;
-        } catch (IOException e) {
-            throw new RuntimeException("Error al actualizar la música pública.", e);
-        }
-    }
+    
 
      //Método  para validar la firma del token.
     

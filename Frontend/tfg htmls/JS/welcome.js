@@ -22,16 +22,7 @@ formulario.addEventListener("submit", async function (event) {
     const esAdmin = adminCheckbox.checked; // true si está marcado, false si no
     // Agregar el valor de admin al formParams
     formParams.append("admin", esAdmin);   
-
-   // Si es admin, agregar la claveAdmin al formParams
-    // if (esAdmin) {
-    //     const claveAdmin = document.getElementById("claveAdmin").value;
-    //     formParams.append("claveAdmin", claveAdmin);
-    // }
 }
-
-
-
 
     // Definir la URL y el método de la petición
     let url, options;
@@ -57,19 +48,68 @@ formulario.addEventListener("submit", async function (event) {
 
     console.log("Mensaje recibido del servidor:", mensaje);
     if (response.ok === true) {
-        // Si la respuesta es 'OK', obtener el token
+        // Si el registro fue exitoso, obtener el token
         const tokenResponse = await fetch(`http://localhost:8081/usuarios/obtener/usuario?nombreUsuario=${encodeURIComponent(cuenta)}`);
         const token = await tokenResponse.text(); 
-
+    
         console.log("Token recibido:", token);
-
+    
         // Guardar el nuevo token en el almacenamiento local
         localStorage.removeItem("jwtToken");
         localStorage.setItem("jwtToken", token);
-        debugger
-
+    
+        // Enviar la petición para asignar el JSON predeterminado
+        const defJson = JSON.stringify({
+            "Rock": {
+                "Clásico": {
+                    "Bohemian Rhapsody": "https://www.youtube.com/watch?v=fJ9rUzIMcZQ",
+                    "Hotel California": "https://www.youtube.com/watch?v=EqPtz5qN7HM"
+                },
+                "Metal": {
+                    "Master of Puppets": "https://www.youtube.com/watch?v=xnKhsTXoKCI",
+                    "Paranoid": "https://www.youtube.com/watch?v=wwJkzpc1CDs"
+                }
+            },
+            "Electrónica": {
+                "House": {
+                    "Strobe": "https://www.youtube.com/watch?v=t0tPbAeU3Q0",
+                    "Losing It": "https://www.youtube.com/watch?v=2v5AWgGLlBo"
+                },
+                "Trance": {
+                    "Children": "https://www.youtube.com/watch?v=r6kH5l9hsos",
+                    "Sandstorm": "https://www.youtube.com/watch?v=y6ZkzD0mQzc"
+                }
+            },
+            "HipHop": {
+                "OldSchool": {
+                    "Juicy": "https://www.youtube.com/watch?v=wrZzkEXj-QM",
+                    "Fight the Power": "https://www.youtube.com/watch?v=6dP-XzJSx8I"
+                },
+                "Trap": {
+                    "Sicko Mode": "https://www.youtube.com/watch?v=6onUyP7f2p4",
+                    "God's Plan": "https://www.youtube.com/watch?v=Px2yqZy5xM4"
+                }
+            },
+            "Pop": {
+                "Billie Jean": "https://www.youtube.com/watch?v=Zi_XLOBDo_Y",
+                "Shape of You": "https://www.youtube.com/watch?v=JGwWNGJdvx8"
+            }
+        });
+    
+        const jsonResponse = await fetch("http://localhost:8081/nuevo", {
+            method: "POST",
+            headers: { 
+                "Content-Type": "application/x-www-form-urlencoded"
+            },
+            body: new URLSearchParams({ token, defJson })
+        });
+    
+        const mensajeJson = await jsonResponse.text();
+        console.log("Respuesta al asignar JSON:", mensajeJson);
+    
         // Redirigir a la página principal
         window.location.href = "http://127.0.0.1:5500/Frontend/tfg%20htmls/HTML/Pagina_principal.html";
+    
     } else {
         document.getElementById("mensaje").innerText = mensaje;
         document.getElementById("mensaje").style.color = "red";

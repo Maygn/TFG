@@ -151,36 +151,5 @@ public class MusicaController {
         }
     }
     
-    //METODOS PARA MUSICA PUBLICA
-    @DeleteMapping("/borrarPublico")
-    public ResponseEntity<String> borrarCancion(
-    		@RequestParam String token,
-            @RequestParam String ruta,
-            @RequestParam String cancion) {
-        try {
-            musicaService.borrarCancionPublica(token, ruta, cancion);
-            return ResponseEntity.ok("Canción borrada correctamente");
-        } catch (IllegalArgumentException e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body("Error inesperado: " + e.getMessage());
-        }
-    }
-    @PostMapping("/añadirPublico")
-    public ResponseEntity<?> agregarCancionPublica(
-            @RequestParam String token,
-            @RequestParam String categoriaPublica,
-            @RequestParam String categoriaPrivada,
-            @RequestParam String cancion) {
-        try {
-            Musica musicaPublica = musicaService.agregarCancion(token, categoriaPublica, categoriaPrivada, cancion);
-            return ResponseEntity.ok(musicaPublica);
-        } catch (IllegalArgumentException e) {
-            return ResponseEntity.badRequest().body(Map.of("error", e.getMessage()));
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body(Map.of("error", "Error inesperado: " + e.getMessage()));
-        }
-    }
+   
 }

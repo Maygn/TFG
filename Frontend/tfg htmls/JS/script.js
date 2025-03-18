@@ -4,18 +4,23 @@ let mainContainer = document.getElementById("mainContainer");
 let timeoutId = null;  // Variable para almacenar el temporizador
 
 // Cargar el JSON al iniciar la página
-fetch("../Jsong/musica.json")
-  .then(response => {
-    if (!response.ok) {
-      throw new Error("Error al cargar el JSON");
-    }
-    return response.json();
-  })
-  .then(data => {
-    json = data; // Guardar datos en la variable json
-    iterateGenerate(document.querySelector(".listContainer"), json);
-  })
-  .catch(error => console.error("Error:", error));
+const token = localStorage.getItem("jwtToken");
+if (token) {
+    fetch(`http://localhost:8080/musica/buscar?token=${token}`)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error("Error al cargar el JSON del usuario");
+        }
+        return response.json();
+      })
+      .then(data => {
+        json = data; // Guardar datos en la variable json
+        iterateGenerate(document.querySelector(".listContainer"), json);
+      })
+      .catch(error => console.error("Error:", error));
+} else {
+    console.error("No hay sesión iniciada. No se puede cargar el JSON del usuario.");
+}
 
 mainContainer.addEventListener("mouseover", function (event) {
   if (event.target === mainContainer) {
@@ -28,6 +33,7 @@ mainContainer.addEventListener("mouseover", function (event) {
     }, 1000); 
   }
 });
+
 
 mainContainer.addEventListener("mouseleave", function () {
   out = true;

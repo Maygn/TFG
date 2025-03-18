@@ -1,29 +1,24 @@
 package musica;
 
+import java.io.Serializable;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 @Entity
-public class Musica {
+@Table(name="Musica")
+public class Musica implements Serializable{
 
     @Id
-    @Column
+    @Column(name="usuario")
     private String usuario;
-    @Column
+    @Column(name="musica")
     private String musica;
-    // repositorio compartido (estatico)
-    private static Musica musicaPublica;
-    
-    public static Musica getMusicaPublica() {
-        return musicaPublica;
-    }
-
-    public static void setMusicaPublica(Musica musicaPublica) {
-        Musica.musicaPublica = musicaPublica;
-    }
-
+   
+   
     public String getUsuario() {
         return usuario;
     }
@@ -40,6 +35,10 @@ public class Musica {
         this.musica = musica;
     }
 
+
+	public Musica() {
+		super();
+	}
 
 	public void ifPresent(Musica musica) {
 		// TODO Auto-generated method stub
