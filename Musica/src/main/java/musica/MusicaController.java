@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/musica") // Ruta base para este controller
+@CrossOrigin(origins = "http://127.0.0.1:5500")
 public class MusicaController {
 
     @Autowired
@@ -43,7 +45,7 @@ public class MusicaController {
 
     // Recuperar json de usuario
     @GetMapping("/buscar")
-    public ResponseEntity<String> verJson(@PathVariable String token) {
+    public ResponseEntity<String> verJson(@RequestParam String token) {
         try {
             // Sacar usuario desde el JWT
             String usuario = extraerUsuarioDesdeJWT(token);

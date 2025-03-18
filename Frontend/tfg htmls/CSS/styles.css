@@ -134,3 +134,151 @@ a:hover {
 }
 
 
+/* Estilos generales */
+body {
+  font-family: 'Garamond', serif;
+  background: url('https://www.transparenttextures.com/patterns/corkboard.png'); /* Textura de fondo tipo pergamino */
+  background-color: #f4f1e7;
+  margin: 0;
+  padding: 0;
+  color: #3e3b32;
+}
+
+h1, h2 {
+  font-family: 'MedievalSharp', sans-serif;
+  color: #5b3d23;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  text-align: center;
+}
+
+/* Contenedor principal */
+#mainContainer {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  margin: 30px;
+}
+
+/* Formulario */
+#editarFormulario {
+  width: 45%;
+  background-color: #fdf1c3;
+  border: 3px solid #7a5229;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  font-size: 1.2em;
+}
+
+#editarFormulario label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+  color: #5b3d23;
+}
+
+#editarFormulario select, #editarFormulario input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 4px;
+  border: 1px solid #7a5229;
+  font-size: 1em;
+}
+
+#editarFormulario button {
+  background-color: #5b3d23;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1.1em;
+}
+
+#editarFormulario button:hover {
+  background-color: #8c5e33;
+}
+
+/* Lista de canciones */
+.listContainer {
+  width: 45%;
+  background-color: #fdf1c3;
+  border: 3px solid #7a5229;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+#listaCanciones {
+  list-style-type: none;
+  padding: 0;
+}
+
+#listaCanciones li {
+  background-color: #f4f1e7;
+  border: 1px solid #7a5229;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 8px 0;
+  font-size: 1.1em;
+  color: #3e3b32;
+}
+
+#listaCanciones li:hover {
+  background-color: #ebd7a6;
+  cursor: pointer;
+}
+
+/* Botones */
+button {
+  background-color: #5b3d23;
+  color: white;
+  padding: 15px 30px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.2em;
+  cursor: pointer;
+  margin-top: 20px;
+  display: block;
+  width: 200px;
+  margin: 20px auto;
+}
+
+button:hover {
+  background-color: #8c5e33;
+}
+
+/* Añadir estilo de sombra en el contenedor principal */
+#mainContainer {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Textos y bordes del contenedor principal */
+#mainContainer p {
+  font-size: 1.2em;
+  color: #5b3d23;
+}
+
+#userInfo {
+  font-family: 'MedievalSharp', sans-serif;
+  font-size: 1.5em;
+  text-align: center;
+}
+
+/* Fondo del botón de editar JSON */
+#editarJson {
+  background-color: #5b3d23;
+  color: white;
+  padding: 15px 25px;
+  border: none;
+  border-radius: 10px;
+  font-size: 1.2em;
+  cursor: pointer;
+  margin-top: 20px;
+  width: 250px;
+}
+
+#editarJson:hover {
+  background-color: #8c5e33;
+}

@@ -27,7 +27,43 @@
     <p id="userInfo"></p> <!-- Aquí se mostrará el usuario -->
     <div class="listContainer"></div>
   </div>
+  <button id="editarJson">Editar JSON</button>
 
+  <h1>Editar Canciones</h1>
+
+  <!-- Formulario para editar música -->
+  <form id="editarFormulario">
+      <label for="categoria">Categoría:</label>
+      <select id="categoria" name="categoria">
+          <option value="Rock">Rock</option>
+          <option value="Electrónica">Electrónica</option>
+          <!-- Otras categorías... -->
+      </select>
+      <br><br>
+
+      <label for="subcategoria">Subcategoría:</label>
+      <select id="subcategoria" name="subcategoria">
+          <option value="Clásico">Clásico</option>
+          <option value="Alternativo">Alternativo</option>
+          <!-- Otras subcategorías... -->
+      </select>
+      <br><br>
+
+      <label for="cancion">Nombre de la canción:</label>
+      <input type="text" id="cancion" name="cancion" required>
+      <br><br>
+
+      <label for="enlace">Enlace de YouTube:</label>
+      <input type="url" id="enlace" name="enlace" required>
+      <br><br>
+
+      <button type="button" id="agregarCancion">Agregar Canción</button>
+  </form>
+
+  <h2>Lista de Canciones</h2>
+  <ul id="listaCanciones"></ul>
+
+  <button id="guardarCambios">Guardar Cambios</button>
   <script src="../JS/script.js"></script>
 </body>
 

@@ -6,7 +6,7 @@ let timeoutId = null;  // Variable para almacenar el temporizador
 // Cargar el JSON al iniciar la página
 const token = localStorage.getItem("jwtToken");
 if (token) {
-    fetch(`http://localhost:8080/musica/buscar?token=${token}`)
+    fetch(`http://localhost:8090/musica/buscar?token=${token}`)
       .then(response => {
         if (!response.ok) {
           throw new Error("Error al cargar el JSON del usuario");
@@ -180,17 +180,125 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 });
 
-// Función para decodificar base64Url (como en JWT)
-// Función para decodificar base64Url (como en JWT)
 function base64UrlDecode(str) {
-// Reemplaza los caracteres específicos de JWT
 str = str.replace(/-/g, '+').replace(/_/g, '/'); 
-// Verifica que la longitud sea múltiplo de 4 antes de usar atob
 while (str.length % 4 !== 0) {
-  str += "="; // Rellenar con '=' para hacerlo un múltiplo de 4
+  str += "=";
 }
-return atob(str);  // Decodifica de base64 a texto
+return atob(str);
 }
+
+document.getElementById("editarJson").addEventListener("click", async () => {
+  const token = localStorage.getItem("jwtToken"); // Obtener el token almacenado en localStorage
+  if (!token) {
+      alert("No hay sesión iniciada.");
+      return;
+  }
+
+  // Simulación de JSON actualizado
+  const musicaActualizada = JSON.stringify({
+    "Ladrido": {
+        "muy": {
+            "fuerte": "https://www.youtube.com/watch?v=fJ9rUzIMcZQ"
+        }
+    }
+});
+
+debugger
+  try {
+      const response = await fetch(`http://localhost:8090/musica/modificar?token=${encodeURIComponent(token)}`, {
+          method: "PUT",
+          headers: { 
+              "Content-Type": "application/json"
+          }, 
+          body: musicaActualizada // Enviar JSON correctamente
+      });
+
+      if (response.ok) {
+          const data = await response.json();
+          console.log("JSON actualizado:", data);
+          alert("El JSON del usuario se ha actualizado correctamente.");
+      } else {
+          alert("Error al actualizar el JSON.");
+      }
+  } catch (error) {
+      console.error("Error en la solicitud:", error);
+      alert("Error al actualizar el JSON.");
+  }
+});
+
+// Datos de ejemplo iniciales (en la realidad se cargarían del servidor)
+let musicaJson = {
+    "Rock": {
+        "Clásico": {
+            "Bohemian Rhapsody": "https://www.youtube.com/watch?v=fJ9rUzIMcZQ"
+        }
+    }
+};
+
+// Función para agregar canción
+document.getElementById("agregarCancion").addEventListener("click", () => {
+    const categoria = document.getElementById("categoria").value;
+    const subcategoria = document.getElementById("subcategoria").value;
+    const cancion = document.getElementById("cancion").value;
+    const enlace = document.getElementById("enlace").value;
+
+    if (cancion && enlace) {
+        // Agregar la canción al JSON
+        if (!musicaJson[categoria]) {
+            musicaJson[categoria] = {};
+        }
+        if (!musicaJson[categoria][subcategoria]) {
+            musicaJson[categoria][subcategoria] = {};
+        }
+
+        musicaJson[categoria][subcategoria][cancion] = enlace;
+
+        // Mostrar la canción agregada en la lista
+        const li = document.createElement("li");
+        li.textContent = `${cancion} - ${enlace}`;
+        document.getElementById("listaCanciones").appendChild(li);
+
+        // Limpiar los campos del formulario
+        document.getElementById("cancion").value = '';
+        document.getElementById("enlace").value = '';
+    } else {
+        alert("Por favor, complete todos los campos.");
+    }
+});
+
+// Función para guardar cambios (enviar al servidor)
+document.getElementById("guardarCambios").addEventListener("click", async () => {
+    const token = localStorage.getItem("jwtToken"); // Obtener el token desde localStorage
+    if (!token) {
+        alert("No hay sesión iniciada.");
+        return;
+    }
+
+    try {
+        const response = await fetch("http://localhost:8090/musica/modificar", {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                token: token,
+                musica: musicaJson
+            })
+        });
+
+        if (response.ok) {
+            const data = await response.json();
+            alert("El JSON ha sido actualizado correctamente.");
+        } else {
+            alert("Error al actualizar el JSON.");
+        }
+    } catch (error) {
+        console.error("Error al enviar la solicitud:", error);
+        alert("Error al guardar los cambios.");
+    }
+});
+
 
 
 
