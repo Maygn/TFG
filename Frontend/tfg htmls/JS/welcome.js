@@ -61,11 +61,12 @@ formulario.addEventListener("submit", async function (event) {
         // Enviar la petición para asignar el JSON predeterminado
         const defJson = JSON.stringify({
             "Rock": {
-                "Clás": {
-                    "Bohemian": "https://www.youtube.com/watch?v=fJ9rUzIMcZQ"
+                "Clásico": {
+                    "Bohemian Rhapsody": "https://www.youtube.com/watch?v=fJ9rUzIMcZQ",
+                    "Dolor": "https://www.youtube.com/watch?v=fJ9rUzIMcZQ"
                 },
-                "A": {
-                  "A": "https://www.youtube.com/watch?v=hTWKtbzF8qg"
+                "Alternativo": {
+                  "Smells Like Teen Spirit": "https://www.youtube.com/watch?v=hTWKtbzF8qg"
                 }
             }
         });

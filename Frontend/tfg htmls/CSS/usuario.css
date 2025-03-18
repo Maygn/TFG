@@ -55,7 +55,7 @@ body {
 @import url('https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap');
 
 .navbar {
-    background: url('../img/pergamino-textura.jpg') no-repeat center center / cover; /* Fondo de pergamino */
+    
     border-bottom: 4px solid #8B4513; /* Borde marrón oscuro */
     padding: 15px 0;
     position: fixed;

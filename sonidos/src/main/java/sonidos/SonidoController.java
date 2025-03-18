@@ -21,6 +21,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
+
+import jakarta.transaction.Transactional;
+
 import org.springframework.core.io.UrlResource;
 import org.springframework.http.MediaType;
 import org.springframework.core.io.Resource;
@@ -38,7 +41,7 @@ public class SonidoController {
 //subir archivos de sonido
 	@PostMapping("/subir")
 	public ResponseEntity<String> uploadFile(@RequestParam MultipartFile file,
-	        @RequestParam String nombre, @RequestParam String token) {
+	        @RequestParam String nombre,@RequestHeader("Authorization") String token) {
 
 	    try {
 	        // sacar usuario
@@ -63,7 +66,7 @@ public class SonidoController {
 
 	//recuperar una lista con todos los sonidos del usuario.
 	@GetMapping("/buscarLista")
-	public ResponseEntity<List<Sonido>> getSonidosPorUsuario(@RequestParam String token) {
+	public ResponseEntity<List<Sonido>> getSonidosPorUsuario(@RequestHeader("Authorization") String token) {
 		//si no hay usuario en el token o no hay token, manda error
 	    try {
 	        String usuario = extraerUsuarioDesdeJWT(token);
@@ -85,15 +88,19 @@ public class SonidoController {
 	
 	
 	 //Borrar todos los sonidos del usuario
-	 @DeleteMapping("/borrarTodo/{token}")
-	 public ResponseEntity<Void> borrarSonidosPorUsuario(@PathVariable String token) {
+	 @Transactional
+	 @DeleteMapping("/borrarTodo")
+	 public ResponseEntity<Void> borrarSonidosPorUsuario(@RequestHeader("Authorization") String token) {
+		 System.out.println("Entrando a borrar usuario");
 	     try {//si no hay usuario en el token o no hay token, manda error
 	         String usuario = extraerUsuarioDesdeJWT(token);
 	         if (usuario == null || usuario.isEmpty()) {
+	        	 System.out.println("usuario null");
 	             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
 	         }
 	         //si el usuario no tiene sonidos manda error
 	         if (!sonidoRepository.existsByUsuario(usuario)) {
+	        	 System.out.println("El usuario no tiene sonidos");
 	             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
 	         }
 	         //borra todos los sonidos
@@ -102,11 +109,11 @@ public class SonidoController {
 	         return ResponseEntity.noContent().build();
 	     } catch (Exception e) { //cualquier fallo imprevisto
 	         return ResponseEntity.status(HttpStatus.OK).build();
-	     }
+	     } 
 	 }
 //borrar un solo sonido por su id
-	 @DeleteMapping("/borrar/{id}")
-	 public ResponseEntity<Void> borrarSonido(@PathVariable String token, @PathVariable Long id) {
+	 @DeleteMapping("/borrar")
+	 public ResponseEntity<Void> borrarSonido(@RequestHeader("Authorization") String token, @PathVariable Long id) {
 	     try {//si no hay usuario en el token o no hay token, manda error
 	         String usuario = extraerUsuarioDesdeJWT(token);
 	         if (usuario == null || usuario.isEmpty()) {
@@ -130,7 +137,7 @@ public class SonidoController {
 	     }
 	 }
 
-	 @GetMapping("/descargar/{id}")
+	 @GetMapping("/descargar")
 	 public ResponseEntity<Resource> descargarSonido(@PathVariable Long id, @RequestHeader("Authorization") String token) {
 	     String usuario = extraerUsuarioDesdeJWT(token);
 
@@ -174,7 +181,7 @@ public class SonidoController {
 
 	 
 	 //sacar usuario del token
-		private String extraerUsuarioDesdeJWT(String token) {
+		private String extraerUsuarioDesdeJWT(@RequestHeader("Authorization") String token) {
 			try {
 				// separar en partes
 				String[] partes = token.split("\\.");

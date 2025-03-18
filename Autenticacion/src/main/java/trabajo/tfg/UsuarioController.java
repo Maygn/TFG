@@ -1,6 +1,7 @@
 package trabajo.tfg;
 
-import org.springframework.web.bind.annotation.CrossOrigin;
+import jakarta.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
@@ -70,7 +71,7 @@ public class UsuarioController {
 	}
 
 	@PostMapping("/cambiarClave")
-	public ResponseEntity<String> cambiarClave(@RequestParam String token, @RequestParam String contrasenaAct,
+	public ResponseEntity<String> cambiarClave(@RequestHeader("Authorization") String token, @RequestParam String contrasenaAct,
 			@RequestParam String contrasenaNueva) {
 		String usuario;
 		try {
@@ -87,20 +88,26 @@ public class UsuarioController {
 		}
 	}
 
-	@DeleteMapping("/borrar/usuario")
-	public ResponseEntity<String> borrarUsuario(@RequestParam String token, @RequestParam String contrasena) {
+	@Transactional
+	@DeleteMapping("/borrar")
+	public ResponseEntity<String> borrarUsuario(@RequestHeader("Authorization") String token, @RequestParam String contrasena) {
 		String usuario;
+		System.out.println("USU: entrando en borrar usuario");
 		try {
 			usuario = usuarioService.extraerUsuarioDesdeJWT(token);
+			System.out.println("USU:borrando datos de"+ usuario);
 			Usuario user = usuarioService.obtenerUsuarioPorNombre(usuario);
 			if (user != null && user.isAdmin()) {
+				System.out.println("USU:Un administrador no puede ser eliminado.");
 				return new ResponseEntity<>("Un administrador no puede ser eliminado.", HttpStatus.FORBIDDEN);
 			}
 			boolean credencialesValidas = usuarioService.contrasenaCorrecta(usuario, contrasena);
 			if (credencialesValidas) {
 				usuarioService.borrarUsuario(usuario);
+				System.out.println("Usuario " + usuario + " borrado.");
 				return new ResponseEntity<>("Usuario " + usuario + " borrado.", HttpStatus.OK);
 			} else {
+				System.out.println("USU:Contraseña incorrecta.");
 				return new ResponseEntity<>("Contraseña incorrecta.", HttpStatus.UNAUTHORIZED);
 			}
 		} catch (Exception e) {

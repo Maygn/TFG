@@ -15,7 +15,7 @@ public class Musica implements Serializable{
     @Id
     @Column(name="usuario")
     private String usuario;
-    @Column(name="musica")
+    @Column(name="musica",length = 2000)
     private String musica;
    
    

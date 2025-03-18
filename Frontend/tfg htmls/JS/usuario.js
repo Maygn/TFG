@@ -74,7 +74,7 @@ async function cambiarClave() {
 
 async function borrarUsuario() {
     const token = localStorage.getItem("jwtToken");
-    const contrasena = prompt("Introduce tu contraseña para confirmar la eliminación de tu cuenta:");
+    const contrasena = document.getElementById("contrasenaBorrar").value; // Obtener contraseña del modal
 
     if (!contrasena) {
         alert("Debes introducir tu contraseña.");
@@ -82,16 +82,32 @@ async function borrarUsuario() {
     }
 
     const formData = new URLSearchParams();
-    formData.append("token", token);
     formData.append("contrasena", contrasena);
 
     try {
-        const response = await fetch("http://localhost:8081/usuarios/borrar/usuario", {
-            method: "DELETE",
-            headers: {
-                "Content-Type": "application/x-www-form-urlencoded",
-            },
-            body: formData
+        // Eliminar sonidos del usuario primero
+        const sonidoResponse = await fetch(`http://localhost:8080/sonidos/borrarTodo?${token}`, {
+            method: "DELETE"
+        });
+
+        if (!sonidoResponse.ok) {
+            alert("Hubo un error al eliminar los sonidos.");
+            return;
+        }
+
+        // Eliminar música del usuario
+        const musicaResponse = await fetch(`http://localhost:8090/musica/borrar?token=${token}`, {
+            method: "DELETE"
+        });
+
+        if (!musicaResponse.ok) {
+            alert("Hubo un error al eliminar la música.");
+            return;
+        }
+
+        // Eliminar usuario
+        const response = await fetch(`http://localhost:8081/usuarios/borrar/usuario?token=${token}&contrasena=${contrasena}`, {
+            method: "DELETE"
         });
 
         const result = await response.text();
@@ -99,7 +115,7 @@ async function borrarUsuario() {
 
         if (response.ok) {
             localStorage.removeItem("jwtToken"); // Cerrar sesión tras eliminación
-            window.location.href = "index.html"; // Redirigir a la página principal
+            window.location.href = "http://127.0.0.1:5500/HTML/welcome.html"; // Redirigir a la página principal
         }
 
     } catch (error) {
@@ -107,6 +123,9 @@ async function borrarUsuario() {
         alert("No se pudo borrar la cuenta. Inténtalo de nuevo.");
     }
 }
+
+
+
 
 
 function cambiarImagen(event) {

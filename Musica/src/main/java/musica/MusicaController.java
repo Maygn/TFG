@@ -16,9 +16,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import jakarta.transaction.Transactional;
 
 @RestController
 @RequestMapping("/musica") // Ruta base para este controller
@@ -45,7 +48,7 @@ public class MusicaController {
 
     // Recuperar json de usuario
     @GetMapping("/buscar")
-    public ResponseEntity<String> verJson(@RequestParam String token) {
+    public ResponseEntity<String> verJson(@RequestHeader("Authorization") String token) { //Todo metodo DE TOKEN tira de requestheader
         try {
             // Sacar usuario desde el JWT
             String usuario = extraerUsuarioDesdeJWT(token);
@@ -76,8 +79,8 @@ public class MusicaController {
     }
 
     // Modificar json de usuario
-    @PutMapping("modificar")
-    public ResponseEntity<Musica> actualizarMusica(@RequestParam String token, @RequestBody Musica cuentaActualizada) {
+    @PutMapping("/modificar")
+    public ResponseEntity<Musica> actualizarMusica(@RequestHeader("Authorization") String token, @RequestBody Musica cuentaActualizada) {
         try {
             // Extraer usuario del token
             String usuario = extraerUsuarioDesdeJWT(token);
@@ -103,18 +106,22 @@ public class MusicaController {
     }
     
     // Borrar un usuario del todo
+    @Transactional
     @DeleteMapping("/borrar")
-    public ResponseEntity<String> borrarCuenta(@RequestParam String token) {
+    public ResponseEntity<String> borrarCuenta(@RequestHeader("Authorization") String token) {
+    	System.out.println("entrando en borrar musica");
         try {
             // Extraer usuario del token
             String usuario = extraerUsuarioDesdeJWT(token);
             
             if (usuario == null) {
+            	System.out.println("MUSICA: Token inválido o usuario no encontrado");
                 return new ResponseEntity<>("Token inválido o usuario no encontrado", HttpStatus.NOT_FOUND);
             }
 
             // Ver si usuario existe
             if (!musicaService.existeUsuario(usuario)) {
+            	System.out.println("MUSICA:El usuario no existe");
                 return new ResponseEntity<>("El usuario no existe", HttpStatus.NOT_FOUND);
             }
 
@@ -128,7 +135,7 @@ public class MusicaController {
     }
 
     // No necesita un endpoint porque solo lo uso desde otros métodos
-    public String extraerUsuarioDesdeJWT(String token) {
+    public String extraerUsuarioDesdeJWT(@RequestHeader("Authorization") String token) {
         try {
             // Separar JWT en partes
             String[] partes = token.split("\\.");

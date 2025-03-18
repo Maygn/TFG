@@ -68,16 +68,19 @@ public class ComunesController {
 	    // Método para borrar una canción de la música pública
 	    @DeleteMapping("/borrar")
 	    public ResponseEntity<String> borrarMusicaPublica(@RequestParam String token, @RequestParam String cancion) {
+	    	System.out.println("entrando en borrar publico");
 	        try {
 	            // Llamar al servicio para borrar la música pública
 	            ResponseEntity<String> response = comunesService.borrarMusicaPublica(token, cancion);
 
 	            // Si la respuesta es FORBIDDEN o NOT_FOUND, devolvemos el mensaje de error adecuado
 	            if (response.getStatusCode() == HttpStatus.FORBIDDEN) {
+	            	System.out.println("Token inválido o el usuario no tiene permisos de administrador.");
 	                return new ResponseEntity<>("Token inválido o el usuario no tiene permisos de administrador.", HttpStatus.FORBIDDEN);
 	            }
 
 	            if (response.getStatusCode() == HttpStatus.NOT_FOUND) {
+	            	System.out.println("No se encontró la música pública o la canción no está en el repositorio.");
 	                return new ResponseEntity<>("No se encontró la música pública o la canción no está en el repositorio.", HttpStatus.NOT_FOUND);
 	            }
 

@@ -3829,3 +3829,24 @@ org.eclipse.core.runtime.CoreException: Could not resolve artifact antlr:antlr:j
 2025-03-18 19:20:08,422 [Worker-38: Launching Musica - MusicaMain] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
 2025-03-18 19:20:08,426 [Worker-38: Launching Musica - MusicaMain] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
 2025-03-18 19:20:08,429 [Worker-38: Launching Musica - MusicaMain] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\dev\Workspace\Backend\Musica\src\test\resources
+2025-03-18 20:41:06,038 [Worker-25: Launching Musica - MusicaMain] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2025-03-18 20:41:06,059 [Worker-25: Launching Musica - MusicaMain] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2025-03-18 20:41:06,062 [Worker-25: Launching Musica - MusicaMain] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\dev\Workspace\Backend\Musica\src\test\resources
+2025-03-18 20:56:09,611 [Start Help Server] INFO  org.eclipse.jetty.server.Server - jetty-12.0.3; built: 2023-10-27T03:25:22.284Z; git: a873259fd5af141dedaa6c7fa8fe8fbdedce0d61; jvm 21.0.1+12-LTS-29
+2025-03-18 20:56:09,660 [Start Help Server] INFO  o.e.j.server.handler.ContextHandler - Started oeje8n.ContextHandler$CoreContextHandler@8941e12{/help,/help,b=null,a=AVAILABLE,h=oeje8n.ContextHandler$CoreContextHandler$CoreToNestedHandler@697d1ac0{STARTED}}
+2025-03-18 20:56:09,661 [Start Help Server] INFO  o.e.j.s.DefaultSessionIdManager - Session workerName=node0
+2025-03-18 20:56:09,682 [Start Help Server] INFO  o.e.jetty.server.AbstractConnector - Started ServerConnector@5809ffcc{HTTP/1.1, (http/1.1)}{127.0.0.1:56366}
+2025-03-18 20:56:09,693 [Start Help Server] INFO  org.eclipse.jetty.server.Server - Started oejs.Server@3c58d940{STARTING}[12.0.3,sto=0] @7299853ms
+2025-03-18 21:46:37,407 [Worker-99: Launching Autenticacion - TfgApplication] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2025-03-18 21:46:37,413 [Worker-99: Launching Autenticacion - TfgApplication] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2025-03-18 21:46:37,417 [Worker-99: Launching Autenticacion - TfgApplication] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\dev\Workspace\Backend\Autenticacion\src\test\resources
+2025-03-18 22:42:51,704 [Worker-110: Launching Musica - MusicaMain] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2025-03-18 22:42:51,711 [Worker-110: Launching Musica - MusicaMain] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2025-03-18 22:42:51,714 [Worker-110: Launching Musica - MusicaMain] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\dev\Workspace\Backend\Musica\src\test\resources
+2025-03-18 22:52:00,798 [Worker-112: Launching Musica - MusicaMain] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2025-03-18 22:52:00,802 [Worker-112: Launching Musica - MusicaMain] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2025-03-18 22:52:00,806 [Worker-112: Launching Musica - MusicaMain] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\dev\Workspace\Backend\Musica\src\test\resources
+2025-03-18 22:53:10,621 [Worker-113: Launching sonidos - SonidosApplication] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2025-03-18 22:53:10,657 [Worker-113: Launching sonidos - SonidosApplication] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\dev\Workspace\Backend\sonidos\src\test\resources
+2025-03-18 23:13:39,016 [Worker-119: Launching sonidos - SonidosApplication] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2025-03-18 23:13:39,022 [Worker-119: Launching sonidos - SonidosApplication] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\dev\Workspace\Backend\sonidos\src\test\resources
