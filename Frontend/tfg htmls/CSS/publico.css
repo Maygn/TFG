@@ -1,0 +1,303 @@
+#mainContainer::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("../Imagenes/Bard-wallpaper.webp");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.5; /* Ajusta el nivel de transparencia */
+    z-index: -1; /* Envía el fondo detrás de los demás elementos */
+  }
+  
+  body {
+    margin: 0;
+    display: flex; /* Usamos flexbox para centrar el contenido */
+    justify-content: center; /* Centrado horizontal */
+    align-items: center;     /* Centrado vertical */
+    height: 100vh;           /* Asegura que el body ocupe toda la altura de la pantalla */
+  }
+  
+  .listContainer, .finalContainer {
+    background-color: rgba(255, 255, 255, 0.3); /* Fondo semi-transparente blanco */
+    width: 90%;
+    display: flex;
+    flex-wrap: nowrap;  /* Evita el ajuste a una nueva línea */
+    justify-content: start;  /* Alinea los elementos al principio */
+    gap: 15px;
+    padding: 10px;
+  }
+  
+  .contContainer, .stringContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bolder;
+    font-size: 3vh;
+    padding: 0.5rem 1rem;
+    min-width: 100px;
+    white-space: nowrap;
+    color: rgb(0, 0, 0);
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out, background-color 0.3s ease;
+    border: 2px solid #000000; /* Bordes azules */
+  }
+  
+  
+  a {
+    text-decoration: none;
+    color: black; /* Enlaces en color negro */
+  }
+  
+  a:hover {
+    text-decoration: underline; /* Subrayado cuando se pasa el mouse */
+  }
+  
+  /* Importar fuente medieval */
+  @import url('https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap');
+  
+  .navbar {
+      border-bottom: 4px solid #8B4513; /* Borde marrón oscuro */
+      padding: 15px 0;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 100;
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5); /* Sombra para dar profundidad */
+  }
+  
+  .navbar-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+      font-family: 'MedievalSharp', cursive; /* Fuente medieval */
+  }
+  
+  .navbar-list li {
+      display: inline;
+      margin: 0 20px;
+  }
+  
+  .navbar-list a {
+      text-decoration: none;
+      color: #d4af37; /* Dorado medieval */
+      font-size: 20px;
+      font-weight: bold;
+      text-transform: uppercase; /* Letras mayúsculas */
+      padding: 10px 15px;
+      border: 2px solid transparent;
+      transition: all 0.3s ease-in-out;
+      position: relative;
+  }
+  
+  /* Efecto de hover: cambia color y añade borde dorado */
+  .navbar-list a:hover {
+      color: #f9f6e9; /* Color pergamino claro */
+      border-bottom: 3px solid #000000;
+      text-shadow: 0px 0px 8px rgba(0, 0, 0, 0.7); /* Brillo dorado */
+  }
+  
+  /* Efecto encantado: Resplandor dorado al pasar el mouse */
+  .navbar-list a::before {
+      content: "";
+      position: absolute;
+      bottom: -3px;
+      left: 50%;
+      width: 0;
+      height: 3px;
+      background-color: #d4af37;
+      transition: all 0.4s ease-in-out;
+  }
+  
+  .navbar-list a:hover::before {
+      width: 100%;
+      left: 0;
+  }
+  
+  /* Estilo medieval para dispositivos móviles */
+  @media (max-width: 768px) {
+      .navbar-list li {
+          display: block;
+          margin: 10px 0;
+      }
+  }
+  
+  
+  /* Estilos generales */
+  body {
+    font-family: 'Garamond', serif;
+    background-color: #f4f1e7;
+    margin: 0;
+    padding: 0;
+    color: #3e3b32;
+  }
+  
+  h1, h2 {
+    font-family: 'MedievalSharp', sans-serif;
+    color: #5b3d23;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    text-align: center;
+  }
+  
+  /* Contenedor principal */
+  #mainContainer {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    margin: 30px;
+  }
+  
+  /* Formulario */
+  #editarFormulario {
+    width: 45%;
+    background-color: #fdf1c3;
+    border: 3px solid #7a5229;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    font-size: 1.2em;
+  }
+  
+  #editarFormulario label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #5b3d23;
+  }
+  
+  #editarFormulario select, #editarFormulario input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 4px;
+    border: 1px solid #7a5229;
+    font-size: 1em;
+  }
+  
+  #editarFormulario button {
+    background-color: #5b3d23;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.1em;
+  }
+  
+  #editarFormulario button:hover {
+    background-color: #8c5e33;
+  }
+  
+  
+  
+  #listaCanciones {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  #listaCanciones li {
+    background-color: #f4f1e7;
+    border: 1px solid #7a5229;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 8px 0;
+    font-size: 1.1em;
+    color: #3e3b32;
+  }
+  
+  #listaCanciones li:hover {
+    background-color: #ebd7a6;
+    cursor: pointer;
+  }
+  
+  /* Botones */
+  button {
+    background-color: #5b3d23;
+    color: white;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.2em;
+    cursor: pointer;
+    margin-top: 20px;
+    display: block;
+    width: 200px;
+    margin: 20px auto;
+  }
+  
+  button:hover {
+    background-color: #8c5e33;
+  }
+  
+  /* Añadir estilo de sombra en el contenedor principal */
+  #mainContainer {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  }
+  
+  /* Textos y bordes del contenedor principal */
+  #mainContainer p {
+    font-size: 1.2em;
+    color: #5b3d23;
+  }
+  
+  #userInfo {
+    font-family: 'MedievalSharp', sans-serif;
+    font-size: 1.5em;
+    text-align: center;
+  }
+  
+  /* Fondo del botón de editar JSON */
+  #editarJson {
+    background-color: #5b3d23;
+    color: white;
+    padding: 15px 25px;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.2em;
+    cursor: pointer;
+    margin-top: 20px;
+    width: 250px;
+  }
+  
+  #editarJson:hover {
+    background-color: #8c5e33;
+  }
+  
+  #mainContainer {
+    flex-direction: column;
+  }
+  
+  /* Diseño del formulario */
+  #editarFormulario {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+  }
+  
+  label {
+    font-size: 1.1em;
+  }
+  
+  /* Listado de canciones */
+  #listaCanciones {
+    list-style-type: none;
+    padding: 0;
+    margin: 10px 0;
+  }
+  
+  /* Botones y campos de texto */
+  button, .form-control, .form-label {
+    width: 50%;
+    max-width: 200px; /* Para no hacerlos demasiado anchos */
+    margin-top: 10px;
+  }
+  
+  /* Agregar margen a los campos de entrada */
+  input, select {
+    margin-bottom: 10px;
+  }

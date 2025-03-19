@@ -22,6 +22,8 @@ formulario.addEventListener("submit", async function (event) {
     const esAdmin = adminCheckbox.checked; // true si está marcado, false si no
     // Agregar el valor de admin al formParams
     formParams.append("admin", esAdmin);   
+    localStorage.setItem("esAdmin", esAdmin);
+
 }
 
     // Definir la URL y el método de la petición
@@ -60,15 +62,6 @@ formulario.addEventListener("submit", async function (event) {
     
         // Enviar la petición para asignar el JSON predeterminado
         const defJson = JSON.stringify({
-            "Rock": {
-                "Clásico": {
-                    "Bohemian Rhapsody": "https://www.youtube.com/watch?v=fJ9rUzIMcZQ",
-                    "Dolor": "https://www.youtube.com/watch?v=fJ9rUzIMcZQ"
-                },
-                "Alternativo": {
-                  "Smells Like Teen Spirit": "https://www.youtube.com/watch?v=hTWKtbzF8qg"
-                }
-            }
         });
     
         const jsonResponse = await fetch("http://localhost:8090/musica/nuevo", {
@@ -155,6 +148,8 @@ registroBtn.addEventListener("click", function () {
 
 
 
+
+    
 
 
 

@@ -112,7 +112,7 @@ public class SonidoController {
 	     } 
 	 }
 //borrar un solo sonido por su id
-	 @DeleteMapping("/borrar")
+	 @DeleteMapping("/borrar/{id}")
 	 public ResponseEntity<Void> borrarSonido(@RequestHeader("Authorization") String token, @PathVariable Long id) {
 	     try {//si no hay usuario en el token o no hay token, manda error
 	         String usuario = extraerUsuarioDesdeJWT(token);
@@ -137,7 +137,7 @@ public class SonidoController {
 	     }
 	 }
 
-	 @GetMapping("/descargar")
+	 @GetMapping("/descargar/{id}")
 	 public ResponseEntity<Resource> descargarSonido(@PathVariable Long id, @RequestHeader("Authorization") String token) {
 	     String usuario = extraerUsuarioDesdeJWT(token);
 

@@ -15,55 +15,31 @@
 <nav class="navbar">
   <ul class="navbar-list">
     <li><a href="../HTML/Pagina_principal.html">Inicio</a></li>
-    <li><a href="../HTML/discord.html">Discord</a></li>
     <li><a href="../HTML/Usuario.html">Usuario</a></li>
-    <li><a href="../HTML/Sonidos.html">Música</a></li>
+    <li><a href="../HTML/Sonidos.html">Sonidos</a></li>
+    <li><a href="../HTML/musica.html">Musica</a></li>
+    <li><a href="../HTML/publico.html">Publico</a></li>
+
   </ul>
 </nav>
 
 
-  <!-- Contenedor principal -->
-  <div id="mainContainer">
-    <p id="userInfo"></p> <!-- Aquí se mostrará el usuario -->
-    <div class="listContainer"></div>
-  </div>
-  <button id="editarJson">Editar JSON</button>
+<div id="mainContainer">
+  <div class="listContainer"></div>
+</div> 
 
-  <h1>Editar Canciones</h1>
+<div id="SegundoConter">
+ 
+  
+  <h4>Canción seleccionada:</h4>
+  <p id="cancionElegida" class="fw-bold">Ninguna</p>
+  
+  <label for="idCanal" class="form-label">Canal de Discord (ID):</label>
+  <input type="text" id="idCanal" class="form-control mb-3">
+  
+  <button class="btn btn-primary" id="enviarCancion">Enviar Canción</button>
+</div>
 
-  <!-- Formulario para editar música -->
-  <form id="editarFormulario">
-      <label for="categoria">Categoría:</label>
-      <select id="categoria" name="categoria">
-          <option value="Rock">Rock</option>
-          <option value="Electrónica">Electrónica</option>
-          <!-- Otras categorías... -->
-      </select>
-      <br><br>
-
-      <label for="subcategoria">Subcategoría:</label>
-      <select id="subcategoria" name="subcategoria">
-          <option value="Clásico">Clásico</option>
-          <option value="Alternativo">Alternativo</option>
-          <!-- Otras subcategorías... -->
-      </select>
-      <br><br>
-
-      <label for="cancion">Nombre de la canción:</label>
-      <input type="text" id="cancion" name="cancion" required>
-      <br><br>
-
-      <label for="enlace">Enlace de YouTube:</label>
-      <input type="url" id="enlace" name="enlace" required>
-      <br><br>
-
-      <button type="button" id="agregarCancion">Agregar Canción</button>
-  </form>
-
-  <h2>Lista de Canciones</h2>
-  <ul id="listaCanciones"></ul>
-
-  <button id="guardarCambios">Guardar Cambios</button>
   <script src="../JS/script.js"></script>
 </body>
 

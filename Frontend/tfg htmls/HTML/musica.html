@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../CSS/musica.css">
+    <title>Document</title>
+</head>
+<body>
+    <nav class="navbar">
+        <ul class="navbar-list">
+            <li><a href="../HTML/Pagina_principal.html">Inicio</a></li>
+            <li><a href="../HTML/Usuario.html">Usuario</a></li>
+            <li><a href="../HTML/Sonidos.html">Sonidos</a></li>
+            <li><a href="../HTML/musica.html">Musica</a></li>
+            <li><a href="../HTML/publico.html">Publico</a></li>
+        </ul>
+    </nav>
+
+    <form id="editarFormulario">
+        <label for="categoria">Categoría:</label>
+        <input type="text" id="categoria" name="categoria" required>
+
+        <label for="subcategoria">Subcategoría:</label>
+        <input type="text" id="subcategoria" name="subcategoria" required>
+
+        <label for="cancion">Nombre de la canción:</label>
+        <input type="text" id="cancion" name="cancion" required>
+
+        <label for="enlace">Enlace de YouTube:</label>
+        <input type="url" id="enlace" name="enlace" required>
+
+        <button type="button" id="agregarCancion">Agregar Canción</button>
+    </form>
+
+    <h2>Lista de Canciones</h2>
+    <ul id="listaCanciones"></ul>
+
+    <button id="guardarCambios">Guardar Cambios</button>
+
+    <h3>Categorías y Subcategorías</h3>
+    <div id="categoriaContainer"></div>
+
+    <script src="../JS/musica.js"></script>
+</body>
+</html>

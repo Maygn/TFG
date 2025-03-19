@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../CSS/publico.css">
+    <title>Document</title>
+</head>
+<body>
+    <nav class="navbar">
+        <ul class="navbar-list">
+            <li><a href="../HTML/Pagina_principal.html">Inicio</a></li>
+            <li><a href="../HTML/Usuario.html">Usuario</a></li>
+            <li><a href="../HTML/Sonidos.html">Sonidos</a></li>
+            <li><a href="../HTML/musica.html">Musica</a></li>
+            <li><a href="../HTML/publico.html">Publico</a></li>
+        </ul>
+    </nav>
+
+    <div id="modoVisualizacion">
+        <div id="mainContainer">
+            <h3>Lista de Canciones</h3>
+            <ul id="listaCanciones" class="listContainer"></ul> <!-- LISTA DE CANCIONES -->
+        </div> 
+        
+        <div id="SegundoConter">
+            <h4>Canción seleccionada:</h4>
+            <p id="cancionElegida" class="fw-bold">Ninguna</p>
+            
+            <label for="idCanal" class="form-label">Canal de Discord (ID):</label>
+            <input type="text" id="idCanal" class="form-control mb-3">
+            
+            <button class="btn btn-primary" id="enviarCancion">Enviar Canción</button>
+        </div>
+    </div>
+    
+    <div id="modoEdicion" style="display: none;">
+        <form id="editarFormulario">
+            <label for="categoria">Categoría:</label>
+            <select id="categoria" name="categoria">
+                <option value="Boss">Boss</option>
+                <option value="Ciudad">Ciudad</option>
+                <option value="Exploracion">Exploracion</option>
+                <option value="Combate">Combate</option>
+                <option value="Descanso">Descanso</option>
+            </select>
+            
+            <label for="subcategoria">Subcategoría:</label>
+            <select id="subcategoria" name="subcategoria"></select>
+            
+            <label for="cancion">Nombre de la canción:</label>
+            <input type="text" id="cancion" name="cancion" required>
+            
+            <label for="enlace">Enlace de YouTube:</label>
+            <input type="url" id="enlace" name="enlace" required>
+            
+            <button type="button" id="agregarCancion">Agregar Canción</button>
+        </form>
+    </div>
+
+    <button id="toggleModo">Cambiar Modo</button>
+    <button id="eliminarTodas" style="display: none;" class="btn btn-danger">Eliminar Todas las Canciones</button>
+
+
+    <script src="../JS/publico.js"></script>
+</body>
+</html>

@@ -29,11 +29,9 @@ body {
   justify-content: start;  /* Alinea los elementos al principio */
   gap: 15px;
   padding: 10px;
-  border-radius: 10px; /* Bordes redondeados */
 }
 
 .contContainer, .stringContainer {
-  background-color: rgba(52, 152, 219, 0.3); /* Fondo azul semi-transparente */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -42,17 +40,12 @@ body {
   padding: 0.5rem 1rem;
   min-width: 100px;
   white-space: nowrap;
-  border-radius: 50%; /* Forma circular */
   color: rgb(0, 0, 0);
   cursor: pointer;
   transition: transform 0.2s ease-in-out, background-color 0.3s ease;
-  border: 2px solid #3498db; /* Bordes azules */
+  border: 2px solid #000000; /* Bordes azules */
 }
 
-.contContainer:hover, .stringContainer:hover {
-  transform: scale(1.1);
-  background-color: rgba(52, 152, 219, 0.6); /* Efecto de fondo más fuerte al pasar el mouse */
-}
 
 a {
   text-decoration: none;
@@ -137,7 +130,6 @@ a:hover {
 /* Estilos generales */
 body {
   font-family: 'Garamond', serif;
-  background: url('https://www.transparenttextures.com/patterns/corkboard.png'); /* Textura de fondo tipo pergamino */
   background-color: #f4f1e7;
   margin: 0;
   padding: 0;
@@ -200,15 +192,7 @@ h1, h2 {
   background-color: #8c5e33;
 }
 
-/* Lista de canciones */
-.listContainer {
-  width: 45%;
-  background-color: #fdf1c3;
-  border: 3px solid #7a5229;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-}
+
 
 #listaCanciones {
   list-style-type: none;
@@ -281,4 +265,39 @@ button:hover {
 
 #editarJson:hover {
   background-color: #8c5e33;
+}
+
+#mainContainer {
+  flex-direction: column;
+}
+
+/* Diseño del formulario */
+#editarFormulario {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+
+label {
+  font-size: 1.1em;
+}
+
+/* Listado de canciones */
+#listaCanciones {
+  list-style-type: none;
+  padding: 0;
+  margin: 10px 0;
+}
+
+/* Botones y campos de texto */
+button, .form-control, .form-label {
+  width: 100%;
+  max-width: 400px; /* Para no hacerlos demasiado anchos */
+  margin-top: 10px;
+}
+
+/* Agregar margen a los campos de entrada */
+input, select {
+  margin-bottom: 10px;
 }

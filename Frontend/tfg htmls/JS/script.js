@@ -57,60 +57,61 @@ function iterateGenerate(container, items, isFinal) {
   }
 }
 
-function generate(item, container, name, isFinal) {
-    let newDiv = document.createElement("div");
+let cancionSeleccionada = {
+    nombre: "",
+    enlace: ""
+  };
+  
+  function generate(item, container, name, isFinal) {
+      let newDiv = document.createElement("div");
+      
+      // Si es un objeto, se maneja normalmente
+      if (typeof item === "object") {
+          newDiv.textContent = name;
+          newDiv.classList.add("contContainer");
+  
+          newDiv.addEventListener("mouseover", function () {
+              clearTimeout(timeoutId);
+              out = false;
+              removeAndCreate(item, container, true);
+          });
+  
+          newDiv.addEventListener("mouseleave", function () {
+              out = true;
+              timeoutId = setTimeout(function () {
+                  if (out) {
+                      removeAbove(document.querySelector(".listContainer"));
+                  }
+              }, 1000);
+          });
+      } 
+      // Si es un string, es un enlace individual
+      else if (typeof item === "string") {
+          let newLink = document.createElement("a");
+          newLink.textContent = name;
+          newLink.href = item;
+          newLink.target = "_blank";
+          newLink.style.textDecoration = "none";
+          newLink.style.color = "black";
+  
+          // Agregar un eventListener para manejar el clic y actualizar el texto
+          newLink.addEventListener("click", function(event) {
+              event.preventDefault(); // Evitar que el enlace se abra en una nueva pestaña
+              document.getElementById("cancionElegida").textContent = name; // Actualizar el contenido del p
+              
+              // Guardar la canción y el enlace
+              cancionSeleccionada.nombre = name;
+              cancionSeleccionada.enlace = item;
+          });
+  
+          newDiv.appendChild(newLink);
+          newDiv.classList.add("stringContainer");
+      }
+  
+      container.appendChild(newDiv);
+  }
+  
 
-    // Si es un array, crear enlaces directamente
-    if (Array.isArray(item)) {
-        newDiv.classList.add("finalContainer");
-        for (let link of item) {
-            let newLink = document.createElement("a");
-            newLink.textContent = link;
-            newLink.href = link;
-            newLink.target = "_blank";
-            newLink.style.textDecoration = "none";
-            newLink.style.color = "black";
-
-            let linkDiv = document.createElement("div");
-            linkDiv.appendChild(newLink);
-            newDiv.appendChild(linkDiv);
-        }
-    } 
-    // Si es un objeto, se maneja normalmente
-    else if (typeof item === "object") {
-        newDiv.textContent = name;
-        newDiv.classList.add("contContainer");
-
-        newDiv.addEventListener("mouseover", function () {
-            clearTimeout(timeoutId);
-            out = false;
-            removeAndCreate(item, container, true);
-        });
-
-        newDiv.addEventListener("mouseleave", function () {
-            out = true;
-            timeoutId = setTimeout(function () {
-                if (out) {
-                    removeAbove(document.querySelector(".listContainer"));
-                }
-            }, 1000);
-        });
-    } 
-    // Si es un string, es un enlace individual
-    else if (typeof item === "string") {
-        let newLink = document.createElement("a");
-        newLink.textContent = name;
-        newLink.href = item;
-        newLink.target = "_blank";
-        newLink.style.textDecoration = "none";
-        newLink.style.color = "black";
-
-        newDiv.appendChild(newLink);
-        newDiv.classList.add("stringContainer");
-    }
-
-    container.appendChild(newDiv);
-}
 
 
 function removeAbove(container) {
@@ -133,116 +134,18 @@ function removeAndCreate(item, container, isContainer) {
 }
 
 
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", async () => {
   const token = localStorage.getItem("jwtToken");
+  const userInfoElement = document.getElementById("userInfo");
 
-  if (token) {
-    try {
-      // Verificar que el token tenga el formato adecuado antes de intentar decodificarlo
-      const parts = token.split('.');
-      if (parts.length === 3) {
-        // Decodificar el payload usando base64UrlDecode
-        const payload = JSON.parse(base64UrlDecode(parts[1]));
-        console.log("Payload decodificado:", payload);
-
-        const usuarioId = payload.Usuario; // Extrae el ID del usuario del campo 'Usuario'
-
-        if (usuarioId) {
-          // Construir la URL dinámicamente con el ID del usuario
-          const url = `http://localhost:8081/usuarios/obtener/usuario?nombreUsuario=${usuarioId}`;
-
-          // Realizar la petición con la URL construida dinámicamente
-          fetch(url)
-          .then(response => {
-            console.log("Tipo de contenido de la respuesta:", response.headers.get("Content-Type"));
-        
-            if (response.ok && response.headers.get("Content-Type").includes("application/json")) {
-              return response.json();  // Leer como JSON
-            } else {
-              throw new Error(`Respuesta inesperada o error en el servidor: ${response.statusText}`);
-            }
-          })
-          .then(data => {
-            console.log("Datos del usuario:", data);
-            document.getElementById("userInfo").innerText = `Puedes subir música a la cuenta de: ${data.usuario}`;
-          })
-          .catch(error => {
-            console.error("Error al obtener los datos del usuario:", error);
-          });
-        
-
-          document.getElementById("userInfo").innerText = `Puedes subir música a la cuenta de: ${usuarioId}`;
-        } else {
-          document.getElementById("userInfo").innerText = "No se pudo obtener el usuario.";
-        }
-      } else {
-        throw new Error("Token JWT no válido");
-      }
-    } catch (error) {
-      console.error("Error al decodificar el token JWT:", error);
-      document.getElementById("userInfo").innerText = "Error al obtener el usuario.";
-    }
-  } else {
-    document.getElementById("userInfo").innerText = "No hay sesión iniciada.";
-  }
-});
-
-function base64UrlDecode(str) {
-str = str.replace(/-/g, '+').replace(/_/g, '/'); 
-while (str.length % 4 !== 0) {
-  str += "=";
-}
-return atob(str);
-}
-
-document.getElementById("editarJson").addEventListener("click", async () => {
-  const token = localStorage.getItem("jwtToken"); // Obtener el token almacenado en localStorage
   if (!token) {
-      alert("No hay sesión iniciada.");
+      userInfoElement.innerText = "No hay sesión iniciada.";
       return;
   }
 
-  // Simulación de JSON actualizado
-  const musicaActualizada = JSON.stringify({
-    "Ladrido": {
-        "muy": {
-            "fuerte": "https://www.youtube.com/watch?v=fJ9rUzIMcZQ"
-        }
-    }
-  });
+})
 
-  try {
-      const response = await fetch("http://localhost:8090/musica/modificar", {
-          method: "PUT",
-          headers: { 
-              "Content-Type": "application/json",
-              "Authorization": `Bearer ${token}` // Se pasa el token en los headers
-          }, 
-          body: musicaActualizada // Enviar JSON correctamente
-      });
-
-      if (response.ok) {
-          const data = await response.json();
-          console.log("JSON actualizado:", data);
-          alert("El JSON del usuario se ha actualizado correctamente.");
-      } else {
-          alert("Error al actualizar el JSON.");
-      }
-  } catch (error) {
-      console.error("Error en la solicitud:", error);
-      alert("Error al actualizar el JSON.");
-  }
-});
-
-
-// Datos de ejemplo iniciales (en la realidad se cargarían del servidor)
-let musicaJson = {
-    "Rock": {
-        "Clásico": {
-            "Bohemian Rhapsody": "https://www.youtube.com/watch?v=fJ9rUzIMcZQ"
-        }
-    }
-};
+let musicaJson = {}; // Inicializar musicaJson como un objeto vacío
 
 // Función para agregar canción
 document.getElementById("agregarCancion").addEventListener("click", () => {
@@ -252,14 +155,16 @@ document.getElementById("agregarCancion").addEventListener("click", () => {
     const enlace = document.getElementById("enlace").value;
 
     if (cancion && enlace) {
-        // Agregar la canción al JSON
+        // Verificar si la categoría y subcategoría ya existen, si no, crear nuevas
         if (!musicaJson[categoria]) {
             musicaJson[categoria] = {};
         }
+
         if (!musicaJson[categoria][subcategoria]) {
             musicaJson[categoria][subcategoria] = {};
         }
 
+        // Agregar la canción al objeto musicaJson
         musicaJson[categoria][subcategoria][cancion] = enlace;
 
         // Mostrar la canción agregada en la lista
@@ -283,15 +188,18 @@ document.getElementById("guardarCambios").addEventListener("click", async () => 
         return;
     }
 
+    // Convertir musicaJson a un string JSON
+    const musicaJsonString = JSON.stringify(musicaJson); 
+
     try {
         const response = await fetch("http://localhost:8090/musica/modificar", {
             method: "PUT",
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${token}`
             },
             body: JSON.stringify({
-                token: token,
-                musica: musicaJson
+                musica: musicaJsonString // Pasar el string JSON
             })
         });
 
@@ -309,6 +217,70 @@ document.getElementById("guardarCambios").addEventListener("click", async () => 
 
 
 
+const categorias = {
+    "Boss": ["Malvado", "Antiheroe", "Asesino"],
+    "Ciudad": ["Pobre", "Desierto", "Ladrones", "Steampunk"],
+    "Exploracion": ["Ruinas", "Bosque", "Mazmorra"],
+    "Combate": ["Taberna", "Campamento", "Plano Astral"],
+    "Descanso": ["Nubes", "Sol", "Noche"]
+};
 
+const categoriaSelect = document.getElementById("categoria");
+const subcategoriaSelect = document.getElementById("subcategoria");
 
-  
+// Función para actualizar las subcategorías en función de la categoría seleccionada
+function actualizarSubcategorias() {
+    const categoriaSeleccionada = categoriaSelect.value;
+    const subcategorias = categorias[categoriaSeleccionada] || [];
+
+    // Limpiar las opciones anteriores
+    subcategoriaSelect.innerHTML = "";
+
+    // Agregar las nuevas opciones de subcategorías
+    subcategorias.forEach(subcategoria => {
+        const option = document.createElement("option");
+        option.value = subcategoria;
+        option.textContent = subcategoria;
+        subcategoriaSelect.appendChild(option);
+    });
+}
+
+// Escuchar cambios en la categoría y actualizar las subcategorías
+categoriaSelect.addEventListener("change", actualizarSubcategorias);
+
+// Inicializar el formulario con las subcategorías correspondientes a la categoría predeterminada
+actualizarSubcategorias();
+
+document.getElementById("enviarCancion").addEventListener("click", function() {
+    const idCanal = document.getElementById("idCanal").value;
+
+    // Verificar si hay una canción seleccionada y si se ha proporcionado un canal
+    if (cancionSeleccionada.nombre && cancionSeleccionada.enlace && idCanal) {
+        const requestData = {
+            idCanal: idCanal,
+            mensaje: `!play ${cancionSeleccionada.enlace}`
+        };
+
+        // Enviar la petición al backend
+        fetch("http://localhost:8083/enviarMensaje", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(requestData)
+        })
+        .then(response => {
+            if (response.ok) {
+                alert("Canción enviada correctamente.");
+            } else {
+                alert("Error al enviar la canción.");
+            }
+        })
+        .catch(error => {
+            console.error("Error:", error);
+            alert("Error al conectar con el servidor.");
+        });
+    } else {
+        alert("Por favor, selecciona una canción y un canal de Discord.");
+    }
+});

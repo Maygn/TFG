@@ -43,7 +43,6 @@ async function cambiarClave() {
     }
 
     const formData = new URLSearchParams();
-    formData.append("token", token);
     formData.append("contrasenaAct", contrasenaAct);
     formData.append("contrasenaNueva", contrasenaNueva);
 
@@ -52,6 +51,7 @@ async function cambiarClave() {
             method: "POST",
             headers: {
                 "Content-Type": "application/x-www-form-urlencoded",
+                "Authorization": token // Token en el header, no en el body
             },
             body: formData
         });
@@ -96,7 +96,7 @@ async function borrarUsuario() {
 
 
         // Eliminar música del usuario
-        const musicaResponse = await fetch(`http://localhost:8090/musica/borrar`, {
+        await fetch(`http://localhost:8090/musica/borrar`, {
             method: "DELETE",
             headers: {
                 "Authorization": `Bearer ${token}`
@@ -128,16 +128,75 @@ async function borrarUsuario() {
 }
 
 
-
-
-
-function cambiarImagen(event) {
-    const file = event.target.files[0];
-    if (file) {
-        const reader = new FileReader();
-        reader.onload = function(e) {
-            document.getElementById('profilePic').src = e.target.result;
-        }
-        reader.readAsDataURL(file);
+document.addEventListener("DOMContentLoaded", async () => {
+    const token = localStorage.getItem("jwtToken");
+    const userInfoElement = document.getElementById("userInfo");
+  
+    if (!token) {
+        userInfoElement.innerText = "No hay sesión iniciada.";
+        return;
     }
-}
+  
+    try {
+        const usuarioId = extraerUsuarioDesdeToken(token);
+        if (!usuarioId) throw new Error("No se pudo obtener el usuario.");
+  
+        // Obtener datos del usuario desde la API
+        const usuarioData = await obtenerUsuarioDesdeAPI(usuarioId);
+        userInfoElement.innerText = `${usuarioData?.usuario || usuarioId}`;
+  
+    } catch (error) {
+        console.error("Error:", error);
+        userInfoElement.innerText = "Error al obtener el usuario.";
+    }
+  });
+  
+  /**
+  * Decodifica un token JWT y extrae el campo 'Usuario'.
+  */
+  function extraerUsuarioDesdeToken(token) {
+    try {
+        const [header, payload, signature] = token.split(".");
+        if (!header || !payload || !signature) throw new Error("Token JWT no válido");
+  
+        const decodedPayload = JSON.parse(base64UrlDecode(payload));
+        return decodedPayload.Usuario;
+    } catch (error) {
+        console.error("Error al decodificar el token JWT:", error);
+        return null;
+    }
+  }
+  
+  /**
+  * Obtiene los datos del usuario desde la API.
+  */
+  async function obtenerUsuarioDesdeAPI(usuarioId, token) {
+    const url = `http://localhost:8081/usuarios/obtener/usuario`;
+  
+    try {
+        const response = await fetch(url, {
+            method: "GET",
+            headers: {
+                "Authorization": `Bearer ${token}`,
+                "Content-Type": "application/json"
+            }
+        });
+  
+        if (!response.ok) throw new Error(`Error en la solicitud: ${response.statusText}`);
+  
+        return await response.text(); // En tu código, el backend devuelve el token como texto plano
+  
+    } catch (error) {
+        console.error("Error al obtener los datos del usuario:", error);
+        return null;
+    }
+  }
+  
+  
+  /**
+  * Decodifica una cadena base64-url.
+  */
+  function base64UrlDecode(str) {
+    str = str.replace(/-/g, "+").replace(/_/g, "/");
+    return atob(str.padEnd(str.length + (4 - (str.length % 4)) % 4, "="));
+  }
