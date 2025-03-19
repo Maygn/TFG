@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value="obtener"/>
+		<item key="selection" value="@RequestHeader(&quot;Authorization&quot;) String token"/>
 		<item key="wrap" value="true"/>
 		<item key="casesensitive" value="false"/>
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
+			<item value="@RequestHeader(&quot;Authorization&quot;) String token"/>
+			<item value="token"/>
+			<item value="pathva"/>
+			<item value="borrarTod"/>
 			<item value="obtener"/>
 			<item value="cuentaRepository"/>
 			<item value="Assert.assertFalse"/>
@@ -19,10 +23,6 @@
 			<item value="usuarioEjemplo"/>
 			<item value="h2"/>
 			<item value="import org.springframework.http.MediaType;"/>
-			<item value="org.springframework.core.io.Resource"/>
-			<item value="package musica;"/>
-			<item value="import import org.springframework.core.io.UrlResource;"/>
-			<item value="import org.springframework.core.io.Resource;"/>
 		</list>
 		<list key="replacehistory">
 			<item value="musicaRepository"/>

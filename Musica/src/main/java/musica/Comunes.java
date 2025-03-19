@@ -15,8 +15,8 @@ import jakarta.persistence.Table;
 public class Comunes implements Serializable{
 	@Id
 	@Column(name="id")
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	
+	private final Long id=1L;
 	@Column(name="musicaPublica")
     private Musica musicaPublica;
 
@@ -26,10 +26,6 @@ public class Comunes implements Serializable{
 
 	public Long getId() {
 		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
 	}
 
 	public void setMusicaPublica(Musica musicaPublica) {

@@ -135,7 +135,7 @@ public class MusicaController {
     }
 
     // No necesita un endpoint porque solo lo uso desde otros métodos
-    public String extraerUsuarioDesdeJWT(@RequestHeader("Authorization") String token) {
+    public String extraerUsuarioDesdeJWT(String token) {
         try {
             // Separar JWT en partes
             String[] partes = token.split("\\.");

@@ -86,28 +86,31 @@ async function borrarUsuario() {
 
     try {
         // Eliminar sonidos del usuario primero
-        const sonidoResponse = await fetch(`http://localhost:8080/sonidos/borrarTodo?${token}`, {
-            method: "DELETE"
+        await fetch("http://localhost:8080/sonidos/borrarTodo", {
+            method: "DELETE",
+            headers: {
+                "Authorization": `Bearer ${token}`
+            }
         });
 
-        if (!sonidoResponse.ok) {
-            alert("Hubo un error al eliminar los sonidos.");
-            return;
-        }
+
 
         // Eliminar música del usuario
-        const musicaResponse = await fetch(`http://localhost:8090/musica/borrar?token=${token}`, {
-            method: "DELETE"
+        const musicaResponse = await fetch(`http://localhost:8090/musica/borrar`, {
+            method: "DELETE",
+            headers: {
+                "Authorization": `Bearer ${token}`
+            }
         });
 
-        if (!musicaResponse.ok) {
-            alert("Hubo un error al eliminar la música.");
-            return;
-        }
-
         // Eliminar usuario
-        const response = await fetch(`http://localhost:8081/usuarios/borrar/usuario?token=${token}&contrasena=${contrasena}`, {
-            method: "DELETE"
+        const response = await fetch("http://localhost:8081/usuarios/borrar", {
+            method: "DELETE",
+            headers: {
+                "Authorization": `Bearer ${token}`,
+                "Content-Type": "application/x-www-form-urlencoded"
+            },
+            body: new URLSearchParams({ contrasena }) // Pasar la contraseña correctamente en el body
         });
 
         const result = await response.text();

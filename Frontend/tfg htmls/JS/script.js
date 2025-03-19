@@ -5,22 +5,29 @@ let timeoutId = null;  // Variable para almacenar el temporizador
 
 // Cargar el JSON al iniciar la página
 const token = localStorage.getItem("jwtToken");
+
 if (token) {
-    fetch(`http://localhost:8090/musica/buscar?token=${token}`)
-      .then(response => {
+    fetch("http://localhost:8090/musica/buscar", {
+        method: "GET",
+        headers: {
+            "Authorization": `Bearer ${token}`
+        }
+    })
+    .then(response => {
         if (!response.ok) {
-          throw new Error("Error al cargar el JSON del usuario");
+            throw new Error("Error al cargar el JSON del usuario");
         }
         return response.json();
-      })
-      .then(data => {
+    })
+    .then(data => {
         json = data; // Guardar datos en la variable json
         iterateGenerate(document.querySelector(".listContainer"), json);
-      })
-      .catch(error => console.error("Error:", error));
+    })
+    .catch(error => console.error("Error:", error));
 } else {
     console.error("No hay sesión iniciada. No se puede cargar el JSON del usuario.");
 }
+
 
 mainContainer.addEventListener("mouseover", function (event) {
   if (event.target === mainContainer) {
@@ -202,14 +209,14 @@ document.getElementById("editarJson").addEventListener("click", async () => {
             "fuerte": "https://www.youtube.com/watch?v=fJ9rUzIMcZQ"
         }
     }
-});
+  });
 
-debugger
   try {
-      const response = await fetch(`http://localhost:8090/musica/modificar?token=${encodeURIComponent(token)}`, {
+      const response = await fetch("http://localhost:8090/musica/modificar", {
           method: "PUT",
           headers: { 
-              "Content-Type": "application/json"
+              "Content-Type": "application/json",
+              "Authorization": `Bearer ${token}` // Se pasa el token en los headers
           }, 
           body: musicaActualizada // Enviar JSON correctamente
       });
@@ -226,6 +233,7 @@ debugger
       alert("Error al actualizar el JSON.");
   }
 });
+
 
 // Datos de ejemplo iniciales (en la realidad se cargarían del servidor)
 let musicaJson = {

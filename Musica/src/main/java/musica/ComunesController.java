@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,14 +17,14 @@ public class ComunesController {
 
 	
 	
-	// Ruta base para los métodos relacionados con música
+
 
 
 	    @Autowired
 	    private ComunesService comunesService;
 
 	    @GetMapping("/obtener")
-	    public ResponseEntity<?> obtenerMusicaPublica(@RequestParam String token) {
+	    public ResponseEntity<?> obtenerMusicaPublica(@RequestHeader("Authorization") String token) {
 	        try {
 	            // Llamamos al servicio pasando el token para validarlo y obtener la música pública
 	            ResponseEntity<Musica> response = comunesService.obtenerMusicaPublica(token);
@@ -31,6 +32,9 @@ public class ComunesController {
 	            // Si no se encontró la música pública, devolvemos un error con el mensaje adecuado
 	            if (response.getStatusCode() == HttpStatus.NOT_FOUND) {
 	                return new ResponseEntity<>("No hay música pública disponible.", HttpStatus.NOT_FOUND);
+	            }
+	            if (response.getStatusCode() == HttpStatus.FORBIDDEN) {
+	                return new ResponseEntity<>("El usuario no es válido.", HttpStatus.FORBIDDEN);
 	            }
 
 	            // Si se encuentra la música, devolvemos la respuesta del servicio

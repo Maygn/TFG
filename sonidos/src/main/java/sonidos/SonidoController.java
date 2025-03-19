@@ -181,7 +181,7 @@ public class SonidoController {
 
 	 
 	 //sacar usuario del token
-		private String extraerUsuarioDesdeJWT(@RequestHeader("Authorization") String token) {
+		private String extraerUsuarioDesdeJWT(String token) {
 			try {
 				// separar en partes
 				String[] partes = token.split("\\.");

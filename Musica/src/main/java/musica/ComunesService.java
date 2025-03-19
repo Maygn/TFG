@@ -26,44 +26,34 @@ public class ComunesService {
 	    private ComunesRepository comunesRepository;
 //RECIBIR DE PUBLICO
 	 public ResponseEntity<Musica> obtenerMusicaPublica(String token) {
-		    // Primero, validamos el token y comprobamos que el usuario sea válido
-		    String usuario = extraerUsuarioDesdeJWT(token); // Extraemos el usuario del token
+		 // validar token 
+		    String usuario = extraerUsuarioDesdeJWT(token); 
 		    if (usuario == null) {
-		        return new ResponseEntity<>(null, HttpStatus.FORBIDDEN); // Token inválido o no se pudo extraer el usuario
+		        return new ResponseEntity<>(null, HttpStatus.FORBIDDEN); //fallo en token
 		    }
 
-		    // Verificamos si el token pertenece a un usuario administrador (o los permisos necesarios)
-		    if (!esAdmin(token)) {
-		        return new ResponseEntity<>(null, HttpStatus.FORBIDDEN); // El usuario no tiene permisos de administrador
-		    }
-
-		    // Buscar la entidad "Comunes" con el id 1, o el id que consideres como identificador único
+		    // buscar Comunes con id 1, que es el unico que debe existir
 		    Comunes comunes = comunesRepository.findById(1L).orElse(null);
 
 		    if (comunes == null || comunes.getMusicaPublica() == null) {
-		        // Si no hay música pública disponible, devolver un error
+		        //no hay música, devolver  error
 		        return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
 		    }
 
-		    // Devolver la música pública con un código de éxito
+		    // devolver música y status ok
 		    return new ResponseEntity<>(comunes.getMusicaPublica(), HttpStatus.OK);
 		}
 	    
 	    // AÑADIR A PUBLICO
 	    public ResponseEntity<String> agregarMusicaPublica(String token, String cancion) {
-	        // Primero, validamos el token y comprobamos que el usuario sea válido
+	        // validar token 
 	        String usuario = extraerUsuarioDesdeJWT(token);
 	        if (usuario == null) {
 	            return new ResponseEntity<>("Token inválido o no se pudo extraer el usuario.", HttpStatus.FORBIDDEN);
 	        }
 
-	        // Verificamos si el usuario tiene permisos de administrador
-	        if (!esAdmin(token)) {
-	            return new ResponseEntity<>("El usuario no tiene permisos de administrador para agregar música.", HttpStatus.FORBIDDEN);
-	        }
-
-	        // Recuperar la entidad de música pública desde la base de datos
-	        Comunes comunes = comunesRepository.findById(1L).orElse(null); // Suponemos que solo hay una entidad "Comunes" en la BD
+	        // Recuperar música pública desde base 
+	        Comunes comunes = comunesRepository.findById(1L).orElse(null); // Suponemos que solo hay un "Comunes" en base
 	        if (comunes == null) {
 	            return new ResponseEntity<>("No se encontró el repositorio de música pública.", HttpStatus.NOT_FOUND);
 	        }
