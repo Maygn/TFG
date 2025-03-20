@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="icon" href="../Imagenes/favicon.ico" type="image/x-icon">
+
+</head>
+
+<body>
+    <script>
+
+        async function saludar() {
+            let promesa = await fetch('http://localhost:8080/usuarios/saludar');
+            let saludo = await promesa.text();
+
+            console.log(saludo);
+        }
+        saludar()
+        async function comprobar() {
+            let usuario = "loquesea"
+            const promesa = await fetch('http://localhost:8080/usuarios/prueba', {
+                method: "POST",
+                headers: { "Content-Type": "application/json", },//sirve pa que le digas como se mandan las cosas
+                body: JSON.stringify(usuario) //pa sacar la cosa del json?
+            });
+
+            let token = await promesa.text();
+
+            console.log(token);
+        }
+
+    </script>
+</body>
+
+</html>
