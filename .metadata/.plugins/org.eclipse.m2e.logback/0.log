@@ -3908,3 +3908,60 @@ org.eclipse.core.runtime.CoreException: Could not resolve artifact antlr:antlr:j
 2025-03-20 15:53:19,529 [Worker-23: Launching sonidos - SonidosApplication] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-surefire-plugin/3.0.0-M5/maven-surefire-plugin-3.0.0-M5.pom
 2025-03-20 15:53:19,549 [Worker-23: Launching sonidos - SonidosApplication] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/apache/maven/surefire/surefire/3.0.0-M5/surefire-3.0.0-M5.pom
 2025-03-20 15:53:19,553 [Worker-23: Launching sonidos - SonidosApplication] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/apache/maven/surefire/surefire/3.0.0-M5/surefire-3.0.0-M5.pom
+2025-03-28 17:14:28,531 [Worker-0: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is out-of-date. Trying to update.
+2025-03-28 17:15:29,134 [Worker-18: Check for devtools] WARN  o.e.m.c.i.embedder.EclipseLogger - The artifact org.hibernate:hibernate-core:jar:6.2.0.Final has been relocated to org.hibernate.orm:hibernate-core:jar:6.2.0.Final
+2025-03-28 17:15:33,490 [Worker-3: Launching Musica - MusicaMain] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2025-03-28 17:15:33,522 [Worker-3: Launching Musica - MusicaMain] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2025-03-28 17:15:33,530 [Worker-3: Launching Musica - MusicaMain] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\dev\Workspace\Backend\Musica\src\test\resources
+2025-03-28 17:35:22,426 [Worker-23: Launching Autenticacion - TfgApplication] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2025-03-28 17:35:22,473 [Worker-23: Launching Autenticacion - TfgApplication] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2025-03-28 17:35:22,477 [Worker-23: Launching Autenticacion - TfgApplication] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\dev\Workspace\Backend\Autenticacion\src\test\resources
+2025-03-28 22:18:23,456 [Start Help Server] INFO  org.eclipse.jetty.server.Server - jetty-12.0.3; built: 2023-10-27T03:25:22.284Z; git: a873259fd5af141dedaa6c7fa8fe8fbdedce0d61; jvm 21.0.1+12-LTS-29
+2025-03-28 22:18:23,521 [Start Help Server] INFO  o.e.j.server.handler.ContextHandler - Started oeje8n.ContextHandler$CoreContextHandler@56520749{/help,/help,b=null,a=AVAILABLE,h=oeje8n.ContextHandler$CoreContextHandler$CoreToNestedHandler@59febe6c{STARTED}}
+2025-03-28 22:18:23,522 [Start Help Server] INFO  o.e.j.s.DefaultSessionIdManager - Session workerName=node0
+2025-03-28 22:18:23,547 [Start Help Server] INFO  o.e.jetty.server.AbstractConnector - Started ServerConnector@21083085{HTTP/1.1, (http/1.1)}{127.0.0.1:62355}
+2025-03-28 22:18:23,563 [Start Help Server] INFO  org.eclipse.jetty.server.Server - Started oejs.Server@2998170d{STARTING}[12.0.3,sto=0] @18249845ms
+2025-03-28 22:48:15,006 [Stop Help Server] INFO  org.eclipse.jetty.server.Server - Stopped oejs.Server@2998170d{STOPPING}[12.0.3,sto=0]
+2025-03-28 22:48:15,009 [Stop Help Server] INFO  o.e.jetty.server.AbstractConnector - Stopped ServerConnector@21083085{HTTP/1.1, (http/1.1)}{127.0.0.1:0}
+2025-03-30 16:07:07,594 [Worker-4: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is out-of-date. Trying to update.
+2025-03-30 16:07:10,768 [Start Help Server] INFO  org.eclipse.jetty.server.Server - jetty-12.0.3; built: 2023-10-27T03:25:22.284Z; git: a873259fd5af141dedaa6c7fa8fe8fbdedce0d61; jvm 21.0.1+12-LTS-29
+2025-03-30 16:07:11,079 [Start Help Server] INFO  o.e.j.server.handler.ContextHandler - Started oeje8n.ContextHandler$CoreContextHandler@767912b6{/help,/help,b=null,a=AVAILABLE,h=oeje8n.ContextHandler$CoreContextHandler$CoreToNestedHandler@31a8d49f{STARTED}}
+2025-03-30 16:07:11,082 [Start Help Server] INFO  o.e.j.s.DefaultSessionIdManager - Session workerName=node0
+2025-03-30 16:07:11,115 [Start Help Server] INFO  o.e.jetty.server.AbstractConnector - Started ServerConnector@68adb3bc{HTTP/1.1, (http/1.1)}{127.0.0.1:58503}
+2025-03-30 16:07:11,135 [Start Help Server] INFO  org.eclipse.jetty.server.Server - Started oejs.Server@52b815d9{STARTING}[12.0.3,sto=0] @20642ms
+2025-03-30 16:09:48,915 [Worker-5: Check for devtools] WARN  o.e.m.c.i.embedder.EclipseLogger - The artifact org.hibernate:hibernate-core:jar:6.2.0.Final has been relocated to org.hibernate.orm:hibernate-core:jar:6.2.0.Final
+2025-04-01 15:13:59,921 [Worker-4: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is out-of-date. Trying to update.
+2025-04-04 18:05:05,434 [Worker-0: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is out-of-date. Trying to update.
+2025-04-04 18:05:33,472 [Worker-22: Launching Musica - MusicaMain] WARN  o.e.m.c.i.embedder.EclipseLogger - The artifact org.hibernate:hibernate-core:jar:6.2.0.Final has been relocated to org.hibernate.orm:hibernate-core:jar:6.2.0.Final
+2025-04-04 18:08:47,260 [Worker-15: Launching Musica - MusicaMain] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2025-04-04 18:08:47,273 [Worker-15: Launching Musica - MusicaMain] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2025-04-04 18:08:47,278 [Worker-15: Launching Musica - MusicaMain] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\dev\Workspace\Backend\Musica\src\test\resources
+2025-04-04 18:08:59,534 [Worker-0: Launching sonidos - SonidosApplication] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2025-04-04 18:08:59,569 [Worker-0: Launching sonidos - SonidosApplication] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2025-04-04 18:08:59,573 [Worker-0: Launching sonidos - SonidosApplication] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\dev\Workspace\Backend\sonidos\src\test\resources
+2025-04-11 16:10:48,147 [Worker-4: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is out-of-date. Trying to update.
+2025-04-11 16:14:08,683 [Worker-1: Launching sonidos - SonidosApplication] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2025-04-11 16:14:08,705 [Worker-1: Launching sonidos - SonidosApplication] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2025-04-11 16:14:08,709 [Worker-1: Launching sonidos - SonidosApplication] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\dev\Workspace\Backend\sonidos\src\test\resources
+2025-04-11 16:14:14,567 [Worker-17: Launching Musica - MusicaMain] WARN  o.e.m.c.i.embedder.EclipseLogger - The artifact org.hibernate:hibernate-core:jar:6.2.0.Final has been relocated to org.hibernate.orm:hibernate-core:jar:6.2.0.Final
+2025-04-11 16:14:14,846 [Worker-17: Launching Musica - MusicaMain] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2025-04-11 16:14:14,866 [Worker-17: Launching Musica - MusicaMain] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2025-04-11 16:14:14,870 [Worker-17: Launching Musica - MusicaMain] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\dev\Workspace\Backend\Musica\src\test\resources
+2025-04-11 17:23:22,425 [Start Help Server] INFO  org.eclipse.jetty.server.Server - jetty-12.0.3; built: 2023-10-27T03:25:22.284Z; git: a873259fd5af141dedaa6c7fa8fe8fbdedce0d61; jvm 21.0.1+12-LTS-29
+2025-04-11 17:23:22,474 [Start Help Server] INFO  o.e.j.server.handler.ContextHandler - Started oeje8n.ContextHandler$CoreContextHandler@1bfa4b88{/help,/help,b=null,a=AVAILABLE,h=oeje8n.ContextHandler$CoreContextHandler$CoreToNestedHandler@34eb676c{STARTED}}
+2025-04-11 17:23:22,475 [Start Help Server] INFO  o.e.j.s.DefaultSessionIdManager - Session workerName=node0
+2025-04-11 17:23:22,494 [Start Help Server] INFO  o.e.jetty.server.AbstractConnector - Started ServerConnector@24e0a1e3{HTTP/1.1, (http/1.1)}{127.0.0.1:50845}
+2025-04-11 17:23:22,507 [Start Help Server] INFO  org.eclipse.jetty.server.Server - Started oejs.Server@4780af72{STARTING}[12.0.3,sto=0] @4368546ms
+2025-04-15 18:27:57,979 [Worker-6: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is out-of-date. Trying to update.
+2025-04-15 18:29:13,491 [Worker-14: Launching Musica - MusicaMain] WARN  o.e.m.c.i.embedder.EclipseLogger - The artifact org.hibernate:hibernate-core:jar:6.2.0.Final has been relocated to org.hibernate.orm:hibernate-core:jar:6.2.0.Final
+2025-04-15 18:29:13,931 [Worker-14: Launching Musica - MusicaMain] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2025-04-15 18:29:13,963 [Worker-14: Launching Musica - MusicaMain] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2025-04-15 18:29:13,969 [Worker-14: Launching Musica - MusicaMain] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\dev\Workspace\Backend\Musica\src\test\resources
+2025-04-15 18:29:23,459 [Worker-8: Launching sonidos - SonidosApplication] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2025-04-15 18:29:23,490 [Worker-8: Launching sonidos - SonidosApplication] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2025-04-15 18:29:23,494 [Worker-8: Launching sonidos - SonidosApplication] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\dev\Workspace\Backend\sonidos\src\test\resources
+2025-04-15 19:27:05,292 [Start Help Server] INFO  org.eclipse.jetty.server.Server - jetty-12.0.3; built: 2023-10-27T03:25:22.284Z; git: a873259fd5af141dedaa6c7fa8fe8fbdedce0d61; jvm 21.0.1+12-LTS-29
+2025-04-15 19:27:05,353 [Start Help Server] INFO  o.e.j.server.handler.ContextHandler - Started oeje8n.ContextHandler$CoreContextHandler@570505b4{/help,/help,b=null,a=AVAILABLE,h=oeje8n.ContextHandler$CoreContextHandler$CoreToNestedHandler@4c97230e{STARTED}}
+2025-04-15 19:27:05,354 [Start Help Server] INFO  o.e.j.s.DefaultSessionIdManager - Session workerName=node0
+2025-04-15 19:27:05,377 [Start Help Server] INFO  o.e.jetty.server.AbstractConnector - Started ServerConnector@a3ddab7{HTTP/1.1, (http/1.1)}{127.0.0.1:64282}
+2025-04-15 19:27:05,391 [Start Help Server] INFO  org.eclipse.jetty.server.Server - Started oejs.Server@38104881{STARTING}[12.0.3,sto=0] @3560628ms

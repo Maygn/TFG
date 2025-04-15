@@ -1,26 +1,54 @@
-#mainContainer::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: url("../Imagenes/Bard-wallpaper.webp");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    opacity: 0.5; /* Ajusta el nivel de transparencia */
-    z-index: -1; /* Envía el fondo detrás de los demás elementos */
-  }
+:root {
+  --color-dark-brown: rgb(5b,3d,23);
+  --color-light-brown: rgb(96, 56, 16);
+  --color-gold: #d4af37;
+  --color-dark-brown-medieval: #4a2c2a;
+}
+
+body {
+  background-image: url("../Imagenes/background.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
   
-  body {
-    margin: 0;
-    display: flex; /* Usamos flexbox para centrar el contenido */
-    justify-content: center; /* Centrado horizontal */
-    align-items: center;     /* Centrado vertical */
-    height: 100vh;           /* Asegura que el body ocupe toda la altura de la pantalla */
-  }
+  font-family: 'Merriweather', serif;
+  color: burlywood;
   
+  margin: 0;
+  display: flex;
+  flex-direction: column; /* Asegura que los elementos se apilen correctamente */
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+  
+ #lateral{
+  display: flex; 
+  justify-content: center; 
+  gap: 40px; 
+  width: 90%;
+  max-width: 1200px;
+ }
+  
+ #titulo {
+    font-family: 'UnifrakturMaguntia', cursive;
+    color: burlywood;
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 3rem;
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.9);
+  }
+ #listaCanciones{
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+ }
+ #listaTitulo{
+  color: burlywood;
+  font-family: 'Merriweather', serif;
+ }
+
   .listContainer, .finalContainer {
     background-color: rgba(255, 255, 255, 0.3); /* Fondo semi-transparente blanco */
     width: 90%;
@@ -56,9 +84,7 @@
     text-decoration: underline; /* Subrayado cuando se pasa el mouse */
   }
   
-  /* Importar fuente medieval */
-  @import url('https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap');
-  
+   
   .navbar {
       border-bottom: 4px solid #8B4513; /* Borde marrón oscuro */
       padding: 15px 0;
@@ -74,7 +100,7 @@
       margin: 0;
       padding: 0;
       text-align: center;
-      font-family: 'MedievalSharp', cursive; /* Fuente medieval */
+      font-family: 'Merriweather', serif;
   }
   
   .navbar-list li {
@@ -84,7 +110,7 @@
   
   .navbar-list a {
       text-decoration: none;
-      color: #d4af37; /* Dorado medieval */
+      color: burlywood;
       font-size: 20px;
       font-weight: bold;
       text-transform: uppercase; /* Letras mayúsculas */
@@ -118,7 +144,7 @@
       left: 0;
   }
   
-  /* Estilo medieval para dispositivos móviles */
+  /* responsivo*/
   @media (max-width: 768px) {
       .navbar-list li {
           display: block;
@@ -126,23 +152,7 @@
       }
   }
   
-  
-  /* Estilos generales */
-  body {
-    font-family: 'Garamond', serif;
-    background-color: #f4f1e7;
-    margin: 0;
-    padding: 0;
-    color: #3e3b32;
-  }
-  
-  h1, h2 {
-    font-family: 'MedievalSharp', sans-serif;
-    color: #5b3d23;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-    text-align: center;
-  }
-  
+ 
   /* Contenedor principal */
   #mainContainer {
     display: flex;
@@ -156,10 +166,21 @@
     width: 45%;
     background-color: #fdf1c3;
     border: 3px solid #7a5229;
-    padding: 20px;
+    padding: 20px; /* Espaciado interno */
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    font-size: 1.2em;
+    box-sizing: border-box;
+  }
+  
+  #editarFormulario select, 
+  #editarFormulario input {
+    width: calc(100% - 20px); 
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 4px;
+    border: 1px solid #7a5229;
+    font-size: 1em;
+    box-sizing: border-box; 
   }
   
   #editarFormulario label {
@@ -168,15 +189,7 @@
     font-weight: bold;
     color: #5b3d23;
   }
-  
-  #editarFormulario select, #editarFormulario input {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border-radius: 4px;
-    border: 1px solid #7a5229;
-    font-size: 1em;
-  }
+ 
   
   #editarFormulario button {
     background-color: #5b3d23;

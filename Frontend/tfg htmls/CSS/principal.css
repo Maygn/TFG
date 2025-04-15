@@ -1,0 +1,242 @@
+:root {
+  --color-dark-brown: rgb(5b,3d,23);
+  --color-light-brown: rgb(96, 56, 16);
+  --color-gold: #d4af37;
+  --color-dark-brown-medieval: #4a2c2a;
+}
+
+body {
+
+  background-image: url("../Imagenes/background.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  font-family: 'Merriweather', serif;
+  color: burlywood;
+
+  z-index: -1;
+}
+
+.inicioSesion h1 {
+  font-family: 'UnifrakturMaguntia', cursive;
+  font-size: 3rem;
+  text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.9);
+}
+
+a {
+  text-decoration: none;
+  
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+#mainContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px;
+  margin: 30px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  margin-top: 110px;
+}
+
+/*NAV*/
+.navbar {
+  border-bottom: 4px solid var(--color-light-brown);
+  padding: 15px 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 100;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+.navbar-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+.navbar-list li {
+  display: inline;
+  margin: 70px;
+}
+
+.navbar-list a {
+  text-decoration: none;
+  color: burlywood;
+  text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.9);
+  font-size: 25px;
+  font-weight: bold;
+  padding: 10px 15px;
+  border: 2px solid transparent;
+  transition: all 0.3s ease-in-out;
+  position: relative;
+}
+
+.navbar-list a:hover {
+  color: #f9f6e9;
+  text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.9);
+  border-bottom: 3px solid #000000;
+}
+
+.navbar-list a::before {
+  content: "";
+  position: absolute;
+  bottom: -3px;
+  left: 50%;
+  width: 0;
+  height: 3px;
+  background-color: burlywood;
+  transition: all 0.4s ease-in-out;
+}
+
+.navbar-list a:hover::before {
+  width: 100%;
+  left: 0;
+}
+
+/* responsivo */
+@media (max-width: 768px) {
+  .navbar-list li {
+    display: block;
+    margin: 10px 0;
+  }
+}
+
+
+/*FORMULARIO*/
+#editarFormulario label, #editarFormulario p {
+  font-size: larger;
+  text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.9);
+}
+
+#editarFormulario input #editarFormulario select{
+  background-color: burlywood;
+  border: 2px solid var(--color-dark-brown);
+  width: 100%;
+  max-width: 300px;
+  margin-bottom: 15px;
+}
+
+#editarFormulario button {
+  background-color: var(--color-dark-brown);
+  color: beige;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+}
+
+#editarFormulario button:hover {
+  background-color: var(--color-light-brown);
+  transform: scale(1.05);
+}
+
+#editarFormulario input:focus {
+  outline: none;
+  box-shadow: 0 0 5px var(--color-dark-brown);
+}
+
+/*CANCIONES*/
+#listaCanciones {
+  list-style-type: none;
+  padding: 0;
+  margin: 10px 0;
+}
+
+#listaCanciones li {
+  background-color: beige;
+  border: 1px solid var(--color-light-brown);
+  border-radius: 5px;
+  padding: 10px;
+  margin: 8px 0;
+  font-size: 1.1em;
+  color: #3e3b32;
+}
+
+#listaCanciones li:hover {
+  background-color: burlywood;
+  cursor: pointer;
+}
+
+/*BOTONES*/
+button {
+  background-color: var(--color-dark-brown);
+  color: beige;
+  border: none;
+  padding: 15px 30px;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 20px;
+  display: block;
+  width: 200px;
+  margin: 20px auto;
+}
+
+button:hover {
+  background-color: var(--color-light-brown);
+    transform: scale(1.05);
+}
+
+#editarJson {
+  background-color: var(--color-dark-brown);
+  color: beige;
+  border: none;
+  padding: 15px 30px;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 20px;
+  display: block;
+  width: 200px;
+  margin: 20px auto;
+}
+
+#editarJson:hover {
+  background-color: var(--color-light-brown);
+    transform: scale(1.05);
+}
+
+button, .form-control, .form-label {
+  width: 100%;
+  max-width: 400px;
+  margin-top: 10px;
+}
+
+input, select {
+  margin-bottom: 10px;
+}
+
+
+/*COSAS QUE NO SE QUE SON*/
+.listContainer, .finalContainer {
+  background-color: rgba(255, 255, 255, 0.3);
+  width: 90%;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: start;
+  gap: 15px;
+  padding: 10px;
+}
+
+.contContainer, .stringContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bolder;
+  font-size: 3vh;
+  padding: 0.5rem 1rem;
+  min-width: 100px;
+  white-space: nowrap;
+  color: rgb(0, 0, 0);
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out, background-color 0.3s ease;
+  border: 2px solid #000000;
+}

@@ -1,0 +1,29 @@
+body {
+    background-image: url("../Imagenes/background.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.logo {
+    max-width: 50%;
+    display: block;
+    margin: 0 auto;
+}
+
+p {
+    font-family: 'Merriweather', serif;
+    color: burlywood;
+    font-size: larger;
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.9);
+}
+
+    
+    h1 {
+        font-family: 'UnifrakturMaguntia', cursive;
+        font-size: 5rem;
+        text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.9);
+        color: burlywood
+    }
+  
+

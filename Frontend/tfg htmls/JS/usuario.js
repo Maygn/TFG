@@ -1,41 +1,12 @@
 async function cambiarClave() {
     const token = localStorage.getItem("jwtToken");
-    const contrasenaAct = document.getElementById("contrasenaAct").value;  // Captura el valor actual
-    const contrasenaNueva = document.getElementById("contrasenaNueva").value;
-
-    if (!contrasenaAct || !contrasenaNueva) {
-        alert("Por favor, llena todos los campos.");
+    if (!token) {
+        alert("No se encontró el token de autenticación. Por favor, inicia sesión nuevamente.");
         return;
     }
 
-    const formData = new URLSearchParams();
-    formData.append("token", token);
-    formData.append("contrasenaAct", contrasenaAct);  // Ahora se envía
-    formData.append("contrasenaNueva", contrasenaNueva);
-
-    try {
-        const response = await fetch("http://localhost:8081/usuarios/cambiarClave", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/x-www-form-urlencoded",
-            },
-            body: formData
-        });
-
-        const result = await response.text();
-        alert(result);
-    } catch (error) {
-        console.error("Error al cambiar la contraseña:", error);
-        alert("Ocurrió un error. Inténtalo de nuevo.");
-    }
-}
-
-
-
-async function cambiarClave() {
-    const token = localStorage.getItem("jwtToken");
-    const contrasenaAct = document.getElementById("contrasenaAct").value;
-    const contrasenaNueva = document.getElementById("contrasenaNueva").value;
+    const contrasenaAct = document.getElementById("contrasenaAct")?.value;
+    const contrasenaNueva = document.getElementById("contrasenaNueva")?.value;
 
     if (!contrasenaAct || !contrasenaNueva) {
         alert("Por favor, llena todos los campos.");
@@ -51,31 +22,40 @@ async function cambiarClave() {
             method: "POST",
             headers: {
                 "Content-Type": "application/x-www-form-urlencoded",
-                "Authorization": token // Token en el header, no en el body
+                "Authorization": token
             },
             body: formData
         });
 
         const result = await response.text();
+
+        if (!response.ok) {
+            alert("Error del servidor al cambiar la contraseña: " + result);
+            return;
+        }
+
         alert(result);
 
-        if (response.ok) {
-            // Opcional: limpiar campos tras el cambio exitoso
-            document.getElementById("contrasenaAct").value = "";
-            document.getElementById("contrasenaNueva").value = "";
-        }
+        // Limpiar campos si el cambio fue exitoso
+        document.getElementById("contrasenaAct").value = "";
+        document.getElementById("contrasenaNueva").value = "";
 
     } catch (error) {
         console.error("Error al cambiar la contraseña:", error);
-        alert("Ocurrió un error. Inténtalo de nuevo.");
+        alert("Ocurrió un error de conexión al intentar cambiar la contraseña.");
     }
 }
 
 
+
 async function borrarUsuario() {
     const token = localStorage.getItem("jwtToken");
-    const contrasena = document.getElementById("contrasenaBorrar").value; // Obtener contraseña del modal
+    if (!token) {
+        alert("No se encontró el token de autenticación. Por favor, inicia sesión nuevamente.");
+        return;
+    }
 
+    const contrasena = document.getElementById("contrasenaBorrar")?.value;
     if (!contrasena) {
         alert("Debes introducir tu contraseña.");
         return;
@@ -86,22 +66,30 @@ async function borrarUsuario() {
 
     try {
         // Eliminar sonidos del usuario primero
-        await fetch("http://localhost:8080/sonidos/borrarTodo", {
+        const sonidosResponse = await fetch("http://localhost:8080/sonidos/borrarTodo", {
             method: "DELETE",
             headers: {
                 "Authorization": `Bearer ${token}`
             }
         });
 
-
+        if (!sonidosResponse.ok) {
+            alert("Error al eliminar los sonidos.");
+            return;
+        }
 
         // Eliminar música del usuario
-        await fetch(`http://localhost:8090/musica/borrar`, {
+        const musicaResponse = await fetch("http://localhost:8090/musica/borrar", {
             method: "DELETE",
             headers: {
                 "Authorization": `Bearer ${token}`
             }
         });
+
+        if (!musicaResponse.ok) {
+            alert("Error al eliminar la música.");
+            return;
+        }
 
         // Eliminar usuario
         const response = await fetch("http://localhost:8081/usuarios/borrar", {
@@ -114,12 +102,17 @@ async function borrarUsuario() {
         });
 
         const result = await response.text();
+
+        if (!response.ok) {
+            alert("Error al borrar el usuario: " + result);
+            return;
+        }
+
         alert(result);
 
-        if (response.ok) {
-            localStorage.removeItem("jwtToken"); // Cerrar sesión tras eliminación
-            window.location.href = "http://127.0.0.1:5500/HTML/welcome.html"; // Redirigir a la página principal
-        }
+        // Cerrar sesión tras eliminación y redirigir
+        localStorage.removeItem("jwtToken");
+        window.location.href = "http://127.0.0.1:5500/HTML/welcome.html"; // Redirigir a la página principal
 
     } catch (error) {
         console.error("Error al borrar el usuario:", error);
@@ -127,13 +120,14 @@ async function borrarUsuario() {
     }
 }
 
-
 document.addEventListener("DOMContentLoaded", async () => {
+    debugger
     const token = localStorage.getItem("jwtToken");
     const userInfoElement = document.getElementById("userInfo");
   
     if (!token) {
         userInfoElement.innerText = "No hay sesión iniciada.";
+        alert("No se encontró el token de sesión.");
         return;
     }
   
@@ -142,19 +136,26 @@ document.addEventListener("DOMContentLoaded", async () => {
         if (!usuarioId) throw new Error("No se pudo obtener el usuario.");
   
         // Obtener datos del usuario desde la API
-        const usuarioData = await obtenerUsuarioDesdeAPI(usuarioId);
+        const usuarioData = await obtenerUsuarioDesdeAPI(usuarioId,token);
+        if (!usuarioData) {
+            userInfoElement.innerText = "Error al obtener los datos del usuario.";
+            alert("Error al obtener los datos del usuario.");
+            return;
+        }
         userInfoElement.innerText = `${usuarioData?.usuario || usuarioId}`;
   
     } catch (error) {
         console.error("Error:", error);
         userInfoElement.innerText = "Error al obtener el usuario.";
+        alert("Error al obtener el usuario.");
     }
-  });
+});
   
   /**
   * Decodifica un token JWT y extrae el campo 'Usuario'.
   */
   function extraerUsuarioDesdeToken(token) {
+    debugger
     try {
         const [header, payload, signature] = token.split(".");
         if (!header || !payload || !signature) throw new Error("Token JWT no válido");
@@ -171,8 +172,8 @@ document.addEventListener("DOMContentLoaded", async () => {
   * Obtiene los datos del usuario desde la API.
   */
   async function obtenerUsuarioDesdeAPI(usuarioId, token) {
-    const url = `http://localhost:8081/usuarios/obtener/usuario`;
-  
+    const url = `http://localhost:8081/usuarios/obtener/usuario?nombreUsuario=${encodeURIComponent(usuarioId)}`;
+
     try {
         const response = await fetch(url, {
             method: "GET",
@@ -181,18 +182,17 @@ document.addEventListener("DOMContentLoaded", async () => {
                 "Content-Type": "application/json"
             }
         });
-  
+
         if (!response.ok) throw new Error(`Error en la solicitud: ${response.statusText}`);
-  
-        return await response.text(); // En tu código, el backend devuelve el token como texto plano
-  
+
+        return await response.text(); // El backend devuelve el token como texto plano
+
     } catch (error) {
         console.error("Error al obtener los datos del usuario:", error);
         return null;
     }
-  }
-  
-  
+}
+
   /**
   * Decodifica una cadena base64-url.
   */

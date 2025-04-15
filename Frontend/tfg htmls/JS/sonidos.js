@@ -53,7 +53,6 @@ document.getElementById("fileInput").addEventListener("change", async function (
 });
 
 async function cargarSonidos() {
-    debugger
     try {
         const token = localStorage.getItem("jwtToken");
 
@@ -62,31 +61,37 @@ async function cargarSonidos() {
             return;
         }
 
-        const response = await fetch(`http://localhost:8080/sonidos/buscarLista`, {
+        const response = await fetch("http://localhost:8080/sonidos/buscarLista", {
             method: "GET",
             headers: {
                 "Authorization": `Bearer ${token}`
             }
         });
 
+        if (response.status === 404) {
+            alert("No hay lista creada en la base de datos.");
+            return; // ⛔ Detener la función si no hay lista
+        } else if (!response.ok) {
+            alert("Error al obtener la lista de sonidos.");
+            return;
+        }
+
         const sonidos = await response.json();
 
         const tablaSonidos = document.getElementById("tablaSonidos");
-
         tablaSonidos.innerHTML = "<tr><th>Nombre</th><th>Reproducir</th><th>Acción</th></tr>";
 
         sonidos.forEach((sonido) => {
             const row = document.createElement("tr");
 
             const nombreCell = document.createElement("td");
-            nombreCell.textContent = sonido.nombre; 
-            row.appendChild(nombreCell); 
+            nombreCell.textContent = sonido.nombre;
+            row.appendChild(nombreCell);
 
             const reproducirBtn = document.createElement("button");
             reproducirBtn.textContent = "Reproducir";
 
             reproducirBtn.addEventListener("click", function () {
-                // Reproducir el sonido con el token
                 const token = localStorage.getItem("jwtToken");
                 if (!token) {
                     alert("No hay sesión iniciada. Inicia sesión para escuchar el sonido.");
@@ -100,19 +105,19 @@ async function cargarSonidos() {
                         "Authorization": `Bearer ${token}`
                     }
                 })
-                .then(response => {
-                    if (response.ok) {
-                        response.blob().then(blob => {
-                            const audio = new Audio(URL.createObjectURL(blob));
-                            audio.play();
-                        });
-                    } else {
-                        alert("No tienes permiso para reproducir este sonido.");
-                    }
-                })
-                .catch(error => {
-                    console.error("Error al cargar el audio:", error);
-                });
+                    .then(response => {
+                        if (response.ok) {
+                            response.blob().then(blob => {
+                                const audio = new Audio(URL.createObjectURL(blob));
+                                audio.play();
+                            });
+                        } else {
+                            alert("No tienes permiso para reproducir este sonido.");
+                        }
+                    })
+                    .catch(error => {
+                        console.error("Error al cargar el audio:", error);
+                    });
             });
 
             const reproducirCell = document.createElement("td");
@@ -132,10 +137,13 @@ async function cargarSonidos() {
 
             tablaSonidos.appendChild(row);
         });
+
     } catch (error) {
         console.error("Error al cargar los sonidos:", error);
+        alert("Ocurrió un error al contactar con el servidor.");
     }
 }
+
 
 async function borrarSonido(id) {
     const confirmar = confirm("¿Estás seguro de que deseas eliminar este sonido?");

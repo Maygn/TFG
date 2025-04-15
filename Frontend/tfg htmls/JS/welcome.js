@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function () { //Esto sirve para qu
     let esRegistro = false; //Variable para saber si el formulario esta en registro o no
 
    // Manejar el envío del formulario
-formulario.addEventListener("submit", async function (event) {
+   formulario.addEventListener("submit", async function (event) {
     event.preventDefault(); // Se evita la recarga de la página
 
     const formData = new FormData(formulario);
@@ -14,17 +14,15 @@ formulario.addEventListener("submit", async function (event) {
 
     const usuarioElement = document.getElementById("usuario");
     const cuenta = usuarioElement.value; // Obtener el usuario
-    
-    if (esRegistro) {
-        debugger
-    // Obtener el estado del checkbox de admin
-    const adminCheckbox = document.getElementById("adminCheckbox");
-    const esAdmin = adminCheckbox.checked; // true si está marcado, false si no
-    // Agregar el valor de admin al formParams
-    formParams.append("admin", esAdmin);   
-    localStorage.setItem("esAdmin", esAdmin);
 
-}
+    if (esRegistro) {
+        // Obtener el estado del checkbox de admin
+        const adminCheckbox = document.getElementById("adminCheckbox");
+        const esAdmin = adminCheckbox.checked; // true si está marcado, false si no
+        // Agregar el valor de admin al formParams
+        formParams.append("admin", esAdmin);   
+        localStorage.setItem("esAdmin", esAdmin);
+    }
 
     // Definir la URL y el método de la petición
     let url, options;
@@ -45,42 +43,49 @@ formulario.addEventListener("submit", async function (event) {
         };
     }
 
-    const response = await fetch(url, options);
-    const mensaje = await response.text();
+    try {
+        const response = await fetch(url, options);
+        const mensaje = await response.text();
 
-    console.log("Mensaje recibido del servidor:", mensaje);
-    if (response.ok === true) {
-        // Si el registro fue exitoso, obtener el token
-        const tokenResponse = await fetch(`http://localhost:8081/usuarios/obtener/usuario?nombreUsuario=${encodeURIComponent(cuenta)}`);
-        const token = await tokenResponse.text(); 
-    
-        console.log("Token recibido:", token);
-    
-        // Guardar el nuevo token en el almacenamiento local
-        localStorage.removeItem("jwtToken");
-        localStorage.setItem("jwtToken", token);
-    
-        // Enviar la petición para asignar el JSON predeterminado
-        const defJson = JSON.stringify({
-        });
-    
-        const jsonResponse = await fetch("http://localhost:8090/musica/nuevo", {
-            method: "POST",
-            headers: { 
-                "Content-Type": "application/x-www-form-urlencoded"
-            },
-            body: new URLSearchParams({ token, defJson })
-        });
-    
-        const mensajeJson = await jsonResponse.text();
-        console.log("Respuesta al asignar JSON:", mensajeJson);
-    
-        // Redirigir a la página principal
-        window.location.href = "http://127.0.0.1:5500/HTML/Pagina_principal.html";
-    
-    } else {
-        document.getElementById("mensaje").innerText = mensaje;
-        document.getElementById("mensaje").style.color = "red";
+        console.log("Mensaje recibido del servidor:", mensaje);
+        if (response.ok === true) {
+            alert("Operación exitosa: " + mensaje);
+
+            // Si el registro fue exitoso, obtener el token
+            const tokenResponse = await fetch(`http://localhost:8081/usuarios/obtener/usuario?nombreUsuario=${encodeURIComponent(cuenta)}`);
+            const token = await tokenResponse.text(); 
+
+            console.log("Token recibido:", token);
+
+            // Guardar el nuevo token en el almacenamiento local
+            localStorage.removeItem("jwtToken");
+            localStorage.setItem("jwtToken", token);
+
+            // Enviar la petición para asignar el JSON predeterminado
+            const defJson = JSON.stringify({});
+
+            const jsonResponse = await fetch("http://localhost:8090/musica/nuevo", {
+                method: "POST",
+                headers: { 
+                    "Content-Type": "application/x-www-form-urlencoded"
+                },
+                body: new URLSearchParams({ token, defJson })
+            });
+
+            const mensajeJson = await jsonResponse.text();
+            console.log("Respuesta al asignar JSON:", mensajeJson);
+
+            // Redirigir a la página principal
+            window.location.href = "http://127.0.0.1:5500/HTML/Pagina_principal.html";
+
+        } else {
+            alert("Error: " + mensaje);
+            document.getElementById("mensaje").innerText = mensaje;
+            document.getElementById("mensaje").style.color = "red";
+        }
+    } catch (error) {
+        console.error("Error en la petición:", error);
+        alert("Error en la conexión con el servidor.");
     }
 });
 

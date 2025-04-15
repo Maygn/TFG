@@ -29,6 +29,7 @@ body {
   justify-content: start;  /* Alinea los elementos al principio */
   gap: 15px;
   padding: 10px;
+  border-radius: 10px; /* Bordes redondeados */
 }
 
 .contContainer, .stringContainer {
@@ -40,10 +41,11 @@ body {
   padding: 0.5rem 1rem;
   min-width: 100px;
   white-space: nowrap;
+  border-radius: 90%; /* Forma circular */
   color: rgb(0, 0, 0);
   cursor: pointer;
   transition: transform 0.2s ease-in-out, background-color 0.3s ease;
-  border: 2px solid #000000; /* Bordes azules */
+  border: 2px solid #3498db; /* Bordes azules */
 }
 
 
