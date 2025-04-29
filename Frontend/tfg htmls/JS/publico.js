@@ -148,7 +148,7 @@ document.addEventListener("DOMContentLoaded", function () {
             alert("Por favor, escribe el nombre de una canción.");
             return;
         }
-
+        debugger
         fetch("http://localhost:8090/publico/publica/agregar", {
             method: "POST",
             headers: {

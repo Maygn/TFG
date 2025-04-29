@@ -68,14 +68,7 @@ const btnGuardarCambios = document.getElementById("guardarCambios");
 const btnEnviarCancion = document.getElementById("enviarCancion");
 const inputIdCanal = document.getElementById("idCanal");
 const selectCategoria = document.getElementById("categoria");
-const subcategoriaWrapper = document.getElementById("subcategoriaWrapper");
-
-if (!btnGuardarCambios || !btnEnviarCancion || !inputIdCanal || !selectCategoria || !subcategoriaWrapper) {
-    alert("Error: Uno o más elementos necesarios no se encontraron en el DOM.");
-    console.error({
-        btnGuardarCambios, btnEnviarCancion, inputIdCanal, selectCategoria, subcategoriaWrapper
-    });
-} else {
+const subcategoriaWrapper = document.getElementById("subcategoria");
     // Función para guardar cambios (enviar al servidor)
     btnGuardarCambios.addEventListener("click", async () => {
         const token = localStorage.getItem("jwtToken");
@@ -113,38 +106,38 @@ if (!btnGuardarCambios || !btnEnviarCancion || !inputIdCanal || !selectCategoria
     });
 
     // Función para enviar una canción al bot de Discord
-    btnEnviarCancion.addEventListener("click", () => {
-        const idCanal = inputIdCanal.value.trim();
+    // btnEnviarCancion.addEventListener("click", () => {
+    //     const idCanal = inputIdCanal.value.trim();
 
-        if (cancionSeleccionada.nombre && cancionSeleccionada.enlace && idCanal) {
-            const requestData = {
-                idCanal: idCanal,
-                mensaje: `!play ${cancionSeleccionada.enlace}`
-            };
+    //     if (cancionSeleccionada.nombre && cancionSeleccionada.enlace && idCanal) {
+    //         const requestData = {
+    //             idCanal: idCanal,
+    //             mensaje: `!play ${cancionSeleccionada.enlace}`
+    //         };
 
-            fetch("http://localhost:8083/enviarMensaje", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(requestData)
-            })
-            .then(response => {
-                if (response.ok) {
-                    alert("Canción enviada correctamente.");
-                } else {
-                    alert("Error al enviar la canción.");
-                    response.text().then(text => console.error("Respuesta del servidor:", text));
-                }
-            })
-            .catch(error => {
-                console.error("Error al conectar con el servidor:", error);
-                alert("Error al conectar con el servidor.");
-            });
-        } else {
-            alert("Por favor, selecciona una canción y un canal de Discord.");
-        }
-    });
+    //         fetch("http://localhost:8083/enviarMensaje", {
+    //             method: "POST",
+    //             headers: {
+    //                 "Content-Type": "application/json"
+    //             },
+    //             body: JSON.stringify(requestData)
+    //         })
+    //         .then(response => {
+    //             if (response.ok) {
+    //                 alert("Canción enviada correctamente.");
+    //             } else {
+    //                 alert("Error al enviar la canción.");
+    //                 response.text().then(text => console.error("Respuesta del servidor:", text));
+    //             }
+    //         })
+    //         .catch(error => {
+    //             console.error("Error al conectar con el servidor:", error);
+    //             alert("Error al conectar con el servidor.");
+    //         });
+    //     } else {
+    //         alert("Por favor, selecciona una canción y un canal de Discord.");
+    //     }
+    // });
 
     // Función para manejar el cambio de categorías y subcategorías
     selectCategoria.addEventListener("change", function () {
@@ -155,12 +148,6 @@ if (!btnGuardarCambios || !btnEnviarCancion || !inputIdCanal || !selectCategoria
             return;
         }
 
-        const subcategoriaSelect = document.getElementById("subcategoria");
-
-        if (subcategoriaSelect) {
-            subcategoriaSelect.remove(); // Elimina el anterior si existe
-        }
-
         const nuevaSubcategoria = document.createElement("input");
         nuevaSubcategoria.type = "text";
         nuevaSubcategoria.id = "subcategoria";
@@ -169,4 +156,4 @@ if (!btnGuardarCambios || !btnEnviarCancion || !inputIdCanal || !selectCategoria
 
         subcategoriaWrapper.appendChild(nuevaSubcategoria);
     });
-}
+

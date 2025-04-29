@@ -1,6 +1,7 @@
 package musica;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -14,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/publico")
-@CrossOrigin(origins = "http://127.0.0.1:5500")
+@CrossOrigin(origins = "*")
 public class ComunesController {
 
 	
@@ -98,4 +99,11 @@ public class ComunesController {
 	            return new ResponseEntity<>("Ocurrió un error al intentar borrar la música pública.", HttpStatus.INTERNAL_SERVER_ERROR);
 	        }
 	    }
+
+
+	    @GetMapping("/repositorio-publico")
+	    public Comunes obtenerRepositorioPublico() {
+	        return comunesService.obtenerRepositorioPublico();
+	    }
+
 }

@@ -3,6 +3,7 @@ package musica;
 import java.io.IOException;
 import java.util.Base64;
 import java.util.Iterator;
+import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -211,4 +212,18 @@ public class ComunesService {
 	            return null;
 	        }
 	    }
+
+
+	    public Comunes obtenerRepositorioPublico() {
+	        // Intentamos encontrar el repositorio público por ID
+	        Optional<Comunes> repositorioOpt = comunesRepository.findById(1L);
+
+	        // Si no existe, creamos uno nuevo
+	        return repositorioOpt.orElseGet(() -> {
+	            Comunes nuevoRepositorio = new Comunes();
+	            comunesRepository.save(nuevoRepositorio);
+	            return nuevoRepositorio;
+	        });
+	    }
+
 }

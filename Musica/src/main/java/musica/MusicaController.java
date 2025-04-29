@@ -23,7 +23,7 @@ import jakarta.transaction.Transactional;
 
 @RestController
 @RequestMapping("/musica") // Ruta base para este controller
-@CrossOrigin(origins = "http://127.0.0.1:5500")
+@CrossOrigin(origins = "*")
 public class MusicaController {
 
     @Autowired

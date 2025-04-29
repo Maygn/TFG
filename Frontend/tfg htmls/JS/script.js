@@ -3,8 +3,11 @@ let json = {};
 let mainContainer = document.getElementById("mainContainer");
 let timeoutId = null;  // Variable para almacenar el temporizador
 
+
 // Cargar el JSON al iniciar la página
 const token = localStorage.getItem("jwtToken");
+const usuarioId = extraerUsuarioDesdeJWT(token); // Si necesitas pasar el usuarioId, agrega aquí la lógica para obtenerlo.
+cargarSonidos(usuarioId);  // Llamar a la función para cargar los sonidos al cargar la página
 
 if (token) {
     debugger
@@ -227,4 +230,121 @@ document.getElementById("enviarCancion").addEventListener("click", function () {
         alert("Ocurrió un error al intentar enviar la canción.");
     }
 });
+
+function extraerUsuarioDesdeJWT(token) {
+    const usuarioId = obtenerUsuarioDesdeToken();
+    if (!usuarioId) return null;
+    return usuarioId;
+}
+function obtenerUsuarioDesdeToken() {
+    const token = localStorage.getItem("jwtToken");
+    if (!token) {
+        alert("No hay sesión iniciada.");
+        return null;
+    }
+
+    const parts = token.split('.');
+    if (parts.length !== 3) {
+        console.error("Token JWT no válido");
+        return null;
+    }
+
+    try {
+        const payload = JSON.parse(base64UrlDecode(parts[1]));
+        const usuarioId = payload.Usuario;
+        if (!usuarioId) {
+            console.error("No se pudo obtener el usuario del token");
+            return null;
+        }
+        return usuarioId;
+    } catch (error) {
+        console.error("Error al decodificar el token JWT:", error);
+        return null;
+    }
+}
+function base64UrlDecode(str) {
+    str = str.replace(/-/g, '+').replace(/_/g, '/'); 
+    while (str.length % 4 !== 0) {
+        str += "="; 
+    }
+    return atob(str);
+}
+async function cargarSonidos() {
+    try {
+        const token = localStorage.getItem("jwtToken");
+
+        if (!token) {
+            alert("No hay sesión iniciada. Inicia sesión para ver los sonidos.");
+            return;
+        }
+
+        const response = await fetch("http://localhost:8080/sonidos/buscarLista", {
+            method: "GET",
+            headers: {
+                "Authorization": `Bearer ${token}`
+            }
+        });
+
+        if (response.status === 404) {
+            alert("No hay lista creada en la base de datos.");
+            return;
+        } else if (!response.ok) {
+            alert("Error al obtener la lista de sonidos.");
+            return;
+        }
+
+        const sonidos = await response.json();
+
+        const tablaSonidos = document.getElementById("tablaSonidos");
+        tablaSonidos.innerHTML = "<tr><th>Sonidos</th></tr>"; // Ahora solo una columna: Nombre (que será botón)
+
+        sonidos.forEach((sonido) => {
+            const row = document.createElement("tr");
+
+            const nombreCell = document.createElement("td");
+            const botonSonido = document.createElement("button");
+            botonSonido.textContent = sonido.nombre;
+            botonSonido.classList.add("boton-sonido"); // Clase opcional por si quieres estilos CSS
+
+            botonSonido.addEventListener("click", function () {
+                const token = localStorage.getItem("jwtToken");
+                if (!token) {
+                    alert("No hay sesión iniciada. Inicia sesión para escuchar el sonido.");
+                    return;
+                }
+
+                const audioUrl = `http://localhost:8080/sonidos/descargar/${sonido.id}`;
+                fetch(audioUrl, {
+                    method: "GET",
+                    headers: {
+                        "Authorization": `Bearer ${token}`
+                    }
+                })
+                .then(response => {
+                    if (response.ok) {
+                        response.blob().then(blob => {
+                            const audio = new Audio(URL.createObjectURL(blob));
+                            audio.play();
+                        });
+                    } else {
+                        alert("No tienes permiso para reproducir este sonido.");
+                    }
+                })
+                .catch(error => {
+                    console.error("Error al cargar el audio:", error);
+                });
+            });
+
+            nombreCell.appendChild(botonSonido);
+            row.appendChild(nombreCell);
+
+            tablaSonidos.appendChild(row);
+        });
+
+    } catch (error) {
+        console.error("Error al cargar los sonidos:", error);
+        alert("Ocurrió un error al contactar con el servidor.");
+    }
+}
+
 
