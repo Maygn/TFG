@@ -8,9 +8,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class TfgApplication {
 
 	public static void main(String[] args) {
-		
-
-		
 		SpringApplication.run(TfgApplication.class, args);
 	}
 

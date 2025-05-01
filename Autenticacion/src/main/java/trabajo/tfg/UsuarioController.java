@@ -1,6 +1,5 @@
 package trabajo.tfg;
 
-import jakarta.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -88,7 +87,6 @@ public class UsuarioController {
 		}
 	}
 
-	@Transactional
 	@DeleteMapping("/borrar")
 	public ResponseEntity<String> borrarUsuario(@RequestHeader("Authorization") String token, @RequestParam String contrasena) {
 		String usuario;

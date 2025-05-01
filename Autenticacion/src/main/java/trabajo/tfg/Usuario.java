@@ -2,67 +2,57 @@ package trabajo.tfg;
 
 import java.util.UUID;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-@Entity
+@Document("usuarios")  // Optional: specify collection name
 public class Usuario {
-		
-		@Column
-	  @Id
-	  @GeneratedValue(strategy = GenerationType.UUID)
-	    private UUID codigo;
-		
-		@Column(unique = true)
-	    private String usuario;
-		
-		@Column
-		private boolean admin;
-		
-		@Column
-		private static final String CLAVE_ADMIN="PatatasConAtun";
-		
-		@Column
-	    private String contrasena;
-	    
-	    // Getters y setters
-	    public UUID getCodigo() {
-	        return codigo;
-	    }
 
-	    public void setCodigo(UUID codigo) {
-	        this.codigo = codigo;
-	    }
+    @Id
+    private UUID codigo; // MongoDB will store this as a UUID or string
 
-	    public String getUsuario() {
-	        return usuario;
-	    }
+    private String usuario;
 
-	    public void setUsuario(String usuario) {
-	        this.usuario = usuario;
-	    }
+    private boolean admin;
 
-	    public String getContrasena() {
-	        return contrasena;
-	    }
+    private static final String CLAVE_ADMIN = "PatatasConAtun";
 
-	    public void setContrasena(String contrasena) {
-	        this.contrasena = contrasena;
-	    }
+    private String contrasena;
 
-		public boolean isAdmin() {
-			return admin;
-		}
+    // Getters y setters
+    public UUID getCodigo() {
+        return codigo;
+    }
 
-		public void setAdmin(boolean admin) {
-			this.admin = admin;
-		}
+    public void setCodigo(UUID codigo) {
+        this.codigo = codigo;
+    }
 
-		public static String getClaveAdmin() {
-			return CLAVE_ADMIN;
-		}
-	    
-	}
+    public String getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
+    }
+
+    public String getContrasena() {
+        return contrasena;
+    }
+
+    public void setContrasena(String contrasena) {
+        this.contrasena = contrasena;
+    }
+
+    public boolean isAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(boolean admin) {
+        this.admin = admin;
+    }
+
+    public static String getClaveAdmin() {
+        return CLAVE_ADMIN;
+    }
+}

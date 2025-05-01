@@ -2,6 +2,7 @@ package trabajo.tfg;
 
 import java.time.LocalDateTime;
 import java.util.Base64;
+import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -30,6 +31,7 @@ public class UsuarioService {
 		Usuario nuevoUsuario = new Usuario();
 		nuevoUsuario.setUsuario(usuario);
 		nuevoUsuario.setAdmin(admin);
+		nuevoUsuario.setCodigo(UUID.randomUUID());
 
 		// Hashear la contraseña antes de guardarla
 		String hashedPassword = DigestUtils.sha256Hex(contrasena);
