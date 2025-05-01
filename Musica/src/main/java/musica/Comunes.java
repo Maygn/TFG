@@ -1,20 +1,15 @@
 package musica;
-import java.io.Serializable;
-
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
 
 
-@Entity
-@Table(name="Comunes")
-public class Comunes implements Serializable{
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document("comunes")
+public class Comunes{
 	@Id
-	@Column(name="id")
 	
 	private final Long id=1L;
-	@Column(name="musicaPublica")
+
     private Musica musicaPublica;
 
 	public Musica getMusicaPublica() {

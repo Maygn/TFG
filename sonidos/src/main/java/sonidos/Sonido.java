@@ -1,23 +1,18 @@
 package sonidos;
 
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Lob;
-
-
-@Entity
+@Document("sonido")
 public class Sonido {
+	
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String nombre;
     private String usuario;
-    @Lob
+
     private byte[] archivo;
 
     // Getters y Setters
@@ -46,6 +41,12 @@ public class Sonido {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	
 	
 
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        

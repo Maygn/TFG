@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import jakarta.transaction.Transactional;
+
 
 import org.springframework.core.io.UrlResource;
 import org.springframework.http.MediaType;
@@ -88,7 +88,7 @@ public class SonidoController {
 	
 	
 	 //Borrar todos los sonidos del usuario
-	 @Transactional
+
 	 @DeleteMapping("/borrarTodo")
 	 public ResponseEntity<Void> borrarSonidosPorUsuario(@RequestHeader("Authorization") String token) {
 		 System.out.println("Entrando a borrar usuario");
@@ -113,8 +113,7 @@ public class SonidoController {
 	 }
 //borrar un solo sonido por su id
 	 @DeleteMapping("/borrar/{id}")
-	 public ResponseEntity<Void> borrarSonido(@RequestHeader("Authorization") String token, @PathVariable Long id) {
-	     try {//si no hay usuario en el token o no hay token, manda error
+	 public ResponseEntity<Void> borrarSonido(@RequestHeader("Authorization") String token, @PathVariable Long id){	     try {//si no hay usuario en el token o no hay token, manda error
 	         String usuario = extraerUsuarioDesdeJWT(token);
 	         if (usuario == null || usuario.isEmpty()) {
 	             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
