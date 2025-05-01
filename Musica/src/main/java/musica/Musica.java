@@ -1,21 +1,23 @@
 package musica;
 
-
-
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-
-@Document("musica")
-public class Musica{
+@Document(collection = "musica")
+public class Musica {
 
     @Id
- 
     private String usuario;
- 
+
     private String musica;
-   
-   
+
+    public Musica() {}
+
+    public Musica(String usuario, String musica) {
+        this.usuario = usuario;
+        this.musica = musica;
+    }
+
     public String getUsuario() {
         return usuario;
     }
@@ -31,26 +33,4 @@ public class Musica{
     public void setMusica(String musica) {
         this.musica = musica;
     }
-
-
-	public Musica() {
-		super();
-	}
-
-	public void ifPresent(Musica musica) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	public Musica orElse(Musica musica) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public boolean isPresent() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	
 }

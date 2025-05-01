@@ -18,11 +18,18 @@ import org.springframework.stereotype.Service;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
-import com.fasterxml.jackson.databind.node.ObjectNode;
+
+import jakarta.annotation.PostConstruct;
 
 @Service
 public class ComunesService {
+	 @Autowired
+	    private ComunesInitializer comunesInitializer; // Inyectamos el inicializador
 
+	    @PostConstruct
+	    public void init() {
+	        comunesInitializer.inicializarComunes(); // Inicializamos el registro de Comunes si no existe
+	    }
 	 @Autowired
 	    private ComunesRepository comunesRepository;
 //RECIBIR DE PUBLICO
