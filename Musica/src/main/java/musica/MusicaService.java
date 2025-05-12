@@ -1,7 +1,13 @@
 package musica;
 
 import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 import org.springframework.stereotype.Service;
+
+import jakarta.annotation.PostConstruct;
 
 @Service
 public class MusicaService {
@@ -52,6 +58,41 @@ public class MusicaService {
     
  // Verificar si el usuario ya existe
     public boolean existeUsuario(String usuario) {
-        return musicaRepository.findByUsuario(usuario) != null; // Cambié 'nombre' por 'usuario'
+        return musicaRepository.findByUsuario(usuario) != null; 
     }
+    
+    
+    //METODOS PARA EL REPO COMUN
+    @PostConstruct
+    public Musica inicializarComunes() {
+        // Buscar si ya existe el registro "Comunes"
+        Optional<Musica> comunesOpt = musicaRepository.findOptionalByUsuario("Comunes");
+
+        if (comunesOpt.isPresent()) {
+            return comunesOpt.get(); // Ya existe, lo devolvemos
+        }
+
+        // Crear nuevo objeto si no existe
+        Musica comunes = new Musica();
+        comunes.setUsuario("Comunes");
+        // Aquí puedes inicializar otros campos si es necesario
+
+        // Guardar en la base de datos
+        comunes = musicaRepository.save(comunes);
+        
+        // Devolvemos el comunes recien creado
+        return comunes;
+    }
+    
+    public Musica actualizarMusicaComunes(String usuario, String nuevoJson) {
+        Musica comunes = buscarPorUsuario("Comunes");
+        if (comunes == null) {
+            comunes = new Musica("Comunes", nuevoJson);
+        } else {
+            comunes.setMusica(nuevoJson);
+        }
+        return musicaRepository.save(comunes);
+    }
+
+    
 }

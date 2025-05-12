@@ -1,6 +1,7 @@
 package musica;
 
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import jakarta.annotation.PostConstruct;
 import jakarta.transaction.Transactional;
 
 import java.util.Base64;
@@ -42,7 +44,7 @@ public class MusicaController {
         }
     }
 
-    // Recuperar json de usuario
+// Recuperar json de usuario
     @GetMapping("/buscar")
     public ResponseEntity<String> verJson(@RequestHeader("Authorization") String token) {
         try {
@@ -69,31 +71,19 @@ public class MusicaController {
         }
     }
 
-    // Modificar json de usuario
     @PutMapping("/modificar")
     public ResponseEntity<Musica> actualizarMusica(@RequestHeader("Authorization") String token, @RequestBody Musica cuentaActualizada) {
         try {
-            // Extraer usuario del token
             String usuario = extraerUsuarioDesdeJWT(token);
-            
-            // Verificar si el usuario existe
-            Musica cuenta = musicaService.buscarPorUsuario(usuario);
-            if (cuenta == null) {
-                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-            }
-
-            // Actualizar la música del usuario
-            cuenta.setMusica(cuentaActualizada.getMusica());
-            musicaService.agregarMusica(usuario, cuentaActualizada.getMusica()); // Actualización
-
-            return new ResponseEntity<>(cuenta, HttpStatus.OK);
+            Musica cuentaActual = musicaService.agregarMusica(usuario, cuentaActualizada.getMusica());
+            return new ResponseEntity<>(cuentaActual, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
-    // Borrar un usuario
-    @Transactional
+// Borrar un usuario
+    
     @DeleteMapping("/borrar")
     public ResponseEntity<String> borrarCuenta(@RequestHeader("Authorization") String token) {
         try {
@@ -114,6 +104,74 @@ public class MusicaController {
         }
     }
 
+    
+    //METODOS PARA REPO COMUN
+    
+    
+    @GetMapping("/buscar/comunes")
+    public ResponseEntity<String> verComunes(@RequestHeader("Authorization") String token) {
+        try {
+            // Sacar usuario desde el JWT
+            String usuario = extraerUsuarioDesdeJWT(token);
+
+            // Obtener o inicializar "Comunes"
+            Musica musica = musicaService.inicializarComunes();
+
+            // Obtener y devolver la música
+            String musicaJson = musica.getMusica();
+            if (musicaJson == null || musicaJson.isEmpty()) {
+                return new ResponseEntity<>("No se encontró música para el usuario: " + usuario, HttpStatus.NOT_FOUND);
+            } else {
+                return new ResponseEntity<>(musicaJson, HttpStatus.OK);
+            }
+        } catch (IllegalArgumentException e) {
+            return new ResponseEntity<>("Error con el usuario. Inicia sesión de nuevo", HttpStatus.UNAUTHORIZED);
+        } catch (Exception e) {
+            return new ResponseEntity<>("Error interno en el servidor.", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    
+    @PutMapping("/comunes/actualizar")
+    public ResponseEntity<Musica> actualizarMusicaComunes(@RequestHeader("Authorization") String token,
+                                                          @RequestBody Musica musicaActualizada) {
+        try {
+            String usuario = extraerUsuarioDesdeJWT(token);
+            if (usuario == null || usuario.isBlank()) {
+                return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+            }
+
+            Musica actualizada = musicaService.actualizarMusicaComunes(usuario, musicaActualizada.getMusica());
+            return new ResponseEntity<>(actualizada, HttpStatus.OK);
+
+        } catch (IllegalArgumentException e) {
+            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @DeleteMapping("/comunes/borrar")
+    public ResponseEntity<String> borrarMusicaComunes(@RequestHeader("Authorization") String token) {
+        try {
+            String usuario = extraerUsuarioDesdeJWT(token);
+            Usuario user = usuarioService.buscarPorUsuario(usuario);
+
+            if (user == null || !user.isAdmin()) {
+                return new ResponseEntity<>("No tienes permisos para borrar el comunes.", HttpStatus.FORBIDDEN);
+            }
+
+            musicaService.actualizarMusicaComunes("Comunes", ""); // Vacía el campo JSON
+            return new ResponseEntity<>("Contenido de 'Comunes' borrado correctamente.", HttpStatus.OK);
+
+        } catch (Exception e) {
+            return new ResponseEntity<>("Error al borrar 'Comunes'.", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    
+    
+    
     
     
     // Método para extraer usuario del JWT

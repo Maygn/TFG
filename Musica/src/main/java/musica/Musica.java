@@ -1,12 +1,14 @@
 package musica;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "musica")
 public class Musica {
 
     @Id
+    @Indexed(unique = true)
     private String usuario;
 
     private String musica;
@@ -33,4 +35,9 @@ public class Musica {
     public void setMusica(String musica) {
         this.musica = musica;
     }
+
+	public void orElseGet(Object object) {
+		// TODO Auto-generated method stub
+		
+	}
 }
