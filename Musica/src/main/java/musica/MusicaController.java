@@ -15,9 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import jakarta.annotation.PostConstruct;
-import jakarta.transaction.Transactional;
-
 import java.util.Base64;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -151,25 +148,20 @@ public class MusicaController {
         }
     }
 
-    @DeleteMapping("/comunes/borrar")
-    public ResponseEntity<String> borrarMusicaComunes(@RequestHeader("Authorization") String token) {
-        try {
-            String usuario = extraerUsuarioDesdeJWT(token);
-            Usuario user = usuarioService.buscarPorUsuario(usuario);
-
-            if (user == null || !user.isAdmin()) {
-                return new ResponseEntity<>("No tienes permisos para borrar el comunes.", HttpStatus.FORBIDDEN);
-            }
-
-            musicaService.actualizarMusicaComunes("Comunes", ""); // Vacía el campo JSON
-            return new ResponseEntity<>("Contenido de 'Comunes' borrado correctamente.", HttpStatus.OK);
-
-        } catch (Exception e) {
-            return new ResponseEntity<>("Error al borrar 'Comunes'.", HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
-
     
+
+    @PutMapping("/comunes/borrar")
+    public ResponseEntity<Void> borrarComunes(
+            @RequestHeader("Authorization") String token,
+            @RequestBody Musica nuevaMusica) {
+        
+        if (!extraerAdminDesdeJWT(token)) {
+            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+        }
+
+        musicaService.agregarMusica("comunes", nuevaMusica.getMusica());
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
     
     
     
@@ -197,6 +189,20 @@ public class MusicaController {
             }
         } catch (Exception e) {
             return null; // Si ocurre un error, asumimos token inválido
+        }
+    }
+    public boolean extraerAdminDesdeJWT(String token) {
+        try {
+            String[] partes = token.split("\\.");
+            if (partes.length != 3) {
+                return false;
+            }
+            String payloadJson = new String(Base64.getUrlDecoder().decode(partes[1]));
+            Pattern pattern = Pattern.compile("\"Admin\":\\s*(true|false)");
+            Matcher matcher = pattern.matcher(payloadJson);
+            return matcher.find() && Boolean.parseBoolean(matcher.group(1));
+        } catch (Exception e) {
+            return false;
         }
     }
 }
