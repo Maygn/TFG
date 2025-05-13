@@ -1,4 +1,4 @@
-package musica;
+package Musica.Musica;
 
 import org.springframework.beans.factory.annotation.Autowired;
 

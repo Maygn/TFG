@@ -1,14 +1,13 @@
-package musica;
+package Musica.Musica;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-@SpringBootApplication
-public class MusicaMain {
 
-	
+@SpringBootApplication
+public class MusicaApplication {
+
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		SpringApplication.run(MusicaMain.class, args);
+		SpringApplication.run(MusicaApplication.class, args);
 	}
 
 }

@@ -1,4 +1,4 @@
-package musica;
+package Musica.Musica;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
