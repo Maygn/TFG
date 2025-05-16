@@ -5,10 +5,11 @@ import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "musica")
+
+//Entiendo que la mierdita que he quitado la pusiste porque GPT te lo dijo? por el error de cors, creo recordar. No hagas cosas que no sabes que hacen
 public class Musica {
 
     @Id
-    @Indexed(unique = true)
     private String usuario;
 
     private String musica;
